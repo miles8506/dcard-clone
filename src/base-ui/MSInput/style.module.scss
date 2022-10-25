@@ -1,0 +1,21 @@
+@import '../../assets/css/variable.scss';
+
+.ant-input {
+  background-color: $input-base-color;
+  border-color: $input-base-color;
+  color: #fff;
+
+  &:focus {
+    box-shadow: none;
+    border-color: $input-base-color;
+  }
+
+  &:hover {
+    border-color: $input-base-color;
+  }
+
+  &::placeholder {
+    color: #e4e4e4;
+    font-weight: 200;
+  }
+}
