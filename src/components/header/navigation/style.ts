@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ThemePropsType } from '@/assets/theme'
 
 export const NavigationWrapper = styled.div`
   display: flex;
@@ -16,9 +17,16 @@ export const NavigationWrapper = styled.div`
   }
 
   .arrow-down-icon {
+    position: relative;
     display: flex;
     align-items: center;
     fill: currentColor;
+  }
+
+  .menu {
+    position: absolute;
+    top: 48px;
+    right: -6px;
   }
 
   .function-icons {
@@ -44,7 +52,7 @@ export const NavigationWrapper = styled.div`
     display: flex;
     align-items: center;
 
-    &:hover .download-qr-code {
+    &:hover .download-wrap {
       display: block;
     }
 
@@ -61,12 +69,14 @@ export const NavigationWrapper = styled.div`
       }
     }
 
-    &-qr-code {
+    &-wrap {
       display: none;
+      background-color: #fff;
       padding: 12px 16px;
       border-radius: 10px;
-      background-color: #fff;
+    }
 
+    &-qr-code {
       &:hover {
         display: block;
       }
@@ -77,11 +87,30 @@ export const NavigationWrapper = styled.div`
       }
     }
 
+    &-text {
+      margin-bottom: 3px;
+      text-align: center;
+      color: #000;
+      font-weight: 200;
+    }
+
+    &-enlarge {
+      margin-top: 5px;
+      text-align: center;
+      color: ${(props: ThemePropsType) => props.theme.textColor.primary};
+      font-weight: 200;
+      cursor: pointer;
+    }
+
     .mask-wrap {
       position: absolute;
-      top: 40px;
+      top: 35px;
       right: 0;
       padding-top: 20px;
     }
+  }
+
+  .modal-content {
+    padding: 0 60px;
   }
 `

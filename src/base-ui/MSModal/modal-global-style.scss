@@ -1,14 +1,19 @@
 .ms-ant-modal {
-  top: 50px;
-  bottom: 50px;
+  // top: 50px;
+  // bottom: 50px;
+  padding: 0;
+  // height: 90vh;
+  overflow: hidden;
 
   .ant-modal-content {
-    height: 90vh;
+    // height: 90vh;
+    height: 100%;
   }
 
   .ant-modal-body {
     // height: calc(100% - 55px);
     height: 100%;
+    padding: 0;
     overflow-y: auto;
 
     &::-webkit-scrollbar {

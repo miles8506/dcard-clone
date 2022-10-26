@@ -6,7 +6,14 @@ import RouterProvider from '@/context/router-info-context'
 import MainLoadBoard from '@/components/main/main-load-board'
 import MainContextProvider from '@/context/main-context'
 
+// import MSModal from '@/base-ui/MSModal'
+// import ModalContent from '@/components/header/modal-content'
+
 const Main = memo(() => {
+  // const [isShowQRcode, setIsShowQRcode] = useState(false)
+  // const changeIsShowQRcode = useCallback((val: boolean) => {
+  //   setIsShowQRcode(val)
+  // }, [setIsShowQRcode])
 
   return (
     <MainWrapper>
@@ -14,6 +21,18 @@ const Main = memo(() => {
         <Header></Header>
         <MainLoadBoard />
       </MainContextProvider>
+{/*
+      <MSModal
+        open={isShowQRcode}
+        onCancel={() => setIsShowQRcode}
+        style={{
+          borderRadius: '12px',
+          top: 'calc(50% - 236px)',
+        }}
+      >
+        <ModalContent setIsShowQRcode={changeIsShowQRcode} />
+      </MSModal>
+      <button onClick={() => changeIsShowQRcode(true)}>click</button> */}
     </MainWrapper>
   )
 })
