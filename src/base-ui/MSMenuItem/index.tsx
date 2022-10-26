@@ -1,10 +1,12 @@
 import { memo, FC, PropsWithChildren } from 'react'
 
-import { MenuItem, MenuItemProps } from '@mui/material'
+import { MSMenuItemWrapper } from './style'
 
-const MSMenuItem: FC<PropsWithChildren<MenuItemProps>> = memo(({ children, ...elseProps }) => {
+const MSMenuItem: FC<PropsWithChildren> = memo(({ children }) => {
   return (
-    <MenuItem {...elseProps} >{children}</MenuItem>
+    <MSMenuItemWrapper>
+      {children}
+    </MSMenuItemWrapper>
   )
 })
 
