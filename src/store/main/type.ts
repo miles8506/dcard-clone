@@ -1,3 +1,3 @@
 export interface IMainState {
-  count: number
+  areaList: string[]
 }

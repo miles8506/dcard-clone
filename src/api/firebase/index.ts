@@ -1,10 +1,10 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/storage'
-import 'firebase/auth'
-import { config } from './config'
+import 'firebase/auth/dist/index.esm.js.map'
+import { firebaseConfig } from './config'
 
-firebase.initializeApp(config)
+firebase.initializeApp(firebaseConfig)
 
 export default firebase
 export const db = firebase.firestore()
