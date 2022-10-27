@@ -11,25 +11,19 @@ export const NavigationWrapper = styled.div`
     align-items: center;
     padding: 0 16px;
 
-    &-btn {
+    &__btn {
       font-weight: 200;
     }
   }
 
-  .arrow-down-icon {
+  .arrow-down {
     position: relative;
     display: flex;
     align-items: center;
     fill: currentColor;
   }
 
-  .menu {
-    position: absolute;
-    top: 48px;
-    right: -6px;
-  }
-
-  .function-icons {
+  .functions {
     display: flex;
 
     & > div[class$="icon"] {
@@ -56,7 +50,7 @@ export const NavigationWrapper = styled.div`
       display: block;
     }
 
-    &-btn {
+    &__btn {
       margin-left: 15px;
       padding: 5px 13px;
       border-radius: 8px;
@@ -102,7 +96,7 @@ export const NavigationWrapper = styled.div`
       cursor: pointer;
     }
 
-    .mask-wrap {
+    &__mask-wrap {
       position: absolute;
       top: 35px;
       right: 0;
@@ -112,5 +106,21 @@ export const NavigationWrapper = styled.div`
 
   .modal-content {
     padding: 0 60px;
+  }
+
+  // transition
+  .header-menu-enter {
+    opacity: 0;
+  }
+  .header-menu-enter-active {
+    opacity: 1;
+    transition: opacity .2s ease;
+  }
+  .header-menu-exit {
+    opacity: 1;
+  }
+  .header-menu-exit-active {
+    opacity: 0;
+    transition: opacity .2s ease;
   }
 `

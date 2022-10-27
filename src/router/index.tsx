@@ -1,8 +1,11 @@
+import { lazy } from 'react'
 import { RouteObject, Navigate } from 'react-router-dom'
-import Main from '../pages/main'
-import All from '@/pages/main/c-cpns/all'
-import Curation from '@/pages/main/c-cpns/curation'
-import Article from '@/components/main/article'
+
+const Main = lazy(() => import('@/pages/main'))
+const All = lazy(() => import('@/pages/main/c-cpns/all'))
+const Curation = lazy(() => import('@/pages/main/c-cpns/curation'))
+const Article = lazy(() => import('@/components/main/article'))
+const Login = lazy(() => import('@/pages/login'))
 
 const routes: RouteObject[] = [
   {
@@ -32,6 +35,10 @@ const routes: RouteObject[] = [
         ]
       }
     ]
+  },
+  {
+    path: '/login',
+    element: <Login />
   }
 ]
 

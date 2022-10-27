@@ -1,7 +1,9 @@
-import { memo, useCallback, useState, MouseEvent, Fragment } from 'react'
+import { memo, useEffect, useCallback, useState, MouseEvent } from 'react'
 
+import { useNavigate } from 'react-router-dom'
 import { useSelector, shallowEqual } from 'react-redux'
 import { ReduxStateType } from '@/store'
+import { CSSTransition } from 'react-transition-group'
 
 import { NavigationWrapper } from './style'
 import ArrowDownIcon from '@/assets/svg/arrow-down-icon'
@@ -12,69 +14,88 @@ import InfoIcon from '@/assets/svg/info-icon'
 import EditIcon from '@/assets/svg/edit-icon'
 import MSModal from '@/base-ui/MSModal'
 import ModalContent from '../modal-content'
-import MSMenu from '@/base-ui/MSMenu'
-import MSMenuItem from '@/base-ui/MSMenuItem'
+import Menu from '@/components/header/menu'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const QRcodeImage = require('@/assets/img/dcard-qrcode-s.webp')
 
 const Navigation = memo(() => {
+  const navigate = useNavigate()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin
   }), shallowEqual)
 
   const [isShowQRcode, setIsShowQRcode] = useState(false)
   const [isShowMenu, setIsShowMenu] = useState(false)
-  const [menuList, setMenuList] = useState(['服務條款', '常見問題', '回報問題', '品牌識別', '徵才', '商業合作', '免費下載 App', '設定'])
 
-  const changeShowMenu = () => setIsShowMenu(prev => !prev)
+  const changeShowMenu = useCallback((event: MouseEvent<HTMLDivElement>, item?: string) => {
+    event.stopPropagation()
+    setIsShowMenu(prev => {
+      return !prev
+    })
+    if (item) {
+      console.log(item)
+      // do something
+    }
+  }, [setIsShowMenu])
 
   const changeIsShowQRcode = useCallback((val: boolean) => {
     setIsShowQRcode(val)
   }, [setIsShowQRcode])
 
+  useEffect(() => {
+    const handleMenuListener = () => {
+      if (isShowMenu) setIsShowMenu(false)
+    }
+    window.document.addEventListener('click', handleMenuListener)
+
+    return window.removeEventListener('click', handleMenuListener)
+  }, [isShowMenu])
+
   return (
     <NavigationWrapper>
       {isLogin ? (
-        <div className="function-icons">
-          <div className="edit-icon">
+        <div className="functions">
+          <div className="functions__edit-icon">
             <EditIcon />
           </div>
-          <div className="info-icon">
+          <div className="functions__info-icon">
             <InfoIcon />
           </div>
-          <div className="card-icon">
+          <div className="functions__card-icon">
             <CardIcon />
           </div>
-          <div className="email-icon">
+          <div className="functions__email-icon">
             <EmailIcon />
           </div>
-          <div className="user-icon">
+          <div className="functions__user-icon">
             <UserIcon />
           </div>
         </div>
       ) : (
         <div className="registry-login">
-          <div className="registry-login-btn">註冊 / 登入</div>
+          <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>
         </div>
       )}
-      <div className="arrow-down-icon" onClick={changeShowMenu}>
+      <div className="arrow-down" onClick={(e: MouseEvent<HTMLDivElement>) => changeShowMenu(e)}>
         <ArrowDownIcon />
-          <div className="menu">
-          <MSMenu isShowMenu={isShowMenu}>
-              {
-                menuList.map(item => (
-                  <div key={item} onClick={changeShowMenu}>
-                    <MSMenuItem>{item}</MSMenuItem>
-                  </div>
-                ))
-              }
-            </MSMenu>
-          </div>
+        <CSSTransition
+          in={isShowMenu}
+          timeout={1000}
+          classNames={{
+            enter: 'header-menu-enter',
+            enterActive: 'header-menu-enter-active',
+            exit: 'header-menu-exit',
+            exitActive: 'header-menu-exit-active'
+          }}
+          unmountOnExit
+        >
+          <Menu changeShowMenu={changeShowMenu} />
+        </CSSTransition>
       </div>
       <div className="download">
-        <div className="download-btn">下載 App</div>
-        <div className="mask-wrap">
+        <div className="download__btn">下載 App</div>
+        <div className="download__mask-wrap">
           <div className="download-wrap" onClick={() => changeIsShowQRcode(true)}>
             <div className="download-text">手機掃描下載</div>
             <div className="download-qr-code">
