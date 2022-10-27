@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTabContext } from '@/context/main-context/tab-context'
 
 import { AsideMenuWrapper } from './style'
+import Area from './area'
 
 const AsideMenu = memo(() => {
   const { resetTabIndex } = useTabContext()
@@ -14,38 +15,9 @@ const AsideMenu = memo(() => {
     navigate(pathName)
   }
 
-  const asideMenu = [
-    {
-      name: '所有看板',
-      path: '/main/any/all'
-    },
-    {
-      name: '興趣',
-      path: '/main/hobby/all'
-    },
-    {
-      name: '遊戲',
-      path: '/main/play/all'
-    },
-    {
-      name: '心情',
-      path: '/main/emotion/all'
-    },
-    {
-      name: '運動',
-      path: '/main/sport/all'
-    }
-  ]
-
   return (
     <AsideMenuWrapper>
-      {
-        asideMenu.map(item => (
-          <div key={item.name} onClick={() => handleNavigate(item.path)}>
-            {item.name}
-          </div>
-        ))
-      }
+      <Area />
     </AsideMenuWrapper>
   )
 })

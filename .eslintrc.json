@@ -29,6 +29,7 @@
     "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-inferrable-types": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
