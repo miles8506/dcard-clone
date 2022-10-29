@@ -21,18 +21,6 @@ const Main = memo(() => {
         <Header></Header>
         <MainLoadBoard />
       </MainContextProvider>
-{/*
-      <MSModal
-        open={isShowQRcode}
-        onCancel={() => setIsShowQRcode}
-        style={{
-          borderRadius: '12px',
-          top: 'calc(50% - 236px)',
-        }}
-      >
-        <ModalContent setIsShowQRcode={changeIsShowQRcode} />
-      </MSModal>
-      <button onClick={() => changeIsShowQRcode(true)}>click</button> */}
     </MainWrapper>
   )
 })

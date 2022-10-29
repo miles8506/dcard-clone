@@ -1,9 +1,15 @@
-import { memo, FC } from 'react'
+import { FC, memo, PropsWithChildren } from 'react'
 
-import { Tab, TabProps } from '@mui/material'
+import { MSTabWrapper } from './style'
+import MSTabProvider from './tab-context'
 
-const MSTab: FC<TabProps> = memo((props) => {
-  return <Tab {...props} />
+export interface IProps {
+  value: string | number | null
+  onChange: null | ((newValue: any) => void)
+}
+
+const MSTab: FC<PropsWithChildren> = memo(({ children }) => {
+  return <MSTabWrapper>{children}</MSTabWrapper>
 })
 
-export default MSTab
+export default MSTabProvider(MSTab)

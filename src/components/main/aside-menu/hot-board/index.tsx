@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import { ReduxStateType } from '@/store'
 import { useNavigate } from 'react-router-dom'
+import { useTabContext } from '@/context/main-context/tab-context'
 
 import { useSelector, shallowEqual } from 'react-redux'
 import { HotBoardWrapper } from './style'
@@ -12,8 +13,10 @@ const HotBoard = memo(() => {
   const { hotBoardList } = useSelector((state: ReduxStateType) => ({
     hotBoardList: state.main.hotBoardList
   }), shallowEqual)
+  const { resetTabIndex } = useTabContext()
 
   const handleClick = (path: string) => {
+    resetTabIndex()
     navigate(`/main/${path}/all`)
   }
 
