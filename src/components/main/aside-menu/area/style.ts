@@ -16,10 +16,14 @@ export const AreaWrapper = styled.div`
     padding: 0 10px 0 20px;
     color: rgba(255, 255, 255, 0.75);
     background-color: inherit;
-    cursor: pointer;
+    cursor: not-allowed;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    &:first-child {
+      cursor: pointer;
     }
   }
 

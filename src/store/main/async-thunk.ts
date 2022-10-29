@@ -1,23 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { requestCol } from '@/api'
-// import type { IArea } from './type'
 
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const allLoadBoardIcon = require('@/assets/svg/all-load-board-icon')
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const hotIcon = require('@/assets/svg/hot-icon')
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const researchIcon = require('@/assets/svg/research-icon')
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const rankIcon = require('@/assets/img/rank.png')
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const gameIcon = require('@/assets/img/game.png')
+import type { IAreaList, IHotBoard } from './type'
 
 export const requestAreaList = createAsyncThunk('areaList', async () => {
   const res = await requestCol('area')
-  const areaList: string[] = []
+  const areaList: IAreaList[] = []
   res.forEach((item: any) => {
-    areaList.push(item.data().name)
+    const { name, path } = item.data()
+    areaList.push({ name, path })
   })
   return areaList
+})
+
+export const requestHotBoard = createAsyncThunk('hotBoard', async () => {
+  const res = await requestCol('hotBoard')
+  const hotBoardList: IHotBoard[] = []
+  res.forEach((item: any) => {
+    const { name, imgUrl, path } = item.data()
+    hotBoardList.push({ name, imgUrl, path })
+  })
+  return hotBoardList
 })

@@ -1,9 +1,9 @@
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 
-import type { ReduxDispatchType, ReduxStateType } from '@/store'
+import type { ReduxStateType } from '@/store'
 
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { requestAreaList } from '@/store/main/async-thunk'
+import { useSelector, shallowEqual } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { AreaWrapper } from './style'
 
@@ -15,7 +15,7 @@ import HotIcon from '@/assets/svg/hot-icon'
 import ResearchIcon from '@/assets/svg/research-icon'
 
 const Area = memo(() => {
-  const dispatch: ReduxDispatchType = useDispatch()
+  const navigate = useNavigate()
   const { areaList } = useSelector(
     (state: ReduxStateType) => ({
       areaList: state.main.areaList
@@ -34,16 +34,21 @@ const Area = memo(() => {
     }
   }
 
-  useEffect(() => {
-    dispatch(requestAreaList())
-  }, [dispatch])
+  const handleClick = (index: number) => {
+    if (index !== 0) return
+    navigate('/main/any/all')
+  }
 
   return (
     <AreaWrapper>
       {areaList?.map((item, index) => (
-        <div key={item} className="area-item">
+        <div
+          key={item.name}
+          className="area-item"
+          onClick={() => handleClick(index)}
+        >
           <div className="area-icon">{iconList(index)}</div>
-          <div className="area-text">{item}</div>
+          <div className="area-text">{item.name}</div>
         </div>
       ))}
       <div className="area-item">
