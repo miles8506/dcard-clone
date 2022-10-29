@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IMainState } from './type'
-import { requestAreaList } from '@/store/main/async-thunk'
+import { requestAreaList, requestHotBoard } from '@/store/main/async-thunk'
 
 const initialState: IMainState = {
-  areaList: []
+  areaList: [],
+  hotBoardList: []
 }
 
 const mainSlice = createSlice({
@@ -15,6 +16,10 @@ const mainSlice = createSlice({
   extraReducers(build) {
     build.addCase(requestAreaList.fulfilled, (state, { payload }) => {
       state.areaList = payload
+    })
+
+    build.addCase(requestHotBoard.fulfilled, (state, { payload }) => {
+      state.hotBoardList = payload
     })
   }
 })
