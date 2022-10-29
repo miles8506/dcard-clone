@@ -1,29 +1,29 @@
-import { memo, SyntheticEvent } from 'react'
+import { memo } from 'react'
 
 import { useRouterInfo } from '@/context/router-info-context'
 import { useTabContext } from '@/context/main-context/tab-context'
 
 import { TabsWrapper } from './style'
 import { Outlet, useNavigate } from 'react-router-dom'
-import MSTabs from '@/base-ui/MSTabs'
 import MSTab from '@/base-ui/MSTab'
+import MSTabs from '@/base-ui/MSTabs'
 
 const Tabs = memo(() => {
   const navigate = useNavigate()
   const { tabIndex, changeTabIndex } = useTabContext()
   const { sort } = useRouterInfo()
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const handleChange = (newValue: number) => {
     changeTabIndex(newValue)
-    newValue === 0 ? navigate(`/main/${sort}/all`) : navigate(`/main/${sort}/curation`)
+    newValue === 0 ? navigate(`/main/${sort}/all`) : navigate(`/main/${sort}/track`)
   };
 
   return (
     <TabsWrapper>
-      <MSTabs value={tabIndex} onChange={handleChange}>
-        <MSTab label="All" id="0"></MSTab>
-        <MSTab label="Curation" id="1"></MSTab>
-      </MSTabs>
+      <MSTab value={tabIndex} onChange={handleChange}>
+        <MSTabs label='全部' id={0} />
+        <MSTabs label='追蹤' id={1} />
+      </MSTab>
       <Outlet />
     </TabsWrapper>
   )
