@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { ReduxStateType } from '@/store'
 import { useNavigate } from 'react-router-dom'
 import { useTabContext } from '@/context/main-context/tab-context'
+import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 
 import { useSelector, shallowEqual } from 'react-redux'
 import { HotBoardWrapper } from './style'
@@ -14,10 +15,12 @@ const HotBoard = memo(() => {
     hotBoardList: state.main.hotBoardList
   }), shallowEqual)
   const { resetTabIndex } = useTabContext()
+  const { resetStatusIndex } = useFilterSelectContext()
 
   const handleClick = (path: string) => {
     resetTabIndex()
-    navigate(`/main/${path}/all`)
+    resetStatusIndex()
+    navigate(`/main/${path}/all/hot`)
   }
 
   return (

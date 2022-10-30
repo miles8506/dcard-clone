@@ -1,4 +1,9 @@
-import { memo, FC, useEffect, SyntheticEvent, Fragment } from 'react'
+import { memo, FC, useEffect, Fragment } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+import { useRouterInfo } from '@/context/router-info-context'
+import { useTabContext } from '@/context/main-context/tab-context'
+import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 
 import { SelectWrapper, SelectItemWrapper } from './style'
 import SelectHotIcon from '@/assets/svg/select-hot-icon'
@@ -7,12 +12,15 @@ import CorrectIcon from '@/assets/svg/correct-icon'
 
 interface IProps {
   options: string[]
-  currentIndex: number;
   closeSelect: () => void
-  changeCurrentIndex: (index: number) => void
 }
 
-const Select: FC<IProps> = memo(({ options, currentIndex, closeSelect, changeCurrentIndex }) => {
+const Select: FC<IProps> = memo(({ options, closeSelect }) => {
+  const navigate = useNavigate()
+  const { sort } = useRouterInfo()
+  const { getTabsPath } = useTabContext()
+  const { currentStatusIndex, changeStatusIndex, getStatusPath } = useFilterSelectContext()
+
   const checkSvg = (index: number) => {
     switch (index) {
       case 0:
@@ -23,7 +31,10 @@ const Select: FC<IProps> = memo(({ options, currentIndex, closeSelect, changeCur
   }
 
   const handleItemClick = (index: number) => {
-    changeCurrentIndex(index)
+    changeStatusIndex(index)
+    const tabsPath = getTabsPath(index)
+    const statusPath = getStatusPath(index)
+    navigate(`/main/${sort}/${tabsPath}/${statusPath}`)
   }
 
   useEffect(() => {
@@ -43,14 +54,14 @@ const Select: FC<IProps> = memo(({ options, currentIndex, closeSelect, changeCur
           {options.map((item, index) => (
             <Fragment key={item}>
               <SelectItemWrapper
-                currentIndex={currentIndex}
+                currentIndex={currentStatusIndex}
                 itemIndex={index}
               >
                 <div className="select-item" onClick={() => handleItemClick(index)}>
                   <span className="select-item__sign-icon">{checkSvg(index)}</span>
                   <div className="select-item__text">{item}</div>
                   {
-                    currentIndex === index && (
+                    currentStatusIndex === index && (
                       <div className="select-item__correct-icon">
                         <CorrectIcon />
                       </div>
