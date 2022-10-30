@@ -6,7 +6,7 @@ export const MainLoadBoardWrapper = styled.div`
   grid-template-rows: 1fr;
   max-width: 1280px;
   /* height: calc(100% - 68px); */
-  height: 0px;
+  height: 100%;
   margin: 0 auto;
   padding-top: 68px;
 `

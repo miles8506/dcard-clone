@@ -5,6 +5,7 @@ import './assets/css/reset.css'
 import 'antd/dist/antd.min.css'
 import store from './store'
 import theme from './assets/theme'
+import '@/enum/main'
 
 import App from './App'
 import { HashRouter } from 'react-router-dom'

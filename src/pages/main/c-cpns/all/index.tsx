@@ -8,12 +8,13 @@ import MSModal from '@/base-ui/MSModal'
 import MSButton from '@/base-ui/MSButton'
 
 const All = memo(() => {
-  const { sort } = useRouterInfo()
+  const { sort, status } = useRouterInfo()
   const [active, setActive] = useState(false)
 
   return (
     <AllWrapper>
-      <h2>{ sort }</h2>
+      <h2>{sort}</h2>
+      <h2>{status}</h2>
       <MSButton onClick={() => setActive(true)}>123</MSButton>
       <ArticleItem></ArticleItem>
       <MSModal open={active} footer={null} onCancel={() => setActive(false)}>
