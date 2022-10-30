@@ -7,6 +7,7 @@ import { TabsWrapper } from './style'
 import { Outlet, useNavigate } from 'react-router-dom'
 import MSTab from '@/base-ui/MSTab'
 import MSTabs from '@/base-ui/MSTabs'
+import FilterSelect from '../filter-select'
 
 const Tabs = memo(() => {
   const navigate = useNavigate()
@@ -20,11 +21,20 @@ const Tabs = memo(() => {
 
   return (
     <TabsWrapper>
-      <MSTab value={tabIndex} onChange={handleChange}>
-        <MSTabs label='全部' id={0} />
-        <MSTabs label='追蹤' id={1} />
-      </MSTab>
-      <Outlet />
+      <div className="tabs">
+        <div className="tabs-top">
+          <MSTab value={tabIndex} onChange={handleChange}>
+            <MSTabs label='全部' id={0} />
+            <MSTabs label='追蹤' id={1} />
+          </MSTab>
+          <div className="tabs-top-select">
+            <FilterSelect />
+          </div>
+        </div>
+        <div className="tabs-content">
+          <Outlet />
+        </div>
+      </div>
     </TabsWrapper>
   )
 })

@@ -21,7 +21,7 @@ const routes: RouteObject[] = [
         element: <Navigate to='/main/any/all'/>
       },
       {
-        path: '/main/:sort/all',
+        path: '/main/:sort/all/',
         element: <All />
       },
       {

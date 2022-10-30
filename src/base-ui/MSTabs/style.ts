@@ -9,13 +9,18 @@ interface IProps {
 export const MSTabsWrapper = styled.div<IProps>`
   flex-shrink: 0;
   height: 100%;
-  padding: ${props => props.padding ? props.padding : '0 16px'};
   background-color: inherit;
   cursor: pointer;
   border-bottom: ${props => props.isActive ? '2px solid rgb(51, 151, 207)' : '2px solid #fff'};
+  font-weight: 500;
+
+  &:hover {
+    color: #000;
+  }
 
   .ms-tabs {
     height: 100%;
+    padding: ${props => props.padding ? props.padding : '0 16px'};
 
     &::after {
       content: '';
