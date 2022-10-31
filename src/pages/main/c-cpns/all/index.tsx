@@ -1,63 +1,29 @@
-import { memo, useState } from 'react'
-
-import { useRouterInfo } from '@/context/router-info-context'
+import { memo, useState, useCallback } from 'react'
 
 import { AllWrapper } from './style'
 import ArticleItem from '@/components/main/article-item'
 import MSModal from '@/base-ui/MSModal'
-import MSButton from '@/base-ui/MSButton'
+import Article from '@/components/main/article'
 
 const All = memo(() => {
-  const { sort, status } = useRouterInfo()
-  const [active, setActive] = useState(false)
+  const [isShowArticleModal, setIsShowArticleModal] = useState(true)
+  const handleCloseModal = useCallback(() => {
+    setIsShowArticleModal(false)
+  }, [setIsShowArticleModal])
+  const handleOpenModal = () => {
+    setIsShowArticleModal(true)
+  }
 
   return (
     <AllWrapper>
-      <h2>{sort}</h2>
-      <h2>{status}</h2>
-      <MSButton onClick={() => setActive(true)}>123</MSButton>
-      <ArticleItem></ArticleItem>
-      <MSModal open={active} footer={null} onCancel={() => setActive(false)}>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
-        <div>111</div>
+      <div className="article-item" onClick={handleOpenModal}>
+        <ArticleItem />
+      </div>
+      <MSModal
+        open={isShowArticleModal}
+        onCancel={handleCloseModal}
+      >
+        <Article />
       </MSModal>
     </AllWrapper>
   )

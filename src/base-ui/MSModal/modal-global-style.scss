@@ -1,8 +1,9 @@
 .ms-ant-modal {
-  // top: 50px;
-  // bottom: 50px;
+  position: relative;
+  top: 0px;
   padding: 0;
-  // height: 90vh;
+  width: 720px !important;
+  height: 100%;
   overflow: hidden;
 
   .ant-modal-content {

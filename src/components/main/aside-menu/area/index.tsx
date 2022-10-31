@@ -4,6 +4,7 @@ import type { ReduxStateType } from '@/store'
 
 import { useSelector, shallowEqual } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useTabContext } from '@/context/main-context/tab-context'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 
 import { AreaWrapper } from './style'
@@ -18,6 +19,7 @@ import ResearchIcon from '@/assets/svg/research-icon'
 const Area = memo(() => {
   const navigate = useNavigate()
   const { resetStatusIndex } = useFilterSelectContext()
+  const { resetTabIndex } = useTabContext()
   const { areaList } = useSelector(
     (state: ReduxStateType) => ({
       areaList: state.main.areaList
@@ -38,6 +40,7 @@ const Area = memo(() => {
 
   const handleClick = (index: number) => {
     if (index !== 0) return
+    resetTabIndex()
     resetStatusIndex()
     navigate('/main/any/all/hot')
   }
