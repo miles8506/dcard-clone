@@ -4,7 +4,9 @@ import { ArticleItemWrapper } from './style'
 
 const ArticleItem = memo(() => {
   return (
-    <ArticleItemWrapper>ArticleItem</ArticleItemWrapper>
+    <ArticleItemWrapper>
+      article item
+    </ArticleItemWrapper>
   )
 })
 
