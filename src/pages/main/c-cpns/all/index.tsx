@@ -6,7 +6,7 @@ import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/main/article'
 
 const All = memo(() => {
-  const [isShowArticleModal, setIsShowArticleModal] = useState(true)
+  const [isShowArticleModal, setIsShowArticleModal] = useState(false)
   const handleCloseModal = useCallback(() => {
     setIsShowArticleModal(false)
   }, [setIsShowArticleModal])
@@ -22,8 +22,11 @@ const All = memo(() => {
       <MSModal
         open={isShowArticleModal}
         onCancel={handleCloseModal}
+        style={{
+          height: '100vh'
+        }}
       >
-        <Article />
+        <Article onCancel={handleCloseModal} />
       </MSModal>
     </AllWrapper>
   )

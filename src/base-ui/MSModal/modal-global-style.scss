@@ -3,7 +3,6 @@
   top: 0px;
   padding: 0;
   width: 720px !important;
-  height: 100vh;
   overflow: hidden;
 
   .ant-modal-content {
@@ -26,6 +25,7 @@
   }
 
   .ant-modal-body {
+    // height: 100%;
     padding: 0;
   }
 
