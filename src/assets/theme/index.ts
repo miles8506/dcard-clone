@@ -5,7 +5,8 @@ const theme = {
     primary: 'rgb(0, 88, 138)'
   },
   textColor: {
-    primary: '#3397CF'
+    primary: '#3397CF',
+    warn: '#ea5c5c'
   }
 }
 

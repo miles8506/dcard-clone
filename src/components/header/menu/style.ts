@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 
 export const MenuWrapper = styled.div`
-    position: absolute;
-    top: 48px;
-    right: -6px;
+  position: absolute;
+  top: 48px;
+  right: -6px;
   width: 160px;
   padding: 6px 0;
   background-color: #fff;
   border-radius: 12px;
-  overflow: hidden;
   transition: opacity .2s ease;
+  box-shadow: 0px 1px 1px 0.5px #ebebeb;
 
-  .triangle-sign {
+  &::after {
+    content: '';
     position: absolute;
     top: -16px;
     right: 10px;

@@ -1,5 +1,7 @@
 import { memo, useState } from 'react'
 
+import { useLogin } from '@/hooks/login'
+
 import { FormWrapper } from './style'
 import ArrowDownIcon from '@/assets/svg/arrow-down-icon'
 import FBIcon from '@/assets/svg/fb-icon'
@@ -7,7 +9,10 @@ import GoogleIcon from '@/assets/svg/google-icon'
 import AppleIcon from '@/assets/svg/apple-icon'
 
 const Form = memo(() => {
+  const { state, changeAccountValue, changePasswordValue, verifyInputValue } = useLogin()
+  const { accountValue, accountStatus, passwordValue, passwordStatus } = state
   const [isShowThirdPartyLogin, setIsShowThirdPartyLogin] = useState(false)
+
   const changeIsShowThirdPartyLogin = () =>
     setIsShowThirdPartyLogin((prev) => !prev)
 
@@ -18,11 +23,25 @@ const Form = memo(() => {
         <div className="form">
           <div className="account">
             <label htmlFor="account_id">常用信箱</label>
-            <input type="text" id="account_id" />
+            <input
+              type="text"
+              id="account_id"
+              value={accountValue}
+              onChange={changeAccountValue}
+              onBlur={() => verifyInputValue('account')}
+            />
+            { accountStatus && <div className="warn-text">此欄位為必填</div> }
           </div>
           <div className="password">
             <label htmlFor="password_id">密碼</label>
-            <input type="text" id="password_id" />
+            <input
+              type="password"
+              id="password_id"
+              value={passwordValue}
+              onChange={changePasswordValue}
+              onBlur={() => verifyInputValue('password')}
+            />
+            { passwordStatus && <div className="warn-text">此欄位為必填</div> }
           </div>
         </div>
         <div className="login-btn">註冊 / 登入</div>

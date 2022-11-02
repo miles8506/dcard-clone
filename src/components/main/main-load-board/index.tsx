@@ -7,8 +7,10 @@ import Tabs from '../tabs'
 const MainLoadBoard = memo(() => {
   return (
     <MainLoadBoardWrapper>
-      <AsideMenu />
-      <Tabs />
+      <div className="main-load-board">
+        <AsideMenu />
+        <Tabs />
+      </div>
     </MainLoadBoardWrapper>
   )
 })

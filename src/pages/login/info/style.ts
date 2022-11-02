@@ -61,6 +61,7 @@ export const InfoWrapper = styled.div`
       padding: 11px 8px;
       cursor: pointer;
       color: #3397cf;
+      font-size: 16px;
 
       &:hover {
         color: #5ab0db;
@@ -70,6 +71,7 @@ export const InfoWrapper = styled.div`
     .download {
       display: flex;
       gap: 0 16px;
+      margin-top: 26px;
 
       .ios,
       .google {
@@ -79,6 +81,7 @@ export const InfoWrapper = styled.div`
         & > img {
           width: 100%;
           height: 100%;
+          cursor: pointer;
         }
       }
     }

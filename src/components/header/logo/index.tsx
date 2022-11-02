@@ -1,13 +1,18 @@
 import { memo } from 'react'
 
-import LogoSvg from '@/assets/svg/logo'
+import { useNavigate } from 'react-router-dom'
 
+import LogoSvg from '@/assets/svg/logo'
 import { LogoWrapper } from './style'
 
 const Logo = memo(() => {
+  const navigate = useNavigate()
+
   return (
     <LogoWrapper>
-      <LogoSvg />
+      <div className="logo" onClick={() => navigate('/main')}>
+        <LogoSvg />
+      </div>
     </LogoWrapper>
   )
 })
