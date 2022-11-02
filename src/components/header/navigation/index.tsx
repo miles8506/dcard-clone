@@ -1,8 +1,8 @@
-import { memo, useEffect, useCallback, useState, MouseEvent } from 'react'
+import { memo, FC, useEffect, useCallback, useState, MouseEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
-import { useSelector, shallowEqual } from 'react-redux'
-import { ReduxStateType } from '@/store'
+// import { useSelector, shallowEqual } from 'react-redux'
+// import { ReduxStateType } from '@/store'
 import { CSSTransition } from 'react-transition-group'
 
 import { NavigationWrapper } from './style'
@@ -19,11 +19,17 @@ import Menu from '@/components/header/menu'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const QRcodeImage = require('@/assets/img/dcard-qrcode-s.webp')
 
-const Navigation = memo(() => {
+interface IProps {
+  isShowFunctionBar: boolean
+  isShowDownload: boolean
+  isShowLoginButton: boolean
+}
+
+const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShowLoginButton }) => {
   const navigate = useNavigate()
-  const { isLogin } = useSelector((state: ReduxStateType) => ({
-    isLogin: state.login.isLogin
-  }), shallowEqual)
+  // const { isLogin } = useSelector((state: ReduxStateType) => ({
+  //   isLogin: state.login.isLogin
+  // }), shallowEqual)
 
   const [isShowQRcode, setIsShowQRcode] = useState(false)
   const [isShowMenu, setIsShowMenu] = useState(false)
@@ -54,8 +60,9 @@ const Navigation = memo(() => {
 
   return (
     <NavigationWrapper>
-      {isLogin ? (
-        <div className="functions">
+      {
+        isShowFunctionBar && (
+          <div className="functions">
           <div className="functions__edit-icon">
             <EditIcon />
           </div>
@@ -71,12 +78,16 @@ const Navigation = memo(() => {
           <div className="functions__user-icon">
             <UserIcon />
           </div>
-        </div>
-      ) : (
-        <div className="registry-login">
-          <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>
-        </div>
-      )}
+          </div>
+        )
+      }
+      {
+        isShowLoginButton && (
+          <div className="registry-login">
+            <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>
+          </div>
+        )
+      }
       <div className="arrow-down" onClick={(e: MouseEvent<HTMLDivElement>) => changeShowMenu(e)}>
         <ArrowDownIcon />
         <CSSTransition
@@ -93,20 +104,24 @@ const Navigation = memo(() => {
           <Menu changeShowMenu={changeShowMenu} />
         </CSSTransition>
       </div>
-      <div className="download">
-        <div className="download__btn">下載 App</div>
-        <div className="download__mask-wrap">
-          <div className="download-wrap" onClick={() => changeIsShowQRcode(true)}>
-            <div className="download-text">手機掃描下載</div>
-            <div className="download-qr-code">
-              <img src={QRcodeImage} alt="" />
-            </div>
-            <div className="download-enlarge">
-              <span>放大</span>
+      {
+        isShowDownload && (
+          <div className="download">
+            <div className="download__btn">下載 App</div>
+            <div className="download__mask-wrap">
+              <div className="download-wrap" onClick={() => changeIsShowQRcode(true)}>
+                <div className="download-text">手機掃描下載</div>
+                <div className="download-qr-code">
+                  <img src={QRcodeImage} alt="" />
+                </div>
+                <div className="download-enlarge">
+                  <span>放大</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )
+      }
       <MSModal
         open={isShowQRcode}
         onCancel={() => setIsShowQRcode}

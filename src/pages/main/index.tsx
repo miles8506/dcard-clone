@@ -1,7 +1,7 @@
 import { memo } from 'react'
 
 import { MainWrapper } from './style'
-import Header from '@/components/header'
+import Header from './c-cpns/header'
 import RouterProvider from '@/context/router-info-context'
 import MainLoadBoard from '@/components/main/main-load-board'
 import MainContextProvider from '@/context/main-context'
@@ -10,10 +10,6 @@ import MainContextProvider from '@/context/main-context'
 // import ModalContent from '@/components/header/modal-content'
 
 const Main = memo(() => {
-  // const [isShowQRcode, setIsShowQRcode] = useState(false)
-  // const changeIsShowQRcode = useCallback((val: boolean) => {
-  //   setIsShowQRcode(val)
-  // }, [setIsShowQRcode])
 
   return (
     <MainWrapper>

@@ -43,6 +43,12 @@ export const FormWrapper = styled.div<PropsType>`
           border-radius: 10px;
           outline: none;
         }
+
+        .warn-text {
+          padding: 6px 14px 0;
+          font-size: 12px;
+          color: ${props => props.theme.textColor.warn};
+        }
       }
 
       .account {

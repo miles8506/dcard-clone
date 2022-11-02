@@ -13,7 +13,6 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
   return (
     <MenuWrapper>
       <div className="menu">
-        <div className="triangle-sign"></div>
         {menuList.map((item) => (
           <div
             key={item}

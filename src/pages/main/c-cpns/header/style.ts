@@ -11,10 +11,4 @@ export const HeaderWrapper = styled.div`
   padding: 0 20px;
   background-color: rgb(0, 106, 166);
   z-index: 9;
-
-  .header {
-    &-logo {
-      color: red;
-    }
-  }
 `

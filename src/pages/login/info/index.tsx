@@ -1,5 +1,7 @@
 import { memo } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { InfoWrapper } from './style'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -12,6 +14,8 @@ const google = require('@/assets/img/google-play.webp')
 const ios = require('@/assets/img/ios.webp')
 
 const Info = memo(() => {
+  const navigate = useNavigate()
+
   return (
     <InfoWrapper>
       <div className="login-info">
@@ -29,7 +33,7 @@ const Info = memo(() => {
           <div>不想錯過任何有趣的話題嗎？</div>
           <div>趕快加入我們吧！</div>
         </div>
-        <span className="navigation">先看討論區</span>
+        <span className="navigation" onClick={() => navigate('/main')}>先看討論區</span>
         <div className="download">
           <div className="google">
             <img src={google} alt="" />
