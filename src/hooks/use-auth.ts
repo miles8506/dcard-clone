@@ -1,9 +1,18 @@
-import { MSSessionStore } from "@/utils";
+import { useEffect } from 'react'
 
-export function useAuth() {
-  const isAuth = () => !!(MSSessionStore.getItem('loginInfo'))
+import { MSSessionStore } from '@/utils'
+import { useDispatch } from 'react-redux'
+import { useRouterInfo } from '@/context/router-info-context'
+import { changeLoginStatus } from '@/store/login'
 
-  return {
-    isAuth
-  }
+export default function useAuth() {
+  const isAuth = () => !!MSSessionStore.getItem('loginInfo')
+
+  const dispatch = useDispatch()
+  const { pathname } = useRouterInfo()
+
+  useEffect(() => {
+    const _isAuth = isAuth()
+    dispatch(changeLoginStatus(_isAuth))
+  }, [pathname])
 }

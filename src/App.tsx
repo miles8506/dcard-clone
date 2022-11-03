@@ -1,23 +1,12 @@
-import { useEffect } from 'react'
-
 import { useRoutes } from 'react-router-dom'
-import { useAuth } from './hooks/use-auth'
-import { useDispatch } from 'react-redux'
-import { changeLoginStatus } from './store/login'
-import { useRouterInfo } from '@/context/router-info-context'
+import useAuth from './hooks/use-auth'
 
 import RouterProvider from '@/context/router-info-context'
 
 import routes from '@/router'
 
 function App() {
-  const dispatch = useDispatch()
-  const { pathname } = useRouterInfo()
-  const { isAuth } = useAuth()
-  useEffect(() => {
-    const _isAuth = isAuth()
-    dispatch(changeLoginStatus(_isAuth))
-  }, [pathname])
+  useAuth()
 
   return (
     <div
