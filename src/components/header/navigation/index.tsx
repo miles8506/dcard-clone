@@ -1,8 +1,8 @@
 import { memo, FC, useEffect, useCallback, useState, MouseEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
-// import { useSelector, shallowEqual } from 'react-redux'
-// import { ReduxStateType } from '@/store'
+import { useSelector, shallowEqual } from 'react-redux'
+import { ReduxStateType } from '@/store'
 import { CSSTransition } from 'react-transition-group'
 
 import { NavigationWrapper } from './style'
@@ -27,9 +27,9 @@ interface IProps {
 
 const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShowLoginButton }) => {
   const navigate = useNavigate()
-  // const { isLogin } = useSelector((state: ReduxStateType) => ({
-  //   isLogin: state.login.isLogin
-  // }), shallowEqual)
+  const { isLogin } = useSelector((state: ReduxStateType) => ({
+    isLogin: state.login.isLogin
+  }), shallowEqual)
 
   const [isShowQRcode, setIsShowQRcode] = useState(false)
   const [isShowMenu, setIsShowMenu] = useState(false)
@@ -58,6 +58,10 @@ const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShow
     return window.removeEventListener('click', handleMenuListener)
   }, [isShowMenu])
 
+  useEffect(() => {
+    if (isLogin) return navigate('/main')
+  }, [])
+
   return (
     <NavigationWrapper>
       {
@@ -84,7 +88,7 @@ const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShow
       {
         isShowLoginButton && (
           <div className="registry-login">
-            <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>
+            { !isLogin && <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>}
           </div>
         )
       }

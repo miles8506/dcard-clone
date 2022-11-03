@@ -2,6 +2,7 @@
   "name": "react-cpn",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://miles8506.github.io/dcard-clone/",
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@draft-js-plugins/editor": "^4.1.3",
@@ -22,6 +23,7 @@
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
     "firebase": "^8.10.0",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
@@ -40,7 +42,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

@@ -5,6 +5,7 @@ export const MenuItemWrapper = styled.div`
   background-color: inherit;
   color: rgba(0, 0, 0, 0.75);
   font-size: 14px;
+  cursor: pointer;
 
   &:hover {
     background-color: rgb(242, 243, 244);

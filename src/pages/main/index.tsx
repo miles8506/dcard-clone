@@ -2,7 +2,6 @@ import { memo } from 'react'
 
 import { MainWrapper } from './style'
 import Header from './c-cpns/header'
-import RouterProvider from '@/context/router-info-context'
 import MainLoadBoard from '@/components/main/main-load-board'
 import MainContextProvider from '@/context/main-context'
 
@@ -10,7 +9,6 @@ import MainContextProvider from '@/context/main-context'
 // import ModalContent from '@/components/header/modal-content'
 
 const Main = memo(() => {
-
   return (
     <MainWrapper>
       <MainContextProvider>
@@ -21,7 +19,7 @@ const Main = memo(() => {
   )
 })
 
-export default RouterProvider(Main)
+export default Main
 
 // import { memo, useState, SyntheticEvent, MouseEvent } from 'react';
 // import { Outlet, useNavigate } from 'react-router-dom';
