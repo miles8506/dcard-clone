@@ -36,4 +36,12 @@ export const MSTabsWrapper = styled.div<IProps>`
       color: ${props => props.isActive ? '#000' : 'inherit'};
     }
   }
+
+  @media screen and (max-width: 992px) {
+    flex: 1;
+
+    .ms-tabs {
+      text-align: center;
+    }
+  }
 `

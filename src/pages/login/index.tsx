@@ -1,9 +1,9 @@
 import { memo } from 'react'
 
 import { LoginWrapper } from './style'
-import Info from './info'
-import Form from './form'
-import Header from './header'
+import Info from '@/components/login/info'
+import Form from '@/components/login/form'
+import Header from '@/components/login/header'
 
 const Login = memo(() => {
   return (

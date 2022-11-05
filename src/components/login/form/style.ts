@@ -164,4 +164,9 @@ export const FormWrapper = styled.div<PropsType>`
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    border-radius: 0 0 0 0;
+  }
 `

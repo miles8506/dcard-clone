@@ -4,6 +4,7 @@ import { MainWrapper } from './style'
 import Header from './c-cpns/header'
 import MainLoadBoard from '@/components/main/main-load-board'
 import MainContextProvider from '@/context/main-context'
+import MobileNavigation from '@/components/main/mobile-navigation'
 
 // import MSModal from '@/base-ui/MSModal'
 // import ModalContent from '@/components/header/modal-content'
@@ -14,6 +15,7 @@ const Main = memo(() => {
       <MainContextProvider>
         <Header></Header>
         <MainLoadBoard />
+        <MobileNavigation />
       </MainContextProvider>
     </MainWrapper>
   )

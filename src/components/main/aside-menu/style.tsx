@@ -1,5 +1,14 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const AsideMenuWrapper = styled.div`
-  /* width: 208px; */
+
+  .aside-menu {
+    position: sticky;
+    top: 68px;
+    height: calc(100vh - 68px);
+  }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `

@@ -20,12 +20,11 @@ import Menu from '@/components/header/menu'
 const QRcodeImage = require('@/assets/img/dcard-qrcode-s.webp')
 
 interface IProps {
-  isShowFunctionBar: boolean
   isShowDownload: boolean
   isShowLoginButton: boolean
 }
 
-const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShowLoginButton }) => {
+const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
   const navigate = useNavigate()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin
@@ -49,6 +48,8 @@ const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShow
     setIsShowQRcode(val)
   }, [setIsShowQRcode])
 
+  const goPostPage = () => navigate('/post')
+
   useEffect(() => {
     const handleMenuListener = () => {
       if (isShowMenu) setIsShowMenu(false)
@@ -65,9 +66,9 @@ const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShow
   return (
     <NavigationWrapper>
       {
-        isShowFunctionBar && (
+        isLogin && (
           <div className="functions">
-          <div className="functions__edit-icon">
+          <div className="functions__post-icon" onClick={goPostPage}>
             <EditIcon />
           </div>
           <div className="functions__info-icon">
@@ -88,7 +89,7 @@ const Navigation: FC<IProps> = memo(({ isShowFunctionBar, isShowDownload, isShow
       {
         isShowLoginButton && (
           <div className="registry-login">
-            { !isLogin && <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>}
+            <div className="registry-login__btn" onClick={() => navigate('/login')}>註冊 / 登入</div>
           </div>
         )
       }

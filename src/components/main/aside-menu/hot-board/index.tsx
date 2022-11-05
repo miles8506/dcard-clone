@@ -29,20 +29,22 @@ const HotBoard = memo(() => {
     <HotBoardWrapper>
       <div className="hot-board">
         <div className="hot-board-title">即時熱門看板</div>
-        {hotBoardList?.map((item) => (
-          <div
-            className="board"
-            key={item.name}
-            onClick={() => handleClick(item.path)}
-          >
-            <div className="board-img">
-              <img src={item.imgUrl} alt="" />
+        <div className="hot-board-list">
+          {hotBoardList?.map((item) => (
+            <div
+              className="board"
+              key={item.name}
+              onClick={() => handleClick(item.path)}
+            >
+              <div className="board-img">
+                <img src={item.imgUrl} alt="" />
+              </div>
+              <div className="board-text">
+                <span>{item.name}</span>
+              </div>
             </div>
-            <div className="board-text">
-              <span>{item.name}</span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </HotBoardWrapper>
   )

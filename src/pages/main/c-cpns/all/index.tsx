@@ -18,10 +18,63 @@ const All = memo(() => {
     <AllWrapper>
       <div className="article-item" onClick={handleOpenModal}>
         <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
+        <ArticleItem />
       </div>
       <MSModal
         open={isShowArticleModal}
         onCancel={handleCloseModal}
+        width="720px"
         style={{
           height: '100vh'
         }}
