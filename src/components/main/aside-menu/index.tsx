@@ -19,8 +19,10 @@ const AsideMenu = memo(() => {
 
   return (
     <AsideMenuWrapper>
-      <Area />
-      <HotBoard />
+      <div className="aside-menu">
+        <Area />
+        <HotBoard />
+      </div>
     </AsideMenuWrapper>
   )
 })

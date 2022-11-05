@@ -4,7 +4,7 @@ import './modal-global-style.scss'
 
 import { Modal, ModalProps } from 'antd'
 
-const MSModal: FC<ModalProps> = memo((props ) => {
+const MSModal: FC<ModalProps> = memo((props) => {
   return (
     <Modal
       footer={null}

@@ -123,4 +123,8 @@ export const NavigationWrapper = styled.div`
     opacity: 0;
     transition: opacity .2s ease;
   }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `

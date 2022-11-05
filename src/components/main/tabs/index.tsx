@@ -23,15 +23,15 @@ const Tabs = memo(() => {
     resetStatusIndex()
     const tabsPath = getTabsPath(newValue)
     navigate(`/main/${sort}/${tabsPath}/hot`)
-  };
+  }
 
   return (
     <TabsWrapper>
       <div className="tabs">
         <div className="tabs-top">
           <MSTab value={tabIndex} onChange={handleChange}>
-            <MSTabs label='全部' id={tabsEnum.all} />
-            <MSTabs label='追蹤' id={tabsEnum.track} />
+            <MSTabs label="全部" id={tabsEnum.all} />
+            <MSTabs label="追蹤" id={tabsEnum.track} />
           </MSTab>
           <div className="tabs-top-select">
             <FilterSelect />

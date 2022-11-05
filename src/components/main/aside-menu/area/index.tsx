@@ -58,13 +58,11 @@ const Area = memo(() => {
         </div>
       ))}
       <div className="area-item">
-        <div className="area-icon rank-icon">
-        </div>
+        <div className="area-icon rank-icon"></div>
         <div className="area-text">創作者排行</div>
       </div>
       <div className="area-item">
-        <div className="area-icon game-icon">
-        </div>
+        <div className="area-icon game-icon"></div>
         <div className="area-text">創作者排行</div>
       </div>
     </AreaWrapper>

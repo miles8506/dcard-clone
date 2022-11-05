@@ -26,4 +26,8 @@ export const SearchBarWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `

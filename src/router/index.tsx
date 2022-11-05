@@ -5,6 +5,7 @@ const Main = lazy(() => import('@/pages/main'))
 const All = lazy(() => import('@/pages/main/c-cpns/all'))
 const Track = lazy(() => import('@/pages/main/c-cpns/track'))
 const Login = lazy(() => import('@/pages/login'))
+const Post = lazy(() => import('@/pages/post'))
 
 const routes: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/post',
+    element: <Post />
   }
 ]
 

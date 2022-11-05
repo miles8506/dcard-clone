@@ -6,10 +6,6 @@ export const LoginWrapper = styled.div`
   height: 100%;
   overflow: auto;
 
-  /* .wrapper {
-    overflow: auto;
-  } */
-
   .login {
     flex: 1;
     display: flex;
@@ -19,11 +15,13 @@ export const LoginWrapper = styled.div`
     max-width: 1140px;
     margin: 0 auto;
     padding: 50px 0;
+  }
 
-    &__form {
-      flex-shrink: 0;
-      width: 522px;
-      background-color: #fff;
+  @media screen and (max-width: 992px) {
+    .login {
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
   }
 `
