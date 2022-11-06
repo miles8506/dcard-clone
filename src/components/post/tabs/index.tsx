@@ -11,15 +11,13 @@ const Tabs = memo(() => {
   }
 
   return (
-    <TabsWrapper>
-      <div className="tabs">
-        <div className="tabs-top">
+      <TabsWrapper>
+        <div className="tabs">
           <MSTab value={tabIndex} onChange={changeIndex}>
-            <MSTabs label='文章' id={0} />
+            <MSTabs label="文章" id={0} />
           </MSTab>
         </div>
-      </div>
-    </TabsWrapper>
+      </TabsWrapper>
   )
 })
 

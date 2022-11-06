@@ -13,11 +13,15 @@ export const SearchBarWrapper = styled.div`
     overflow: hidden;
 
     &-btn {
+      display: flex;
+      align-items: center;
       padding: 0 9px;
       border: 1px solid ${(props: ThemePropsType) => props.theme.baseColor.primary};
       line-height: 26px;
       cursor: pointer;
       border-radius: 0 4px 4px 0;
+      color: #fff;
+      fill: currentColor;
 
       &::after {
         content: '';
