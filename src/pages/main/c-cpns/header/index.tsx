@@ -24,7 +24,7 @@ const Header = memo(() => {
           isShowLoginButton={!isLogin}
         />
         <div className="mobile-search-icon">
-          <SearchIcon />
+          <SearchIcon width={20} height={20} />
         </div>
       </div>
     </HeaderWrapper>

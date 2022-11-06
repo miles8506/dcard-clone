@@ -59,10 +59,6 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
     return window.removeEventListener('click', handleMenuListener)
   }, [isShowMenu])
 
-  useEffect(() => {
-    if (isLogin) return navigate('/main')
-  }, [])
-
   return (
     <NavigationWrapper>
       {

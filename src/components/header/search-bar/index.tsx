@@ -18,7 +18,7 @@ const SearchBar = memo(() => {
           placeholder='搜尋 一家團圓'
         />
         <span className='search-bar-btn'>
-          <SearchIcon />
+          <SearchIcon width={20} height={20} />
         </span>
       </div>
     </SearchBarWrapper>
