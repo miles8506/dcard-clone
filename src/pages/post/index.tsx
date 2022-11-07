@@ -7,6 +7,7 @@ import SelectBar from '@/components/post/select-bar'
 import PostContextProvider from '@/context/post-context'
 import InfoBar from '@/components/post/info-bar'
 import Editor from '@/components/post/editor'
+import FooterBar from '@/components/post/footer-bar'
 
 const Post = memo(() => {
   return (
@@ -18,6 +19,7 @@ const Post = memo(() => {
           <SelectBar />
           <InfoBar />
           <Editor />
+          <FooterBar />
         </div>
       </PostWrapper>
     </PostContextProvider>
