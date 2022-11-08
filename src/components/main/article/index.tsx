@@ -1,6 +1,4 @@
-import { memo, FC, useState, useEffect } from 'react'
-
-import { requestRef } from '@/api'
+import { memo, FC } from 'react'
 
 import { ArticleWrapper } from './style'
 import CloseIcon from '@/assets/svg/close-icon'
@@ -12,13 +10,6 @@ interface IProps {
 }
 
 const Article: FC<IProps> = memo(({ onCancel }) => {
-  const [foo, setFoo] = useState('')
-
-  useEffect(() => {
-    requestRef('post', '1667839474601').then(res => {
-      setFoo(res.content)
-    })
-  }, [])
 
   return (
     <ArticleWrapper>
@@ -41,7 +32,7 @@ const Article: FC<IProps> = memo(({ onCancel }) => {
           <div className="article-info-date">2022-01-01</div>
         </div>
         <div className="article-content">
-          <div dangerouslySetInnerHTML={{__html: foo}}></div>
+          {/* <div dangerouslySetInnerHTML={{__html: foo}}></div> */}
         </div>
       </div>
       <BottomBar />

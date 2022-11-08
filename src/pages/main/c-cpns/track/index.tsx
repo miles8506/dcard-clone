@@ -9,7 +9,6 @@ const Track = memo(() => {
 
   return (
     <TrackWrapper>
-      <h2>{status}</h2>
     </TrackWrapper>
   )
 })

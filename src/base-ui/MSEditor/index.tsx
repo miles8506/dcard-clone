@@ -21,7 +21,8 @@ interface IProps {
 
 export interface IGetEditorHTML {
   postHTMLString: string
-  firstImage: string
+  firstImage: string | undefined
+  pureText: string
 }
 
 export interface IHandle {
@@ -33,7 +34,6 @@ export interface IHandle {
 const MSEditor = forwardRef<IHandle, IProps>(
   ({ editorState, setEditorState }, ref) => {
     const MSEditorRef = useRef<any>(null)
-    // const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const imagePlugin = createImagePlugin()
     const plugins = [imagePlugin]
 
@@ -42,15 +42,19 @@ const MSEditor = forwardRef<IHandle, IProps>(
       const postHTMLString = stateToHTML(editorState.getCurrentContent())
 
       // find first img
-      const firstImage = stateToHTML(editorState.getCurrentContent())
+      const image = stateToHTML(editorState.getCurrentContent())
         .replaceAll('<figure>', 'hash!@#$%^&*()')
         .replaceAll('</figure>', 'hash!@#$%^&*()')
         .split('hash!@#$%^&*()')
         .find((item) => item.includes('src=\"data:image/jpeg;base64'))
+      const firstImage = image?.split('').splice(10, image.length - 13).join('')
+
+      const pureText = editorState.getCurrentContent().getPlainText('').trim().replaceAll('\n', ' ').split(' ')[0]
 
       return {
         postHTMLString,
-        firstImage
+        firstImage,
+        pureText
       }
     }
 

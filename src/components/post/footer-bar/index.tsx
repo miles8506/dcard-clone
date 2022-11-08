@@ -31,25 +31,28 @@ const FooterBar = memo(() => {
     MSEditorRef.current?.handleImageFile(event)
   }
 
-  const savePost = () => {
-    const { account } = MSSessionStore.getItem('loginInfo')
+  const savePost = async () => {
+    const { account, gender } = MSSessionStore.getItem('loginInfo')
     if (!account) return navigation('/main')
-    if (!boardIndex) return
+    if (boardIndex === null) return
     const postId = dayjs().valueOf()
-    const { postHTMLString, firstImage } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
+    const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
     const request = {
       id: postId,
       account,
-      title,
+      gender,
+      title: title.trim(),
+      pureText,
       content: postHTMLString,
-      firstImage,
+      firstImage: firstImage ?? null,
       sort: boardIndex,
       date: postDateTime,
       messages: [],
       commentTotal: 0,
       likeTotal: 0
     }
-    setQuery('post', request.id, request)
+    await setQuery('post', request.id, request)
+    navigation('/main')
   }
 
   return (
