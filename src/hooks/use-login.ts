@@ -22,7 +22,8 @@ interface IUserInfo {
   account: string
   displayName: string
   type: loginType
-  password?: string
+  password?: string,
+  gender: number
 }
 
 export function useLogin() {
@@ -96,9 +97,10 @@ export function useLogin() {
   async function googleLogin() {
     const res = await firebase.auth().signInWithPopup(googleProvider)
     const payload: IUserInfo = {
-      account: (res.user?.email as string),
+      account: (res.user?.email as string).trim(),
       displayName: (res.user?.displayName as string),
-      type: 'google'
+      type: 'google',
+      gender: Math.floor(Math.random() * 2)
     }
     handleUserInfo(payload)
   }
@@ -106,9 +108,10 @@ export function useLogin() {
   async function facebookLogin() {
     const res = await firebase.auth().signInWithPopup(facebookProvider)
     const payload: IUserInfo = {
-      account: (res.user?.email as string),
+      account: (res.user?.email as string).trim(),
       displayName: (res.user?.displayName as string),
-      type: 'facebook'
+      type: 'facebook',
+      gender: Math.floor(Math.random() * 2)
     }
     handleUserInfo(payload)
   }
@@ -121,7 +124,8 @@ export function useLogin() {
       account: state.accountValue.trim(),
       displayName: state.accountValue.trim(),
       type: 'normal',
-      password: passwordValue.trim()
+      password: passwordValue.trim(),
+      gender: Math.floor(Math.random() * 2)
     }
     const userList = await requestCol('user')
     const haveRegistry = userList.find((item: any) => item.data().account === payload.account)

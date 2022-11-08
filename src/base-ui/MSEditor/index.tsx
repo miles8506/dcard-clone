@@ -1,6 +1,4 @@
 import {
-  memo,
-  FC,
   ChangeEvent,
   Dispatch,
   SetStateAction,
@@ -21,36 +19,48 @@ interface IProps {
   setEditorState: Dispatch<SetStateAction<EditorState>>
 }
 
-export interface IImperativeHandle {
-  getEditorHTML: () => void
-  setEditorHTML: () => void
+export interface IGetEditorHTML {
+  postHTMLString: string
+  firstImage: string | undefined
+  pureText: string
 }
 
-const MSEditor = memo(
-  forwardRef<HTMLDivElement, IProps>(({ editorState, setEditorState }, ref) => {
+export interface IHandle {
+  getEditorHTML: () => IGetEditorHTML
+  setEditorHTML: () => void
+  handleImageFile: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+const MSEditor = forwardRef<IHandle, IProps>(
+  ({ editorState, setEditorState }, ref) => {
     const MSEditorRef = useRef<any>(null)
-    // const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const imagePlugin = createImagePlugin()
     const plugins = [imagePlugin]
 
     const getEditorHTML = () => {
       // editor to html
-      console.log(stateToHTML(editorState.getCurrentContent()))
+      const postHTMLString = stateToHTML(editorState.getCurrentContent())
 
       // find first img
-      // const res = stateToHTML(editorState.getCurrentContent())
-      //   .replaceAll('<figure>', 'hash!@#$%^&*()')
-      //   .replaceAll('</figure>', 'hash!@#$%^&*()')
-      //   .split('hash!@#$%^&*()')
-      //   .find((item) => item.includes('data:image/jpeg;base64'))
-      // console.log(res)
+      const image = stateToHTML(editorState.getCurrentContent())
+        .replaceAll('<figure>', 'hash!@#$%^&*()')
+        .replaceAll('</figure>', 'hash!@#$%^&*()')
+        .split('hash!@#$%^&*()')
+        .find((item) => item.includes('src=\"data:image/jpeg;base64'))
+      const firstImage = image?.split('').splice(10, image.length - 13).join('')
 
-      // html to editor
-      // setEditorState(EditorState.createWithContent(stateFromHTML(``)))
+      const pureText = editorState.getCurrentContent().getPlainText('').trim().replaceAll('\n', ' ').split(' ')[0]
+
+      return {
+        postHTMLString,
+        firstImage,
+        pureText
+      }
     }
 
     const setEditorHTML = () => {
-      console.log('set')
+      // html to editor
+      // setEditorState(EditorState.createWithContent(stateFromHTML(``)))
     }
 
     const handleImageFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -65,9 +75,9 @@ const MSEditor = memo(
       reader.readAsDataURL(file)
     }
 
-    useImperativeHandle<any, IImperativeHandle>(ref, () => ({
+    useImperativeHandle(ref, () => ({
       getEditorHTML() {
-        getEditorHTML()
+        return getEditorHTML() as IGetEditorHTML
       },
       setEditorHTML() {
         setEditorHTML()
@@ -87,7 +97,7 @@ const MSEditor = memo(
         />
       </MSEditorWrapper>
     )
-  })
+  }
 )
 
 export default MSEditor

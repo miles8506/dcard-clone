@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, ChangeEvent } from 'react'
 
 import useEditor from '@/base-ui/MSEditor/use-editor'
 import { usePostContext } from '@/context/post-context'
@@ -13,7 +13,7 @@ import MSEditor from '@/base-ui/MSEditor'
 
 const Editor = memo(() => {
   const { editorState, setEditorState } = useEditor()
-  const { MSEditorRef } = usePostContext()
+  const { MSEditorRef, title, changeTitle } = usePostContext()
   // const MSEditorRef = useRef<any>(null)
   // const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
@@ -50,7 +50,10 @@ const Editor = memo(() => {
     <EditorWrapper>
       <div className="editor">
         <div className="editor-title">
-          <textarea placeholder="標題" />
+          <textarea placeholder="標題"
+            value={title}
+            onInput={(event: ChangeEvent<HTMLTextAreaElement>) => changeTitle(event.target.value)}
+          />
         </div>
         <div className="editor-body">
           <MSEditor
@@ -59,15 +62,23 @@ const Editor = memo(() => {
             ref={MSEditorRef}
           />
         </div>
-        <div className="editor-footer">
-          <button onClick={() => MSEditorRef.current.getEditorHTML()}>
+        {/* <div className="editor-footer">
+          <button onClick={() => MSEditorRef.current?.getEditorHTML()}>
             click
           </button>
           <input
             type="file"
-            onInput={(e) => MSEditorRef.current.handleImageFile(e)}
+            onInput={(e: ChangeEvent<HTMLInputElement>) =>
+              MSEditorRef.current?.handleImageFile(e)
+            }
           />
-        </div>
+          <div className="function-wrap">
+
+          </div>
+          <div className="step-wrap">
+
+          </div>
+        </div> */}
       </div>
     </EditorWrapper>
   )
