@@ -39,7 +39,6 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
       return !prev
     })
     if (item) {
-      console.log(item)
       // do something
     }
   }, [setIsShowMenu])
@@ -67,7 +66,7 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
           <div className="functions__post-icon" onClick={goPostPage}>
             <EditIcon />
           </div>
-          <div className="functions__info-icon">
+          {/* <div className="functions__info-icon">
             <InfoIcon />
           </div>
           <div className="functions__card-icon">
@@ -78,7 +77,7 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
           </div>
           <div className="functions__user-icon">
             <UserIcon />
-          </div>
+          </div> */}
           </div>
         )
       }

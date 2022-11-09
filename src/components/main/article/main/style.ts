@@ -1,17 +1,10 @@
 import styled from 'styled-components'
 
-export const ArticleWrapper = styled.div`
-  position: relative;
-  display: flex;
-  height: 100%;
+export const ArticleMainWrapper = styled.div`
+  flex: 1;
 
-  .article {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    /* &-title {
+  .article-main {
+    &-title {
       margin-bottom: 12px;
       padding: 0 60px;
       font-size: 28px;
@@ -40,6 +33,6 @@ export const ArticleWrapper = styled.div`
     &-content {
       flex: 1;
       padding: 20px 60px 40px;
-    } */
+    }
   }
 `

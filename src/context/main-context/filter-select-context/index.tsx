@@ -5,7 +5,6 @@ interface IFilterSelectContext {
   currentStatusIndex: number
   changeStatusIndex: (index: number) => void
   resetStatusIndex: () => void
-  getStatusPath: (value: number) => string
 }
 
 const FilterSelectContext = createContext<IFilterSelectContext>({} as IFilterSelectContext)
@@ -13,19 +12,9 @@ const FilterSelectContext = createContext<IFilterSelectContext>({} as IFilterSel
 export const useFilterSelectContext = () => useContext(FilterSelectContext)
 
 const FilterSelectProvider: FC<PropsWithChildren> = function ({ children }) {
-  const [currentStatusIndex, setCurrentStatusIndex] = useState(selectFilterEnum.hot)
+  const [currentStatusIndex, setCurrentStatusIndex] = useState(0)
   const changeStatusIndex = (index: number) => setCurrentStatusIndex(index)
   const resetStatusIndex = () => setCurrentStatusIndex(selectFilterEnum.hot)
-  const getStatusPath = (value: number) => {
-    switch (value) {
-      case selectFilterEnum.hot:
-        return 'hot'
-      case selectFilterEnum.new:
-        return 'new'
-      default:
-        return ''
-    }
-  }
 
   return (
     <FilterSelectContext.Provider
@@ -33,7 +22,6 @@ const FilterSelectProvider: FC<PropsWithChildren> = function ({ children }) {
         currentStatusIndex,
         changeStatusIndex,
         resetStatusIndex,
-        getStatusPath
       }}
     >
       {children}

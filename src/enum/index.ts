@@ -1,1 +1,1 @@
-export { tabsEnum, selectFilterEnum } from './main'
+export { tabsEnum, selectFilterEnum, SelectFilter, Sort } from './main'

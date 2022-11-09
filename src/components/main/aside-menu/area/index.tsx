@@ -42,7 +42,7 @@ const Area = memo(() => {
     if (index !== 0) return
     resetTabIndex()
     resetStatusIndex()
-    navigate('/main/any/all/hot')
+    navigate('/main/any/all')
   }
 
   return (

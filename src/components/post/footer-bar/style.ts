@@ -30,20 +30,23 @@ export const FooterBarWrapper = styled.div<ThemePropsType>`
         color: #fff;
         padding: 11px 16px;
         border-radius: 10px;
+        user-select: none;
+      }
+
+      .cancel-button {
+        cursor: pointer;
+        user-select: none;
       }
 
       .active {
         background-color: ${(props: ThemePropsType) => props.theme.textColor.primary};
+        cursor: pointer;
       }
 
       .disabled {
         background-color: rgba(0, 0, 0, 0.5);
         opacity: .2;
         cursor: not-allowed;
-      }
-
-      div[class$="button"] {
-        cursor: pointer;
       }
     }
   }

@@ -3,7 +3,12 @@ import { memo, useState, useCallback, useEffect, Fragment } from 'react'
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { requestArticle } from '@/store/main/async-thunk'
 import { requestArticleList } from '@/store/post/async-thunk'
+import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
+import { useTabContext } from '@/context/main-context/tab-context'
+import { useRouterInfo } from '@/context/router-info-context'
+import { filterList } from '@/utils'
 
 import { AllWrapper } from './style'
 import ArticleItem from '@/components/main/article-item'
@@ -16,29 +21,32 @@ const All = memo(() => {
     articleList: state.post.articleList
   }), shallowEqual)
 
+  const { currentStatusIndex } = useFilterSelectContext()
+  const { tabIndex } = useTabContext()
+  const { sort } = useRouterInfo()
+
   const [isShowArticleModal, setIsShowArticleModal] = useState(false)
   const handleCloseModal = useCallback(() => {
     setIsShowArticleModal(false)
   }, [setIsShowArticleModal])
-  const handleOpenModal = () => {
+  const handleOpenModal = async (articleId: number) => {
+    await dispatch(requestArticle(articleId))
     setIsShowArticleModal(true)
   }
 
   useEffect(() => {
     dispatch(requestArticleList())
-  }, [])
+  }, [sort, tabIndex, currentStatusIndex])
 
   return (
     <AllWrapper>
-      <div className="article-item" onClick={handleOpenModal}>
-        {
-          articleList.map(item => (
-            <Fragment key={item.id}>
-              <ArticleItem article={item} />
-            </Fragment>
-          ))
-        }
-      </div>
+      {
+        filterList(articleList, (sort as string), currentStatusIndex).map(item => (
+          <div className="article-item" onClick={() => handleOpenModal(item.id)} key={item.id}>
+            <ArticleItem article={item} />
+          </div>
+        ))
+      }
       <MSModal
         open={isShowArticleModal}
         onCancel={handleCloseModal}

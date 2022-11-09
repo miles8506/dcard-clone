@@ -1,4 +1,4 @@
-import { memo, useRef, ChangeEvent } from 'react'
+import { memo, useRef, ChangeEvent, useState, useEffect } from 'react'
 
 import type { IGetEditorHTML } from '@/base-ui/MSEditor'
 
@@ -10,18 +10,14 @@ import { setQuery } from '@/api'
 import { FooterBarWrapper } from './style'
 import PicIcon from '@/assets/svg/pic-icon'
 import dayjs from 'dayjs'
+import classNames from 'classnames'
 
 const FooterBar = memo(() => {
   const navigation = useNavigate()
   const { MSEditorRef, boardIndex, postDateTime, title } = usePostContext()
   const FileRef = useRef<HTMLInputElement>(null)
 
-  // const { hotBoardList } = useSelector(
-  //   (state: ReduxStateType) => ({
-  //     hotBoardList: state.main.hotBoardList
-  //   }),
-  //   shallowEqual
-  // )
+  const [isDisabled, setIsDisabled] = useState(true)
 
   const handleFileClick = () => {
     FileRef.current?.click()
@@ -34,9 +30,9 @@ const FooterBar = memo(() => {
   const savePost = async () => {
     const { account, gender } = MSSessionStore.getItem('loginInfo')
     if (!account) return navigation('/main')
-    if (boardIndex === null) return
-    const postId = dayjs().valueOf()
+    if (isDisabled) return
     const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
+    const postId = dayjs().valueOf()
     const request = {
       id: postId,
       account,
@@ -55,6 +51,10 @@ const FooterBar = memo(() => {
     navigation('/main')
   }
 
+  useEffect(() => {
+    (title.trim().length === 0 || boardIndex === null) ? setIsDisabled(true) : setIsDisabled(false)
+  }, [title, boardIndex])
+
   return (
     <FooterBarWrapper>
       <div className="footer-bar">
@@ -65,7 +65,7 @@ const FooterBar = memo(() => {
         </div>
         <div className="footer-bar__step-box">
           <div className="cancel-button">取消</div>
-          <div className="active step-button" onClick={savePost}>下一步</div>
+          <div className={classNames([isDisabled ? 'disabled' : 'active', 'step-button'])} onClick={savePost}>下一步</div>
         </div>
       </div>
       <div className="file-input">

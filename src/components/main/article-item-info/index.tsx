@@ -4,6 +4,7 @@ import type { IArticle } from '@/store/post/type'
 import type { ReduxStateType } from '@/store'
 
 import { useSelector, shallowEqual } from 'react-redux'
+import { timeGap } from '@/utils'
 
 import { ArticleItemInfoWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
@@ -28,7 +29,7 @@ const ArticleItemInfo: FC<IProps> = memo(({ article }) => {
         <div className="avatar">{ getGender(gender) }</div>
         <div className="sort">{ hotBoardList[sort].name }</div>
         <div className="name">{ account }</div>
-        <div className="time">9小時前</div>
+        <div className="time">{timeGap(time)}</div>
       </div>
     </ArticleItemInfoWrapper>
   )

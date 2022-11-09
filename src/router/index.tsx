@@ -18,14 +18,14 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/main',
-        element: <Navigate to="/main/any/all/hot" />
+        element: <Navigate to="/main/any/all" />
       },
       {
-        path: '/main/:sort/all/:status',
+        path: '/main/:sort/all',
         element: <All />
       },
       {
-        path: '/main/:sort/track/:status',
+        path: '/main/:sort/track',
         element: <Track />
       }
     ]

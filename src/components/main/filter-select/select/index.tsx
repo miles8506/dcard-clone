@@ -1,8 +1,5 @@
 import { memo, FC, useEffect, Fragment } from 'react'
 
-import { useNavigate } from 'react-router-dom'
-import { useRouterInfo } from '@/context/router-info-context'
-import { useTabContext } from '@/context/main-context/tab-context'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 
 import { SelectWrapper, SelectItemWrapper } from './style'
@@ -16,10 +13,7 @@ interface IProps {
 }
 
 const Select: FC<IProps> = memo(({ options, closeSelect }) => {
-  const navigate = useNavigate()
-  const { sort } = useRouterInfo()
-  const { getTabsPath } = useTabContext()
-  const { currentStatusIndex, changeStatusIndex, getStatusPath } = useFilterSelectContext()
+  const { currentStatusIndex, changeStatusIndex } = useFilterSelectContext()
 
   const checkSvg = (index: number) => {
     switch (index) {
@@ -28,13 +22,6 @@ const Select: FC<IProps> = memo(({ options, closeSelect }) => {
       case 1:
         return <SelectNewIcon />
     }
-  }
-
-  const handleItemClick = (index: number) => {
-    changeStatusIndex(index)
-    const tabsPath = getTabsPath(index)
-    const statusPath = getStatusPath(index)
-    navigate(`/main/${sort}/${tabsPath}/${statusPath}`)
   }
 
   useEffect(() => {
@@ -57,7 +44,7 @@ const Select: FC<IProps> = memo(({ options, closeSelect }) => {
                 currentIndex={currentStatusIndex}
                 itemIndex={index}
               >
-                <div className="select-item" onClick={() => handleItemClick(index)}>
+                <div className="select-item" onClick={() => changeStatusIndex(index)}>
                   <span className="select-item__sign-icon">{checkSvg(index)}</span>
                   <div className="select-item__text">{item}</div>
                   {

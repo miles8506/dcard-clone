@@ -1,6 +1,9 @@
+import { IArticle } from "../post/type"
+
 export interface IMainState {
   areaList: IAreaList[]
   hotBoardList: IHotBoard[]
+  article: IArticle
 }
 
 export interface IAreaList {
