@@ -1,5 +1,7 @@
 import { memo } from 'react'
 
+import RouterProvider from '@/context/router-info-context'
+
 import { MainWrapper } from './style'
 import Header from './c-cpns/header'
 import MainLoadBoard from '@/components/main/main-load-board'
@@ -21,7 +23,7 @@ const Main = memo(() => {
   )
 })
 
-export default Main
+export default RouterProvider(Main)
 
 // import { memo, useState, SyntheticEvent, MouseEvent } from 'react';
 // import { Outlet, useNavigate } from 'react-router-dom';

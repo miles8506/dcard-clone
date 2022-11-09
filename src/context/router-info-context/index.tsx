@@ -12,7 +12,6 @@ export default function RouterProvider(OriginCpn: ComponentType) {
   return function(props: any) {
     const params = useParams()
     const location = useLocation()
-
     return (
       <RouterInfo.Provider value={{
         ...params,

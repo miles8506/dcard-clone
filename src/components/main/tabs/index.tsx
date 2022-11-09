@@ -22,7 +22,7 @@ const Tabs = memo(() => {
     changeTabIndex(newValue)
     resetStatusIndex()
     const tabsPath = getTabsPath(newValue)
-    navigate(`/main/${sort}/${tabsPath}/hot`)
+    navigate(`/main/${sort}/${tabsPath}`)
   }
 
   return (
@@ -31,7 +31,7 @@ const Tabs = memo(() => {
         <div className="tabs-top">
           <MSTab value={tabIndex} onChange={handleChange}>
             <MSTabs label="全部" id={tabsEnum.all} />
-            <MSTabs label="追蹤" id={tabsEnum.track} />
+            {/* <MSTabs label="追蹤" id={tabsEnum.track} /> */}
           </MSTab>
           <div className="tabs-top-select">
             <FilterSelect />

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const BottomBarWrapper = styled.div`
+  flex-shrink: 0;
   position: sticky;
   bottom: 0px;
-  /* width: 100%; */
   height: 48px;
   bottom: 0;
   right: 0;

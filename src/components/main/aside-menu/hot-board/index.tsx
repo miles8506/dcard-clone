@@ -22,7 +22,7 @@ const HotBoard = memo(() => {
   const handleClick = (path: string) => {
     resetTabIndex()
     resetStatusIndex()
-    navigate(`/main/${path}/all/hot`)
+    navigate(`/main/${path}/all`)
   }
 
   return (

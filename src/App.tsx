@@ -1,6 +1,5 @@
 import { useRoutes } from 'react-router-dom'
 
-import RouterProvider from '@/context/router-info-context'
 import routes from '@/router'
 import useAuth from './hooks/use-auth'
 
@@ -20,4 +19,4 @@ function App() {
   )
 }
 
-export default RouterProvider(App)
+export default App

@@ -5,7 +5,7 @@
 export interface IArticle {
   id: number
   account: string
-  gender: 0,
+  gender: number,
   content: string
   date: string
   firstImage: string | null

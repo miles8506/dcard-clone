@@ -33,6 +33,13 @@ export const NavigationWrapper = styled.div`
       width: 60px;
       fill: currentColor;
     }
+
+    &__info-icon,
+    &__card-icon,
+    &__email-icon,
+    &__user-icon {
+      cursor: not-allowed;
+    }
   }
 
   .registry-login,

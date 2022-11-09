@@ -7,17 +7,14 @@ const MainContext = createContext(null)
 
 export const useMainContext = () => useContext(MainContext)
 
-const MainContextProvider: FC<PropsWithChildren> = function({ children }) {
-
+const MainContextProvider: FC<PropsWithChildren> = function ({ children }) {
   return (
     <MainContext.Provider value={null}>
-      <SearchProvider>
-        <TabContextProvider>
-          <FilterSelectProvider>
-            {children}
-          </FilterSelectProvider>
-        </TabContextProvider>
-      </SearchProvider>
+      <FilterSelectProvider>
+        <SearchProvider>
+          <TabContextProvider>{children}</TabContextProvider>
+        </SearchProvider>
+      </FilterSelectProvider>
     </MainContext.Provider>
   )
 }

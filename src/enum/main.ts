@@ -7,9 +7,22 @@ enum Tabs {
   track,
 }
 
-enum SelectFilter {
+export enum SelectFilter {
   hot,
   new
+}
+
+export enum Sort {
+  emotion,
+  meme,
+  funny,
+  apple,
+  comics,
+  basketball,
+  engineer,
+  mlb,
+  pet,
+  cat
 }
 
 function mappingEnumToObject(tab: {[key: string]: any}) {
