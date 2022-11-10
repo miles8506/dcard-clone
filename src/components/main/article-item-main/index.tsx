@@ -35,7 +35,7 @@ const ArticleItemMain: FC<IProps> = memo(({ article }) => {
             </div>
             <div className="collect">
               <div className="collect-icon">
-                <CollectIcon />
+                <CollectIcon width={20} height={20} />
               </div>
               <div className="collect-text">收藏</div>
             </div>

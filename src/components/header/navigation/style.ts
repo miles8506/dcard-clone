@@ -36,8 +36,7 @@ export const NavigationWrapper = styled.div`
 
     &__info-icon,
     &__card-icon,
-    &__email-icon,
-    &__user-icon {
+    &__email-icon {
       cursor: not-allowed;
     }
   }

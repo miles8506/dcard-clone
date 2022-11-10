@@ -74,10 +74,10 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
           </div>
           <div className="functions__email-icon">
             <EmailIcon />
-          </div>
+          </div> */}
           <div className="functions__user-icon">
             <UserIcon />
-          </div> */}
+          </div>
           </div>
         )
       }

@@ -1,4 +1,7 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
+
+import { MSSessionStore } from '@/utils'
+import { useNavigate } from 'react-router-dom'
 
 import { PostWrapper } from './style'
 import Header from '@/components/post/header'
@@ -10,6 +13,13 @@ import Editor from '@/components/post/editor'
 import FooterBar from '@/components/post/footer-bar'
 
 const Post = memo(() => {
+  const navigation = useNavigate()
+
+  useEffect(() => {
+    const userInfo = MSSessionStore.getItem('loginInfo')
+    !(userInfo?.account) && navigation('/main')
+  }, [])
+
   return (
     <PostContextProvider>
       <PostWrapper>

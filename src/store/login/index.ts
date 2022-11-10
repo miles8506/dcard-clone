@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-interface IInitialState {
-  isLogin: boolean
-}
+import { requestUserInfo } from './async-thunk'
+import type { IUserInfo, IInitialState } from './type'
 
 const initialState: IInitialState = {
-  isLogin: false
+  isLogin: false,
+  userInfo: {} as IUserInfo
 }
 
 const loginSlice = createSlice({
@@ -14,9 +13,17 @@ const loginSlice = createSlice({
   reducers: {
     changeLoginStatus(state, { payload }) {
       state.isLogin = payload
+    },
+    emptyUserInfo(state) {
+      state.userInfo = {} as IUserInfo
     }
+  },
+  extraReducers(build) {
+    build.addCase(requestUserInfo.fulfilled, (state, { payload }) => {
+      state.userInfo = payload
+    })
   }
 })
 
 export default loginSlice.reducer
-export const { changeLoginStatus } = loginSlice.actions
+export const { changeLoginStatus, emptyUserInfo } = loginSlice.actions

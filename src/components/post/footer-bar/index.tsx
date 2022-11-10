@@ -28,15 +28,15 @@ const FooterBar = memo(() => {
   }
 
   const savePost = async () => {
-    const { account, gender } = MSSessionStore.getItem('loginInfo')
-    if (!account) return navigation('/main')
+    const userInfo = MSSessionStore.getItem('loginInfo')
+    if (!userInfo?.account) return navigation('/main')
     if (isDisabled) return
     const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
     const postId = dayjs().valueOf()
     const request = {
       id: postId,
-      account,
-      gender,
+      account: userInfo.account,
+      gender: userInfo.gender,
       title: title.trim(),
       pureText,
       content: postHTMLString,

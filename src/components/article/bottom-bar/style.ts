@@ -7,6 +7,8 @@ export const BottomBarWrapper = styled.div`
   height: 48px;
   bottom: 0;
   right: 0;
+  padding: 0 60px;
   z-index: 99;
-  background-color: red;
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
 `

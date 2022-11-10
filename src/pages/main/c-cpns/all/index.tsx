@@ -5,6 +5,7 @@ import type { ReduxStateType, ReduxDispatchType } from '@/store'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { requestArticle } from '@/store/main/async-thunk'
 import { requestArticleList } from '@/store/post/async-thunk'
+import { emptyArticle } from '@/store/main'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useRouterInfo } from '@/context/router-info-context'
@@ -13,7 +14,7 @@ import { filterList } from '@/utils'
 import { AllWrapper } from './style'
 import ArticleItem from '@/components/main/article-item'
 import MSModal from '@/base-ui/MSModal'
-import Article from '@/components/main/article'
+import Article from '@/components/article'
 
 const All = memo(() => {
   const dispatch: ReduxDispatchType = useDispatch()
@@ -26,12 +27,18 @@ const All = memo(() => {
   const { sort } = useRouterInfo()
 
   const [isShowArticleModal, setIsShowArticleModal] = useState(false)
+
   const handleCloseModal = useCallback(() => {
     setIsShowArticleModal(false)
   }, [setIsShowArticleModal])
+
   const handleOpenModal = async (articleId: number) => {
     await dispatch(requestArticle(articleId))
     setIsShowArticleModal(true)
+  }
+
+  const handleReset = () => {
+    dispatch(emptyArticle())
   }
 
   useEffect(() => {
@@ -50,6 +57,8 @@ const All = memo(() => {
       <MSModal
         open={isShowArticleModal}
         onCancel={handleCloseModal}
+        afterClose={handleReset}
+        destroyOnClose
         width="720px"
         style={{
           height: '100vh'
