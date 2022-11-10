@@ -1,8 +1,14 @@
 import { useReducer, ChangeEvent } from 'react'
+
+import type { ReduxDispatchType } from '@/store'
+
 import { isEmpty, MSSessionStore, isEmail } from '@/utils'
 import firebase from 'firebase'
 import { requestCol, setQuery } from '@/api'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { changeLoginStatus } from '@/store/login'
+import { requestUserInfo } from '@/store/login/async-thunk'
 
 const CHANGE_ACCOUNTVALUE = 'CHANGE_ACCOUNTVALUE'
 const CHANGE_ACCOUNTSTATUS = 'CHANGE_ACCOUNTSTATUS'
@@ -27,6 +33,7 @@ interface IUserInfo {
 }
 
 export function useLogin() {
+  const reduxDispatch: ReduxDispatchType = useDispatch()
   const navigation = useNavigate()
 
   // form
@@ -92,6 +99,8 @@ export function useLogin() {
     !haveRegistry && await setQuery('user', payload.account, payload)
     MSSessionStore.setItem('loginInfo', payload)
     navigation('/main')
+    reduxDispatch(changeLoginStatus(true))
+    reduxDispatch(requestUserInfo())
   }
 
   async function googleLogin() {
@@ -136,6 +145,8 @@ export function useLogin() {
     !haveRegistry && await setQuery('user', payload.account, payload)
     delete payload.password
     MSSessionStore.setItem('loginInfo', payload)
+    reduxDispatch(changeLoginStatus(true))
+    reduxDispatch(requestUserInfo())
     navigation('/main')
   }
 

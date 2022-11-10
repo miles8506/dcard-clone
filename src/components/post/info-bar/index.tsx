@@ -8,7 +8,7 @@ import { InfoBarWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
 
 const InfoBar = memo(() => {
-  const { account } = MSSessionStore.getItem('loginInfo')
+  const userInfo = MSSessionStore.getItem('loginInfo')
   const { postDateTime, changePostDateTime } = usePostContext()
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const InfoBar = memo(() => {
             />
           </div>
           <div className="detail">
-            <span className="account">{account}</span>
+            <span className="account">{userInfo?.account}</span>
             <span className="date">{postDateTime}</span>
           </div>
         </div>

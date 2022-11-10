@@ -47,3 +47,7 @@ export function filterList(articleList: IArticle[], sort: string, status: number
   }
   return []
 }
+
+export function deepCopy(value: any) {
+  return JSON.parse(JSON.stringify(value))
+}

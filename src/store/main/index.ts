@@ -13,7 +13,9 @@ const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-
+    emptyArticle(state) {
+      state.article = {} as IArticle
+    }
   },
   extraReducers(build) {
     build.addCase(requestAreaList.fulfilled, (state, { payload }) => {
@@ -30,5 +32,5 @@ const mainSlice = createSlice({
   }
 })
 
-// export const { } = mainSlice.actions
+export const { emptyArticle } = mainSlice.actions
 export default mainSlice.reducer

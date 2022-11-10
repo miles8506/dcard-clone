@@ -1,9 +1,10 @@
 import { memo, FC, MouseEvent } from 'react'
 
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { ReduxStateType } from '@/store'
 import { MSSessionStore } from '@/utils'
 import { useNavigate } from 'react-router-dom'
+import { changeLoginStatus, emptyUserInfo } from '@/store/login'
 
 import { MenuWrapper } from './style'
 import MenuItem from '../menu-item'
@@ -13,6 +14,7 @@ interface IProps {
 }
 
 const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin
@@ -21,6 +23,8 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
 
   const handleLogout = () => {
     MSSessionStore.removeItem('loginInfo')
+    dispatch(changeLoginStatus(false))
+    dispatch(emptyUserInfo())
     navigate('/main')
   }
 
