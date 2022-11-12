@@ -1,6 +1,6 @@
 import { memo, FC } from 'react'
 
-import type { IArticle } from '@/store/post/type'
+import type { IArticle } from '@/store/article/type'
 
 import { ArticleItemMainWrapper } from './style'
 import CommentIcon from '@/assets/svg/comment-icon'

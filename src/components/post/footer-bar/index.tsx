@@ -69,6 +69,7 @@ const FooterBar = memo(() => {
               padding: '11px 8px',
               color: 'rgba(0, 0, 0, 0.5)'
             }}
+            onClick={() => navigation('/main')}
           >
             取消
           </MSButton>

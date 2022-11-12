@@ -1,20 +1,16 @@
-import { Fragment, memo } from 'react'
+import { FC, Fragment, memo } from 'react'
 
-import { ReduxStateType } from '@/store'
-import { useSelector, shallowEqual } from 'react-redux'
 import { deepCopy } from '@/utils'
 
 import { InterestAreaWrapper } from './style'
 import InterestItem from '../interest-item'
+import { IArticle } from '@/store/article/type'
 
-const InterestArea = memo(() => {
-  const { articleList } = useSelector(
-    (state: ReduxStateType) => ({
-      articleList: state.post.articleList
-    }),
-    shallowEqual
-  )
+interface IProps {
+  articleList: IArticle[]
+}
 
+const InterestArea: FC<IProps> = memo(({ articleList }) => {
   function getRandomArticleList() {
     const resultList = []
     const deepCopyArticleList = deepCopy(articleList)

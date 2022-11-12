@@ -1,5 +1,5 @@
 import { Sort, SelectFilter } from "@/enum";
-import type { IArticle } from "@/store/post/type";
+import type { IArticle } from "@/store/article/type";
 import dayjs from 'dayjs'
 
 export const isEmpty = (value: string | number) => {

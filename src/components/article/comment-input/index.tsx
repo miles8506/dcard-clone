@@ -4,7 +4,6 @@ import { CommentInputWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
 import AvatarGirlIcon from '@/assets/svg/avatar-girl-icon'
 import MSButton from '@/base-ui/MSButton'
-import classNames from 'classnames'
 
 interface IProps {
   changeIsShowDisplayArea: (value: boolean) => void
@@ -16,6 +15,10 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   const changeCommentValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(event.target.value.trim())
   }
+
+  // const handSendMessage = () => {
+
+  // }
 
   const getGender = (value: number) =>
     value === 0 ? <AvatarGirlIcon width={28} height={28} /> : <AvatarBoyIcon width={28} height={28} />
@@ -58,6 +61,7 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
               backgroundColor: commentValue.length === 0 ? 'rgba(0, 0, 0, 0.5)' : '#3397CF',
               marginLeft: '16px'
             }}
+            // onClick={}
           >
             送出
           </MSButton>
