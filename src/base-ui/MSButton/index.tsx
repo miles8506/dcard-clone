@@ -1,20 +1,26 @@
-import { memo, FC, PropsWithChildren } from 'react'
+import { FC, memo, PropsWithChildren, CSSProperties, ButtonHTMLAttributes } from 'react'
 
-import classNames from 'classnames'
-import styled from './style.module.scss'
+import { MSButtonWrapper } from './style'
 
-import { Button, ButtonProps } from 'antd'
+interface IProps {
+  sx?: CSSProperties
+  msDisabled?: string
+  bgHoverColor?: string
+}
 
-type MSButtonType = ButtonProps & PropsWithChildren
+const MSButton: FC<PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement> & IProps>> = memo(({ sx, children, msDisabled = '', onClick, bgHoverColor = '' }) => {
 
-const MSButton: FC<MSButtonType> = memo(({ children, ...elseProps }) => {
   return (
-    <Button
-      {...elseProps}
-      className={classNames([styled['ant-btn']])}
-    >
-      {children}
-    </Button>
+    <MSButtonWrapper msDisabled={msDisabled} bgHoverColor={bgHoverColor}>
+      <button
+        className='ms-button'
+        style={sx}
+        disabled={msDisabled === 'disabled'}
+        onClick={onClick}
+      >
+        { children }
+      </button>
+    </MSButtonWrapper>
   )
 })
 

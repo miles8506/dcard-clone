@@ -14,6 +14,12 @@ export const InterestItemWrapper = styled.div<ThemePropsType>`
       flex: 1;
 
       .title {
+        .text {
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
         position: relative;
         color: #000;
         font-weight: 600;
@@ -28,7 +34,7 @@ export const InterestItemWrapper = styled.div<ThemePropsType>`
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background-color: ${props => props.theme.textColor.primary};
+          background-color: ${(props) => props.theme.textColor.primary};
         }
       }
 
@@ -48,11 +54,14 @@ export const InterestItemWrapper = styled.div<ThemePropsType>`
       align-items: center;
       width: 40px;
       margin-left: 16px;
+      border-radius: 10px;
+      overflow: hidden;
 
       & > img {
         width: 100%;
         height: 40px;
         object-fit: contain;
+        background-color: rgba(0,0,0,0.1);
       }
     }
   }

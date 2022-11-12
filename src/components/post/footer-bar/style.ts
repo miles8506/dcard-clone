@@ -21,7 +21,7 @@ export const FooterBarWrapper = styled.div<ThemePropsType>`
       display: flex;
       gap: 16px;
 
-      .cancel-button {
+      /* .cancel-button {
         padding: 11px 8px;
         color: rgba(0,0,0,0.5);
       }
@@ -47,7 +47,7 @@ export const FooterBarWrapper = styled.div<ThemePropsType>`
         background-color: rgba(0, 0, 0, 0.5);
         opacity: .2;
         cursor: not-allowed;
-      }
+      } */
     }
   }
 

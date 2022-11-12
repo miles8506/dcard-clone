@@ -46,10 +46,14 @@ const MSEditor = forwardRef<IHandle, IProps>(
         .replaceAll('<figure>', 'hash!@#$%^&*()')
         .replaceAll('</figure>', 'hash!@#$%^&*()')
         .split('hash!@#$%^&*()')
-        .find((item) => item.includes('src=\"data:image/jpeg;base64'))
+        .find((item) => item.includes('src=\"data:image/'))
+        // .find((item) => item.includes('src="data:image/jpeg;base64'))
+        // .find((item) => item.includes('src=\"data:image/'))
+
       const firstImage = image?.split('').splice(10, image.length - 13).join('')
 
-      const pureText = editorState.getCurrentContent().getPlainText('').trim().replaceAll('\n', ' ').split(' ')[0]
+      // const pureText = editorState.getCurrentContent().getPlainText('').trim().replaceAll('\n', ' ').split(' ')[0]
+      const pureText = editorState.getCurrentContent().getPlainText('').trim().replaceAll('\n', ' ')
 
       return {
         postHTMLString,

@@ -75,13 +75,13 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
 
         .love-icon {
           &:hover {
-            color: #ea5c5c;
+            color: ${props => props.theme.iconColor.like};
           }
         }
 
         .collect-icon {
           &:hover {
-            color: ${props => props.theme.textColor.primary};
+            color: ${props => props.theme.iconColor.collect};
           }
         }
       }

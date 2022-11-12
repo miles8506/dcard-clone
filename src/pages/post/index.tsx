@@ -2,6 +2,7 @@ import { memo, useEffect } from 'react'
 
 import { MSSessionStore } from '@/utils'
 import { useNavigate } from 'react-router-dom'
+import RouterProvider from '@/context/router-info-context'
 
 import { PostWrapper } from './style'
 import Header from '@/components/post/header'
@@ -36,4 +37,4 @@ const Post = memo(() => {
   )
 })
 
-export default Post
+export default RouterProvider(Post)

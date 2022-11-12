@@ -2,9 +2,11 @@ import { memo, FC, useEffect, useCallback, useState, MouseEvent } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import { useSelector, shallowEqual } from 'react-redux'
-import { ReduxStateType } from '@/store'
-import { CSSTransition } from 'react-transition-group'
+import { useRouterInfo } from '@/context/router-info-context'
 
+import type { ReduxStateType } from '@/store'
+
+import { CSSTransition } from 'react-transition-group'
 import { NavigationWrapper } from './style'
 import ArrowDownIcon from '@/assets/svg/arrow-down-icon'
 import UserIcon from '@/assets/svg/user-icon'
@@ -26,6 +28,7 @@ interface IProps {
 
 const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
   const navigate = useNavigate()
+  const { pathname } = useRouterInfo()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin
   }), shallowEqual)
@@ -59,25 +62,25 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
   }, [isShowMenu])
 
   return (
-    <NavigationWrapper>
+    <NavigationWrapper pathname={pathname}>
       {
         isLogin && (
           <div className="functions">
-          <div className="functions__post-icon" onClick={goPostPage}>
-            <EditIcon />
-          </div>
-          {/* <div className="functions__info-icon">
-            <InfoIcon />
-          </div>
-          <div className="functions__card-icon">
-            <CardIcon />
-          </div>
-          <div className="functions__email-icon">
-            <EmailIcon />
-          </div> */}
-          <div className="functions__user-icon">
-            <UserIcon />
-          </div>
+            <div className="functions__post-icon" onClick={goPostPage}>
+              <EditIcon />
+            </div>
+            {/* <div className="functions__info-icon">
+              <InfoIcon />
+            </div>
+            <div className="functions__card-icon">
+              <CardIcon />
+            </div>
+            <div className="functions__email-icon">
+              <EmailIcon />
+            </div> */}
+            <div className="functions__user-icon">
+              <UserIcon />
+            </div>
           </div>
         )
       }

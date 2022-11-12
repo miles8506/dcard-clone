@@ -2,6 +2,7 @@ import { memo, useRef, ChangeEvent, useState, useEffect } from 'react'
 
 import type { IGetEditorHTML } from '@/base-ui/MSEditor'
 
+import dayjs from 'dayjs'
 import { usePostContext } from '@/context/post-context'
 import { MSSessionStore } from '@/utils'
 import { useNavigate } from 'react-router-dom'
@@ -9,8 +10,7 @@ import { setQuery } from '@/api'
 
 import { FooterBarWrapper } from './style'
 import PicIcon from '@/assets/svg/pic-icon'
-import dayjs from 'dayjs'
-import classNames from 'classnames'
+import MSButton from '@/base-ui/MSButton'
 
 const FooterBar = memo(() => {
   const navigation = useNavigate()
@@ -43,11 +43,11 @@ const FooterBar = memo(() => {
       firstImage: firstImage ?? null,
       sort: boardIndex,
       date: postDateTime,
-      messages: [],
       commentTotal: 0,
       likeTotal: 0
     }
     await setQuery('post', request.id, request)
+    await setQuery('comment', request.id, { comment: [] })
     navigation('/main')
   }
 
@@ -64,8 +64,26 @@ const FooterBar = memo(() => {
           </div>
         </div>
         <div className="footer-bar__step-box">
-          <div className="cancel-button">取消</div>
-          <div className={classNames([isDisabled ? 'disabled' : 'active', 'step-button'])} onClick={savePost}>下一步</div>
+          <MSButton
+            sx={{
+              padding: '11px 8px',
+              color: 'rgba(0, 0, 0, 0.5)'
+            }}
+          >
+            取消
+          </MSButton>
+          <MSButton
+            msDisabled={isDisabled ? 'disabled' : ''}
+            bgHoverColor={!isDisabled ? '#5ab0db' : 'none'}
+            sx={{
+              padding: '11px 16px',
+              color: '#fff',
+              backgroundColor: isDisabled ? 'rgba(0, 0, 0, 0.5)' : '#3397CF'
+            }}
+            onClick={savePost}
+          >
+            下一步
+          </MSButton>
         </div>
       </div>
       <div className="file-input">
