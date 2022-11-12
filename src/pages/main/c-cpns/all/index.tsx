@@ -33,6 +33,7 @@ const All = memo(() => {
   }, [setIsShowArticleModal])
 
   const handleOpenModal = async (articleId: number) => {
+    console.log(articleId);
     await dispatch(requestArticle(articleId))
     setIsShowArticleModal(true)
   }

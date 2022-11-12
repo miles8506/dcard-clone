@@ -7,6 +7,10 @@ const theme = {
   textColor: {
     primary: '#3397CF',
     warn: '#ea5c5c'
+  },
+  iconColor: {
+    like: '#ea5c5c',
+    collect: '#3397CF'
   }
 }
 

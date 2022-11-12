@@ -9,7 +9,6 @@ export interface IArticle {
   content: string
   date: string
   firstImage: string | null
-  message: any[]
   sort: number
   title: string,
   pureText: string,

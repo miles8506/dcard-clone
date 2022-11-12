@@ -13,7 +13,9 @@ const InterestItem: FC<{ article: IArticle }> = memo(({ article }) => {
     <InterestItemWrapper>
       <div className="interest-item">
         <div className="interest-item-info">
-          <div className="title">{ title }</div>
+          <div className="title">
+            <div className="text">{ title }</div>
+          </div>
           <div className="detail">
             <span className="emotion">心情 { likeTotal }</span>
             <span className="comment">留言 { commentTotal }</span>

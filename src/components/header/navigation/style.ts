@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { ThemePropsType } from '@/assets/theme'
 
-export const NavigationWrapper = styled.div`
+interface IProps {
+  pathname: string
+}
+
+export const NavigationWrapper = styled.div<IProps>`
   display: flex;
   height: 100%;
   color: #fff;
@@ -32,12 +36,11 @@ export const NavigationWrapper = styled.div`
       align-items: center;
       width: 60px;
       fill: currentColor;
+      cursor: pointer;
     }
 
-    &__info-icon,
-    &__card-icon,
-    &__email-icon {
-      cursor: not-allowed;
+    &__post-icon {
+      background-color: ${props => props.pathname === '/post' ? '#00588a' : 'inherit'};
     }
   }
 
