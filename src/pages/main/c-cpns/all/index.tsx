@@ -1,11 +1,10 @@
-import { memo, useState, useCallback, useEffect, Fragment } from 'react'
+import { memo, useState, useCallback, useEffect } from 'react'
 
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { requestArticle } from '@/store/main/async-thunk'
-import { requestArticleList } from '@/store/post/async-thunk'
-import { emptyArticle } from '@/store/main'
+import { requestArticle, requestArticleList, requestCommentList } from '@/store/article/async-thunk'
+import { emptyArticle } from '@/store/article'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useRouterInfo } from '@/context/router-info-context'
@@ -19,7 +18,7 @@ import Article from '@/components/article'
 const All = memo(() => {
   const dispatch: ReduxDispatchType = useDispatch()
   const { articleList } = useSelector((state: ReduxStateType) => ({
-    articleList: state.post.articleList
+    articleList: state.article.articleList
   }), shallowEqual)
 
   const { currentStatusIndex } = useFilterSelectContext()
@@ -33,8 +32,8 @@ const All = memo(() => {
   }, [setIsShowArticleModal])
 
   const handleOpenModal = async (articleId: number) => {
-    console.log(articleId);
     await dispatch(requestArticle(articleId))
+    await dispatch(requestCommentList(articleId))
     setIsShowArticleModal(true)
   }
 

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 
-import type { IArticle } from '@/store/post/type'
+import type { IArticle } from '@/store/article/type'
 
 import { InterestItemWrapper } from './style'
 

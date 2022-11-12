@@ -14,7 +14,7 @@ interface IProps {
 
 const ArticleHeader: FC<IProps> = memo(({ onCancel }) => {
   const { article } = useSelector((state: ReduxStateType) => ({
-    article: state.main.article
+    article: state.article.article
   }), shallowEqual)
 
   const getGender = (value: number) => value === 0 ? <AvatarGirlIcon width={32} height={32} /> : <AvatarBoyIcon width={32} height={32} />

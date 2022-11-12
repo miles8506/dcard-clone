@@ -73,6 +73,7 @@ export const ArticleItemMainWrapper = styled.div`
       margin-left: 20px;
       background-color: rgba(0,0,0,0.1);
       border-radius: 10px;
+      overflow: hidden;
 
       & > img {
         object-fit: contain;

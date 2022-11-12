@@ -1,20 +1,21 @@
 import { memo } from 'react'
 
-import { ReduxStateType } from '@/store'
-import { useSelector, shallowEqual } from 'react-redux'
+import type { IArticle } from '@/store/article/type'
 
 import { ArticleMainWrapper } from './style'
 import LoveIcon from '@/assets/svg/love-icon'
 import CollectIcon from '@/assets/svg/collect-icon'
+import { IHotBoard } from '@/store/main/type'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const loveImg = require('@/assets/img/love.webp')
 
-const ArticleMain = memo(() => {
-  const { article, hotBoardList } = useSelector((state: ReduxStateType) => ({
-    article: state.main.article,
-    hotBoardList: state.main.hotBoardList
-  }), shallowEqual)
+interface IProps {
+  article: IArticle
+  hotBoardList: IHotBoard[]
+}
+
+const ArticleMain = memo<IProps>(({ article, hotBoardList }) => {
   const { likeTotal, commentTotal } = article
 
   return (

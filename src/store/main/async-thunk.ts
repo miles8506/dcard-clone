@@ -22,8 +22,3 @@ export const requestHotBoard = createAsyncThunk('hotBoard', async () => {
   })
   return hotBoardList
 })
-
-export const requestArticle = createAsyncThunk('article', async (articleId: number) => {
-  const res = await requestRef('post', articleId.toString())
-  return res
-})

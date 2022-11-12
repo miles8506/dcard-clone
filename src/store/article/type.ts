@@ -1,7 +1,3 @@
-// interface IMassage {
-
-// }
-
 export interface IArticle {
   id: number
   account: string
@@ -16,6 +12,17 @@ export interface IArticle {
   likeTotal: number
 }
 
-export interface IPostState {
+export interface IComment {
+  account: string
+  content: string
+  floor: number
+  gender: number
+  timeAgo: number
+  likeAmount: number
+}
+
+export interface IArticleSlice {
+  article: IArticle
   articleList: IArticle[]
+  commentList: IComment[]
 }
