@@ -26,3 +26,11 @@ export interface IArticleSlice {
   articleList: IArticle[]
   commentList: IComment[]
 }
+
+export interface IRequestComment {
+  account: string
+  content: string
+  gender: number
+  likeAmount: number
+  timeAgo: number
+}

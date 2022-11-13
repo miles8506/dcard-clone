@@ -31,7 +31,7 @@ const All = memo(() => {
     setIsShowArticleModal(false)
   }, [setIsShowArticleModal])
 
-  const handleOpenModal = async (articleId: number) => {
+  const handleModal = async (articleId: number) => {
     await dispatch(requestArticle(articleId))
     await dispatch(requestCommentList(articleId))
     setIsShowArticleModal(true)
@@ -39,6 +39,7 @@ const All = memo(() => {
 
   const handleReset = () => {
     dispatch(emptyArticle())
+    dispatch(requestArticleList())
   }
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const All = memo(() => {
     <AllWrapper>
       {
         filterList(articleList, (sort as string), currentStatusIndex).map(item => (
-          <div className="article-item" onClick={() => handleOpenModal(item.id)} key={item.id}>
+          <div className="article-item" onClick={() => handleModal(item.id)} key={item.id}>
             <ArticleItem article={item} />
           </div>
         ))

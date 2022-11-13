@@ -1,17 +1,30 @@
 import { FC, memo } from 'react'
 
 import type { IArticle } from '@/store/article/type'
+import type { ReduxDispatchType } from '@/store'
+
+import { useDispatch } from 'react-redux'
+import { requestArticle, requestCommentList } from '@/store/article/async-thunk'
+import { useArticleContext } from '@/context/article-context'
 
 import { InterestItemWrapper } from './style'
 
 
 
 const InterestItem: FC<{ article: IArticle }> = memo(({ article }) => {
-  const { title, likeTotal, commentTotal, firstImage } = article
+  const { title, likeTotal, commentTotal, firstImage, id } = article
+  const dispatch: ReduxDispatchType = useDispatch()
+  const { articleRef } = useArticleContext()
+
+  const changeArticle = async (id: number) => {
+    await dispatch(requestArticle(id))
+    await dispatch(requestCommentList(id))
+    articleRef.current?.scrollTo(0, 0)
+  }
 
   return (
     <InterestItemWrapper>
-      <div className="interest-item">
+      <div className="interest-item" onClick={() => changeArticle(id)}>
         <div className="interest-item-info">
           <div className="title">
             <div className="text">{ title }</div>

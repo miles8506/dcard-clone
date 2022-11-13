@@ -2,9 +2,8 @@ import { memo, useRef, ChangeEvent, useState, useEffect } from 'react'
 
 import type { IGetEditorHTML } from '@/base-ui/MSEditor'
 
-import dayjs from 'dayjs'
 import { usePostContext } from '@/context/post-context'
-import { MSSessionStore } from '@/utils'
+import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import { setQuery } from '@/api'
 
@@ -32,7 +31,7 @@ const FooterBar = memo(() => {
     if (!userInfo?.account) return navigation('/main')
     if (isDisabled) return
     const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
-    const postId = dayjs().valueOf()
+    const postId = getCurrentTimeStamp()
     const request = {
       id: postId,
       account: userInfo.account,

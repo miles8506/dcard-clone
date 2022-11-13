@@ -1,7 +1,6 @@
 import { memo, useEffect } from 'react'
 
-import dayjs from 'dayjs'
-import { MSSessionStore } from '@/utils'
+import { MSSessionStore, formatDate, getCurrentTimeStamp } from '@/utils'
 import { usePostContext } from '@/context/post-context'
 
 import { InfoBarWrapper } from './style'
@@ -12,7 +11,7 @@ const InfoBar = memo(() => {
   const { postDateTime, changePostDateTime } = usePostContext()
 
   useEffect(() => {
-    changePostDateTime(dayjs().format('MM月DD日 HH:mm'))
+    changePostDateTime(formatDate(getCurrentTimeStamp(), 'MM月DD日 HH:mm'))
   }, [])
 
   return (
