@@ -10,36 +10,19 @@ export const ArticleWrapper = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
 
-    /* &-title {
-      margin-bottom: 12px;
-      padding: 0 60px;
-      font-size: 28px;
+    &::-webkit-scrollbar {
+      width: 5px;
     }
 
-    &-info {
-      display: flex;
-      padding: 0 60px;
-
-      &-sort {
-        color: #3397cf;
-        font-weight: 300;
-        cursor: pointer;
-      }
-
-      &-division {
-        padding: 0 7px;
-        color: rgba(0, 0, 0, 0.35);
-      }
-
-      &-date {
-        color: rgba(0, 0, 0, 0.35);
-      }
+    &::-webkit-scrollbar-track {
+      background: #fff;
     }
 
-    &-content {
-      flex: 1;
-      padding: 20px 60px 40px;
-    } */
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #888;
+    }
   }
 `

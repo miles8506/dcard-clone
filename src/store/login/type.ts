@@ -3,6 +3,10 @@ export interface IUserInfo {
   displayName: string
   gender: number
   type: string
+  password?: string,
+  articleCollectList: number[]
+  articleLikeList: number[]
+  commentLikeList: number[]
 }
 
 export interface IInitialState {

@@ -51,3 +51,11 @@ export function filterList(articleList: IArticle[], sort: string, status: number
 export function deepCopy(value: any) {
   return JSON.parse(JSON.stringify(value))
 }
+
+export function getCurrentTimeStamp() {
+  return dayjs().valueOf()
+}
+
+export function formatDate(timeStamp: number, formatValue: string) {
+  return dayjs(timeStamp).format(formatValue)
+}

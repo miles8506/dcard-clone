@@ -26,7 +26,8 @@ export const CommentItemWrapper = styled.div`
 
         &-like {
           display: flex;
-          .icon {
+
+          .like-icon {
             color: rgba(0, 0, 0, 0.35);
             fill: currentColor;
             cursor: pointer;

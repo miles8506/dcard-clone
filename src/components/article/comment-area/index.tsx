@@ -1,6 +1,9 @@
 import { FC, Fragment, memo } from 'react'
 
-import { IComment } from '@/store/article/type'
+import type { IComment } from '@/store/article/type'
+import type { ReduxStateType } from '@/store'
+
+import { useSelector, shallowEqual } from 'react-redux'
 
 import { CommentWrapper } from './style'
 import CommentItem from '../comment-item'
@@ -11,15 +14,22 @@ interface IProps {
 }
 
 const CommentArea: FC<IProps> = memo(({ commentList }) => {
+  const { article } = useSelector(
+    (state: ReduxStateType) => ({
+      article: state.article.article
+    }),
+    shallowEqual
+  )
+
   return (
     <CommentWrapper>
       <div className="comment">
         <FilterBar />
-        <div className="comment-total">共 { commentList?.length } 則留言</div>
+        <div className="comment-total">共 { article.commentTotal } 則留言</div>
         {
-          commentList.map(item => (
+          commentList?.map((item, index) => (
             <Fragment key={item.timeAgo}>
-              <CommentItem comment={item} />
+              <CommentItem comment={item} floor={index} />
             </Fragment>
           ))
         }

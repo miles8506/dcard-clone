@@ -49,7 +49,7 @@ export const ArticleItemMainWrapper = styled.div`
             fill: currentColor;
           }
         }
-
+/*
         .collect {
           display: flex;
 
@@ -60,6 +60,10 @@ export const ArticleItemMainWrapper = styled.div`
             fill: currentColor;
           }
         }
+
+        .active-collect {
+          color: ${props => props.theme.iconColor.collect};
+        } */
 
         .amount {
           padding-left: 6px;

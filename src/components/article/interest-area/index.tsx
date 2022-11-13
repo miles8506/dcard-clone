@@ -31,7 +31,7 @@ const InterestArea: FC<IProps> = memo(({ articleList }) => {
         <div className="interest-area-content">
           {renderArticleList.map((item) => (
             <Fragment key={item.id}>
-              <InterestItem article={item}/>
+              <InterestItem article={item} />
             </Fragment>
           ))}
         </div>

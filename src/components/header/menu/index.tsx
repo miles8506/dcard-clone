@@ -39,7 +39,7 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
             <MenuItem>{item}</MenuItem>
           </div>
         ))}
-        { isLogin && <MenuItem><span onClick={handleLogout}>登出</span></MenuItem> }
+        { isLogin && <MenuItem><div onClick={handleLogout}>登出</div></MenuItem> }
       </div>
     </MenuWrapper>
   )

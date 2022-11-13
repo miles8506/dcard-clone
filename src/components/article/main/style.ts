@@ -64,7 +64,8 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
       .operation {
         display: flex;
 
-        div[class$="icon"] {
+        .love-icon,
+        .collect-icon {
           display: flex;
           align-items: center;
           padding: 0 8px;
@@ -79,10 +80,18 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
           }
         }
 
+        .active-love-icon {
+          color: ${props => props.theme.iconColor.like};
+        }
+
         .collect-icon {
           &:hover {
             color: ${props => props.theme.iconColor.collect};
           }
+        }
+
+        .active-collect-icon {
+          color: ${props => props.theme.iconColor.collect};
         }
       }
     }

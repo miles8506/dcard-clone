@@ -7,20 +7,6 @@
   .ant-modal-content {
     height: 100%;
     padding: 0;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #fff;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #888;
-    }
   }
 
   .ant-modal-body {

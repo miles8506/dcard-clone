@@ -18,51 +18,5 @@ export const BottomBarWrapper = styled.div<IProps>`
 
   .bottom-bar {
     height: 100%;
-
-    .display-area {
-      display: flex;
-      align-items: center;
-      height: 100%;
-
-      &__avatar {
-        display: flex;
-        align-items: center;
-        margin-right: 10px;
-      }
-
-      &__comment-input {
-        flex: 1;
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 16px;
-        cursor: text;
-      }
-
-      &__operation {
-        display: flex;
-        align-items: center;
-
-        .love-icon,
-        .collect-icon {
-          display: flex;
-          align-items: center;
-          margin: 0 8px;
-          color: rgba(0, 0, 0, 0.2);
-          fill: currentColor;
-          cursor: pointer;
-        }
-
-        .love-icon {
-          &:hover {
-            color: ${(props) => props.theme.iconColor.like};
-          }
-        }
-
-        .collect-icon {
-          &:hover {
-            color: ${(props) => props.theme.iconColor.collect};
-          }
-        }
-      }
-    }
   }
 `

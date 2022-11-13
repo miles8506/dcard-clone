@@ -1,5 +1,17 @@
 import { FC, memo, useState, ChangeEvent } from 'react'
 
+import type { ReduxStateType, ReduxDispatchType } from '@/store'
+import type { IRequestComment } from '@/store/article/type'
+
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
+import { requestCommentList, setCommentList } from '@/store/article/async-thunk'
+import { isAuth } from '@/hooks/use-auth'
+import { useNavigate } from 'react-router-dom'
+import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
+import { useArticleContext } from '@/context/article-context'
+import { setQuery } from '@/api'
+import { requestArticle } from '@/store/article/async-thunk'
+
 import { CommentInputWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
 import AvatarGirlIcon from '@/assets/svg/avatar-girl-icon'
@@ -10,15 +22,42 @@ interface IProps {
 }
 
 const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
-  const [commentValue, setCommentValue] = useState('')
+  const dispatch: ReduxDispatchType = useDispatch()
+  const { article } = useSelector((state: ReduxStateType) => ({
+    article: state.article.article,
+  }), shallowEqual)
 
+  const navigation = useNavigate()
+
+  const { articleRef } = useArticleContext()
+
+  const [commentValue, setCommentValue] = useState('')
   const changeCommentValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(event.target.value.trim())
+    setCommentValue(event.target.value)
   }
 
-  // const handSendMessage = () => {
+  const handSendMessage = async() => {
+    const _isAuth = isAuth()
+    if (!_isAuth) return navigation('/login')
 
-  // }
+    const { account, gender } = MSSessionStore.getItem('loginInfo')
+    const request: IRequestComment = {
+      account,
+      content: commentValue.trim(),
+      gender,
+      likeAmount: 0,
+      timeAgo: getCurrentTimeStamp()
+    }
+    await dispatch(setCommentList({ articleId: article.id, request }))
+    await dispatch(requestCommentList(article.id))
+    await setQuery('post', article.id.toString(), Object.assign({}, {
+      ...article,
+      commentTotal: article.commentTotal + 1
+    }))
+    await dispatch(requestArticle(article.id))
+    articleRef.current?.scrollTo(0, articleRef.current?.scrollHeight as number)
+    changeIsShowDisplayArea(true)
+  }
 
   const getGender = (value: number) =>
     value === 0 ? <AvatarGirlIcon width={28} height={28} /> : <AvatarBoyIcon width={28} height={28} />
@@ -27,7 +66,7 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
     <CommentInputWrapper>
       <div className="comment-input">
         <div className="comment-input-top">
-          <div className="avatar">{ getGender(1) }</div>
+          <div className="avatar">{ getGender(article.gender) }</div>
           <div className="info">
             <div className="account">123@gmail.com</div>
             <div className="detail">
@@ -61,7 +100,7 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
               backgroundColor: commentValue.length === 0 ? 'rgba(0, 0, 0, 0.5)' : '#3397CF',
               marginLeft: '16px'
             }}
-            // onClick={}
+            onClick={handSendMessage}
           >
             送出
           </MSButton>

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { changeLoginStatus } from '@/store/login'
 import { requestUserInfo } from '@/store/login/async-thunk'
+import type { IUserInfo } from '@/store/login/type'
 
 const CHANGE_ACCOUNTVALUE = 'CHANGE_ACCOUNTVALUE'
 const CHANGE_ACCOUNTSTATUS = 'CHANGE_ACCOUNTSTATUS'
@@ -23,14 +24,6 @@ interface IInitialState {
 }
 
 type loginType = 'google' | 'facebook' | 'normal'
-
-interface IUserInfo {
-  account: string
-  displayName: string
-  type: loginType
-  password?: string,
-  gender: number
-}
 
 export function useLogin() {
   const reduxDispatch: ReduxDispatchType = useDispatch()
@@ -109,7 +102,10 @@ export function useLogin() {
       account: (res.user?.email as string).trim(),
       displayName: (res.user?.displayName as string),
       type: 'google',
-      gender: Math.floor(Math.random() * 2)
+      gender: Math.floor(Math.random() * 2),
+      articleCollectList: [],
+      articleLikeList: [],
+      commentLikeList: []
     }
     handleUserInfo(payload)
   }
@@ -120,7 +116,10 @@ export function useLogin() {
       account: (res.user?.email as string).trim(),
       displayName: (res.user?.displayName as string),
       type: 'facebook',
-      gender: Math.floor(Math.random() * 2)
+      gender: Math.floor(Math.random() * 2),
+      articleCollectList: [],
+      articleLikeList: [],
+      commentLikeList: []
     }
     handleUserInfo(payload)
   }
@@ -134,7 +133,10 @@ export function useLogin() {
       displayName: state.accountValue.trim(),
       type: 'normal',
       password: passwordValue.trim(),
-      gender: Math.floor(Math.random() * 2)
+      gender: Math.floor(Math.random() * 2),
+      articleCollectList: [],
+      articleLikeList: [],
+      commentLikeList: []
     }
     const userList = await requestCol('user')
     const haveRegistry = userList.find((item: any) => item.data().account === payload.account)

@@ -3,9 +3,9 @@ import { memo } from 'react'
 import type { IArticle } from '@/store/article/type'
 
 import { ArticleMainWrapper } from './style'
-import LoveIcon from '@/assets/svg/love-icon'
-import CollectIcon from '@/assets/svg/collect-icon'
+import CollectIcon from '@/components/common/collect-icon'
 import { IHotBoard } from '@/store/main/type'
+import LoveIcon from '@/components/common/love-icon'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const loveImg = require('@/assets/img/love.webp')
@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const ArticleMain = memo<IProps>(({ article, hotBoardList }) => {
-  const { likeTotal, commentTotal } = article
+  const { likeTotal, commentTotal, id } = article
 
   return (
     <ArticleMainWrapper>
@@ -40,12 +40,12 @@ const ArticleMain = memo<IProps>(({ article, hotBoardList }) => {
             <span>{likeTotal}・留言 { commentTotal }</span>
           </div>
           <div className="operation">
-            <div className="love-icon">
-              <LoveIcon />
-            </div>
-            <div className="collect-icon">
-              <CollectIcon width={24} height={24} />
-            </div>
+            <LoveIcon />
+            <CollectIcon
+              width={24}
+              height={24}
+              articleId={id}
+            />
           </div>
         </div>
       </div>
