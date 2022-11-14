@@ -11,6 +11,7 @@ export const CollectIconWrapper = styled.div<ThemePropsType & IProps>`
     align-items: center;
     color: #e1e1e1;
     fill: currentColor;
+    cursor: pointer;
 
     &:hover {
       color: ${(props) => (props.isHover ? props.theme.iconColor.collect : '#e1e1e1')};

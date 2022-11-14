@@ -15,8 +15,9 @@ import { LoveIconWrapper } from './style'
 import { default as SVGLoveIcon } from '@/assets/svg/love-icon'
 
 const LoveIcon = memo(() => {
-  const { userInfo, article } = useSelector((state: ReduxStateType) => ({
+  const { userInfo, article, isLogin } = useSelector((state: ReduxStateType) => ({
     userInfo: state.login.userInfo,
+    isLogin: state.login.isLogin,
     article: state.article.article
   }), shallowEqual)
   const dispatch: ReduxDispatchType = useDispatch()
@@ -42,7 +43,7 @@ const LoveIcon = memo(() => {
       <div
         className={classNames([
           'love-icon',
-          findArticleLoveIndex(article.id, userInfo) !== -1 ? 'active-love-icon' : ''
+          (findArticleLoveIndex(article.id, userInfo) !== -1 && isLogin) ? 'active-love-icon' : ''
         ])}
         onClick={changeLikeStatus}
       >

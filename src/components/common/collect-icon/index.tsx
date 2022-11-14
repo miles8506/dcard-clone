@@ -22,8 +22,9 @@ interface IProps {
 }
 
 const CollectIcon: FC<IProps> = memo(({ width, height, articleId, isShowText = false, isHover = true }) => {
-  const { userInfo } = useSelector((state: ReduxStateType) => ({
-    userInfo: state.login.userInfo
+  const { userInfo, isLogin } = useSelector((state: ReduxStateType) => ({
+    userInfo: state.login.userInfo,
+    isLogin: state.login.isLogin
   }), shallowEqual)
   const dispatch: ReduxDispatchType = useDispatch()
 
@@ -36,7 +37,6 @@ const CollectIcon: FC<IProps> = memo(({ width, height, articleId, isShowText = f
     if (!_isAuth) return navigate('/login')
 
     const _userInfo = useChangeCollectStatus(articleId, userInfo)
-    console.log(_userInfo);
     await setQuery('user', _userInfo.account, _userInfo)
     await dispatch(requestUserInfo())
   }
@@ -46,7 +46,7 @@ const CollectIcon: FC<IProps> = memo(({ width, height, articleId, isShowText = f
       <div
         className={classNames(
           'collect-icon',
-          findCollectIndex(articleId, userInfo) !== -1
+          (findCollectIndex(articleId, userInfo) !== -1 && isLogin)
             ? 'active-collect-icon'
             : ''
         )}

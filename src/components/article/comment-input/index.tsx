@@ -23,8 +23,9 @@ interface IProps {
 
 const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   const dispatch: ReduxDispatchType = useDispatch()
-  const { article } = useSelector((state: ReduxStateType) => ({
+  const { article, commentList } = useSelector((state: ReduxStateType) => ({
     article: state.article.article,
+    commentList: state.article.commentList
   }), shallowEqual)
 
   const navigation = useNavigate()
@@ -41,12 +42,16 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
     if (!_isAuth) return navigation('/login')
 
     const { account, gender } = MSSessionStore.getItem('loginInfo')
+    await dispatch(requestCommentList(article.id))
+    const timeStamp = getCurrentTimeStamp()
     const request: IRequestComment = {
+      id: timeStamp,
       account,
       content: commentValue.trim(),
       gender,
       likeAmount: 0,
-      timeAgo: getCurrentTimeStamp()
+      timeAgo: timeStamp,
+      floor: commentList.comment.length + 1
     }
     await dispatch(setCommentList({ articleId: article.id, request }))
     await dispatch(requestCommentList(article.id))

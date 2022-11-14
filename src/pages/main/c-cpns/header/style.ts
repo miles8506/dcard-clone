@@ -25,6 +25,8 @@ export const HeaderWrapper = styled.div`
         align-items: center;
         height: 100%;
         padding: 0 12px;
+        color: #fff;
+        fill: currentColor;
       }
     }
   }

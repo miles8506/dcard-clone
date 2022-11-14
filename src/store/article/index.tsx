@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {  requestArticle, requestArticleList, requestCommentList } from './async-thunk'
-import type { IArticleSlice, IArticle } from './type'
+import type { IArticleSlice, IArticle, ICommentResponse } from './type'
 
 const initialState: IArticleSlice = {
   article: {} as IArticle,
   articleList: [],
-  commentList: []
+  commentList: {} as ICommentResponse
 }
 
 const articleSlice = createSlice({

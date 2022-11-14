@@ -28,4 +28,10 @@ export const ArticleHeaderWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 767px) {
+    .article-header {
+      padding: 36px 16px 18px;
+    }
+  }
 `

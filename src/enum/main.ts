@@ -25,6 +25,11 @@ export enum Sort {
   cat
 }
 
+export enum ArticleFilter {
+  hot,
+  time
+}
+
 function mappingEnumToObject(tab: {[key: string]: any}) {
   const obj = Object.entries(tab)
   const enumObj: IEnumObject = {}

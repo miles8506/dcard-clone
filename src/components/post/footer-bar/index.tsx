@@ -17,6 +17,7 @@ const FooterBar = memo(() => {
   const FileRef = useRef<HTMLInputElement>(null)
 
   const [isDisabled, setIsDisabled] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleFileClick = () => {
     FileRef.current?.click()
@@ -29,7 +30,7 @@ const FooterBar = memo(() => {
   const savePost = async () => {
     const userInfo = MSSessionStore.getItem('loginInfo')
     if (!userInfo?.account) return navigation('/main')
-    if (isDisabled) return
+    setIsLoading(true)
     const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML
     const postId = getCurrentTimeStamp()
     const request = {
@@ -46,13 +47,13 @@ const FooterBar = memo(() => {
       likeTotal: 0
     }
     await setQuery('post', request.id, request)
-    await setQuery('comment', request.id, { comment: [] })
+    await setQuery('comment', request.id, { comment: [], id: request.id })
     navigation('/main')
   }
 
   useEffect(() => {
-    (title.trim().length === 0 || boardIndex === null) ? setIsDisabled(true) : setIsDisabled(false)
-  }, [title, boardIndex])
+    (title.trim().length === 0 || boardIndex === null || isLoading) ? setIsDisabled(true) : setIsDisabled(false)
+  }, [title, boardIndex, isLoading])
 
   return (
     <FooterBarWrapper>
@@ -81,6 +82,7 @@ const FooterBar = memo(() => {
               backgroundColor: isDisabled ? 'rgba(0, 0, 0, 0.5)' : '#3397CF'
             }}
             onClick={savePost}
+            isLoading={isLoading}
           >
             下一步
           </MSButton>

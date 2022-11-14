@@ -18,3 +18,14 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .ms-ant-modal {
+    width: 100% !important;
+  }
+
+  .ant-modal {
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}

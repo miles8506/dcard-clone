@@ -8,14 +8,19 @@ import { IArticle } from '@/store/article/type'
 
 interface IProps {
   articleList: IArticle[]
+  articleId: number
 }
 
-const InterestArea: FC<IProps> = memo(({ articleList }) => {
+const InterestArea: FC<IProps> = memo(({ articleList, articleId }) => {
   function getRandomArticleList() {
     const resultList = []
-    const deepCopyArticleList = deepCopy(articleList)
+    const deepCopyArticleList: IArticle[] = deepCopy(articleList)
     for (let i = 0; i < 6; i++) {
       const index = Math.floor(Math.random() * deepCopyArticleList.length)
+      if (deepCopyArticleList[index].id === articleId) {
+        i--
+        continue
+      }
       resultList.push(deepCopyArticleList[index])
       deepCopyArticleList.splice(index, 1)
     }

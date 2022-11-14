@@ -6,11 +6,11 @@ export const findCollectIndex = (articleId: number, userInfo: IUserInfo) => {
 }
 
 export const findArticleLoveIndex = (articleId: number, userInfo: IUserInfo) => {
-  return userInfo.articleLikeList.findIndex(item => item === articleId)
+  return userInfo?.articleLikeList?.findIndex(item => item === articleId)
 }
 
 export const findCommentLoveIndex = (commentId: number, userInfo: IUserInfo) => {
-  return userInfo.commentLikeList.findIndex(item => item === commentId)
+  return userInfo?.commentLikeList?.findIndex(item => item === commentId)
 }
 
 export const useChangeCollectStatus = (articleId: number, userInfo: IUserInfo) => {

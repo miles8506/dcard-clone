@@ -18,7 +18,7 @@ export const requestArticleList = createAsyncThunk('articleList', async () => {
 
 export const requestCommentList = createAsyncThunk('commentList', async (articleId: number) => {
   const res = await requestRef('comment', articleId.toString())
-  return res.comment
+  return res
 })
 
 export const setCommentList = createAsyncThunk('commentList', async (payload: { articleId: number, request: IRequestComment }) => {

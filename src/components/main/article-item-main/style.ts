@@ -49,21 +49,6 @@ export const ArticleItemMainWrapper = styled.div`
             fill: currentColor;
           }
         }
-/*
-        .collect {
-          display: flex;
-
-          &-icon {
-            display: flex;
-            align-items: center;
-            color: #e1e1e1;
-            fill: currentColor;
-          }
-        }
-
-        .active-collect {
-          color: ${props => props.theme.iconColor.collect};
-        } */
 
         .amount {
           padding-left: 6px;
