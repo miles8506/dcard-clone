@@ -1,1 +1,7 @@
-export { tabsEnum, selectFilterEnum, SelectFilter, Sort } from './main'
+export {
+  tabsEnum,
+  selectFilterEnum,
+  SelectFilter,
+  Sort,
+  ArticleFilter
+} from './main'

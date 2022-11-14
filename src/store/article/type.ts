@@ -13,6 +13,7 @@ export interface IArticle {
 }
 
 export interface IComment {
+  id: number
   account: string
   content: string
   floor: number
@@ -21,16 +22,23 @@ export interface IComment {
   likeAmount: number
 }
 
+export interface ICommentResponse {
+  comment: IComment[]
+  id: number
+}
+
 export interface IArticleSlice {
   article: IArticle
   articleList: IArticle[]
-  commentList: IComment[]
+  commentList: ICommentResponse
 }
 
 export interface IRequestComment {
+  id: number
   account: string
   content: string
   gender: number
   likeAmount: number
   timeAgo: number
+  floor: number
 }

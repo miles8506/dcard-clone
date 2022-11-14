@@ -65,4 +65,8 @@ export const InterestItemWrapper = styled.div<ThemePropsType>`
       }
     }
   }
+
+  @media screen and (max-width: 767px) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
 `

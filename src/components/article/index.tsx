@@ -33,7 +33,7 @@ const Article: FC<IProps> = memo(({ onCancel }) => {
       <div className="article" ref={articleRef}>
         <ArticleHeader onCancel={onCancel} />
         <ArticleMain article={article} hotBoardList={hotBoardList} />
-        <InterestArea articleList={articleList} />
+        <InterestArea articleList={articleList} articleId={article.id} />
         <CommentArea commentList={commentList} />
         <BottomBar />
       </div>

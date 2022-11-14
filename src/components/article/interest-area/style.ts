@@ -16,4 +16,19 @@ export const InterestAreaWrapper = styled.div`
       flex-wrap: wrap;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 40px 16px;
+
+    .interest-area {
+      &-title {
+        font-size: 14px;
+      }
+
+      &-content {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  }
 `

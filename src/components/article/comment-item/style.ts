@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import type { ThemePropsType } from '@/assets/theme'
 
-export const CommentItemWrapper = styled.div`
+export const CommentItemWrapper = styled.div<ThemePropsType>`
   .comment-item {
     display: flex;
     padding: 20px 0 16px;
@@ -37,6 +38,10 @@ export const CommentItemWrapper = styled.div`
             }
           }
 
+          .active-like-icon {
+            color: ${props => props.theme.iconColor.like};
+          }
+
           .amount {
             padding: 0 0 0 8px;
             color: rgba(0, 0, 0, 0.35);
@@ -53,6 +58,7 @@ export const CommentItemWrapper = styled.div`
 
       &-footer {
         display: flex;
+        padding: 4px 0 0;
         color: rgba(0, 0, 0, 0.75);
 
         .floor {

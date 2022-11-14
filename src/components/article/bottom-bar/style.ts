@@ -19,4 +19,8 @@ export const BottomBarWrapper = styled.div<IProps>`
   .bottom-bar {
     height: 100%;
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 0 16px;
+  }
 `

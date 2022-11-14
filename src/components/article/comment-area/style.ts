@@ -12,4 +12,14 @@ export const CommentWrapper = styled.div`
       font-size: 16px;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 40px 16px 0;
+
+    .comment {
+      &-total {
+        font-size: 14px;
+      }
+    }
+  }
 `

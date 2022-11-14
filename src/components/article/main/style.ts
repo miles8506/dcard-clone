@@ -63,36 +63,54 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
 
       .operation {
         display: flex;
+      }
+    }
+  }
 
-        .love-icon,
-        .collect-icon {
-          display: flex;
-          align-items: center;
-          padding: 0 8px;
-          color: rgba(0, 0, 0, 0.2);
-          fill: currentColor;
-          cursor: pointer;
+  @media screen and (max-width: 992px) {
+    .article-main {
+      &-title {
+        font-size: 24px;
+      }
+
+      &-info {
+        &-sort,
+        &-division,
+        &-date {
+          font-size: 13px;
         }
+      }
 
-        .love-icon {
-          &:hover {
-            color: ${props => props.theme.iconColor.like};
+      &-function-bar {
+        .detail {
+          .emotion-img {
+            & > img {
+              width: 21px;
+              height: 21px;
+            }
+          }
+
+          & > span {
+            font-size: 16px;
           }
         }
+      }
+    }
+  }
 
-        .active-love-icon {
-          color: ${props => props.theme.iconColor.like};
-        }
+  @media screen and (max-width: 767px) {
+    .article-main {
+      &-title {
+        padding: 0 16px;
+      }
 
-        .collect-icon {
-          &:hover {
-            color: ${props => props.theme.iconColor.collect};
-          }
-        }
+      &-content {
+        padding: 20px 16px 40px;
 
-        .active-collect-icon {
-          color: ${props => props.theme.iconColor.collect};
-        }
+      }
+
+      &-function-bar {
+        padding: 6px 16px;
       }
     }
   }
