@@ -104,6 +104,10 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
         padding: 0 16px;
       }
 
+      &-info {
+        padding: 0 16px;
+      }
+
       &-content {
         padding: 20px 16px 40px;
 

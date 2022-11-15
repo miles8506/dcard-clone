@@ -6,9 +6,10 @@ import { useSelector, shallowEqual } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
+import { useMobileNavigateContext } from '@/context/main-context/mobile-navigate-context'
+import { MobileNavigate } from '@/enum'
 
 import { AreaWrapper } from './style'
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import AllLoadBoardIcon from '@/assets/svg/all-load-board-icon'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -18,8 +19,11 @@ import ResearchIcon from '@/assets/svg/research-icon'
 
 const Area = memo(() => {
   const navigate = useNavigate()
+
   const { resetStatusIndex } = useFilterSelectContext()
   const { resetTabIndex } = useTabContext()
+  const { changeNavigateCurrentIndex } = useMobileNavigateContext()
+
   const { areaList } = useSelector(
     (state: ReduxStateType) => ({
       areaList: state.main.areaList
@@ -42,6 +46,7 @@ const Area = memo(() => {
     if (index !== 0) return
     resetTabIndex()
     resetStatusIndex()
+    changeNavigateCurrentIndex(MobileNavigate.home)
     navigate('/main/any/all')
   }
 

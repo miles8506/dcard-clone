@@ -29,8 +29,11 @@ export const ArticleItemWrapper = styled.div`
         }
       }
     }
+  }
 
-
+  @media screen and (max-width: 767px) {
+    .article-item {
+      margin: 0 16px;
+    }
   }
 `
-// ・

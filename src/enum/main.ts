@@ -30,6 +30,12 @@ export enum ArticleFilter {
   time
 }
 
+export enum MobileNavigate {
+  home,
+  boardList,
+  profile
+}
+
 function mappingEnumToObject(tab: {[key: string]: any}) {
   const obj = Object.entries(tab)
   const enumObj: IEnumObject = {}
