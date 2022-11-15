@@ -4,5 +4,6 @@ export {
   SelectFilter,
   Sort,
   ArticleFilter,
-  MobileNavigate
+  MobileNavigate,
+  SearchTab
 } from './main'

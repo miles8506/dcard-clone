@@ -11,5 +11,6 @@ export interface IAreaList {
 export interface IHotBoard {
   name: string
   imgUrl: string
+  bgImg: string
   path: string
 }

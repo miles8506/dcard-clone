@@ -1,13 +1,14 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 
-import type { ReduxStateType } from '@/store'
+import type { ReduxStateType, ReduxDispatchType } from '@/store'
 
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 import { useMobileNavigateContext } from '@/context/main-context/mobile-navigate-context'
 import { MobileNavigate } from '@/enum'
+import { requestAreaList } from '@/store/main/async-thunk'
 
 import { AreaWrapper } from './style'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -30,6 +31,7 @@ const Area = memo(() => {
     }),
     shallowEqual
   )
+  const dispatch: ReduxDispatchType = useDispatch()
 
   function iconList(index: number) {
     switch (index) {
@@ -44,11 +46,15 @@ const Area = memo(() => {
 
   const handleClick = (index: number) => {
     if (index !== 0) return
-    resetTabIndex()
-    resetStatusIndex()
-    changeNavigateCurrentIndex(MobileNavigate.home)
+    resetTabIndex && resetTabIndex()
+    resetStatusIndex && resetStatusIndex()
+    changeNavigateCurrentIndex && changeNavigateCurrentIndex(MobileNavigate.home)
     navigate('/main/any/all')
   }
+
+  useEffect(() => {
+    dispatch(requestAreaList())
+  }, [])
 
   return (
     <AreaWrapper>
