@@ -1,19 +1,21 @@
-import { ReactNode, useState } from 'react'
+import { memo, useEffect } from 'react'
 
-import BellIcon from '@/assets/svg/bell-icon'
-import HomeIcon from '@/assets/svg/home-icon'
-import ProfileIcon from '@/assets/svg/profile-icon'
-import ShopIcon from '@/assets/svg/shop-icon'
-import SortIcon from '@/assets/svg/sort-icon'
-import { memo } from 'react'
+import classNames from 'classnames'
+import { useMobileNavigateContext } from '@/context/main-context/mobile-navigate-context'
+import useWindowRWD from '@/hooks/use-window-rwd'
+import { MobileNavigate } from '@/enum'
 
 import { MobileNavigationWrapper } from './style'
-import classNames from 'classnames'
+import HomeIcon from '@/assets/svg/home-icon'
+import ProfileIcon from '@/assets/svg/profile-icon'
+import SortIcon from '@/assets/svg/sort-icon'
 
-const svgList = [HomeIcon, SortIcon, ShopIcon, BellIcon, ProfileIcon]
+const svgList = [HomeIcon, SortIcon, ProfileIcon]
 
 const MobileNavigation = memo(() => {
-  const [navigationIndex, setNavigationIndex] = useState(0)
+  const { size } = useWindowRWD()
+
+  const { navigateCurrentIndex, changeNavigateCurrentIndex } = useMobileNavigateContext()
 
   const renderSvgIcon = (index: number) => {
     switch (index) {
@@ -22,13 +24,14 @@ const MobileNavigation = memo(() => {
       case 1:
         return <SortIcon />
       case 2:
-        return <ShopIcon />
-      case 3:
-        return <BellIcon />
-      case 4:
         return <ProfileIcon />
     }
   }
+
+  useEffect(() => {
+    if (size.width > 996 || navigateCurrentIndex === MobileNavigate.home) return
+    changeNavigateCurrentIndex(MobileNavigate.home)
+  }, [size])
 
   return (
     <MobileNavigationWrapper>
@@ -37,10 +40,10 @@ const MobileNavigation = memo(() => {
           <div
             className={classNames([
               'm-navigation-icon',
-              { active: navigationIndex === index }
+              { active: navigateCurrentIndex === index }
             ])}
             key={index}
-            onClick={() => setNavigationIndex(index)}
+            onClick={() => changeNavigateCurrentIndex(index)}
           >
             {renderSvgIcon(index)}
           </div>

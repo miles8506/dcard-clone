@@ -62,4 +62,23 @@ export const AreaWrapper = styled.div`
     mask-type: alpha;
     background-color: #fff;
   }
+
+  @media screen and (max-width: 996px) {
+    .area-item {
+      color: #000000BF;
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+
+    .area-icon {
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+    .rank-icon,
+    .game-icon {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+  }
 `

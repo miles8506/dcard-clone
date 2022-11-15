@@ -4,8 +4,8 @@ export const TabsWrapper = styled.div`
   background-color: #fff;
   border-radius: 4px 4px 0 0;
   min-width: 728px;
-  height: 100%;
-  margin: 0 12px;
+  /* height: 100%; */
+  margin: 0 12px 47px;
 
   .tabs {
     height: 100%;
@@ -33,7 +33,7 @@ export const TabsWrapper = styled.div`
   @media screen and (max-width: 992px) {
     min-width: auto;
     height: 100%;
-    margin: 0;
+    margin: 0 0 47px;
     border-radius: 0 0 0 0;
 
     .tabs-top {

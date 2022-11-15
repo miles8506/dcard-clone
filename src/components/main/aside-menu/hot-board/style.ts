@@ -75,4 +75,25 @@ export const HotBoardWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 996px) {
+    height: auto;
+    .hot-board {
+      &-title {
+        color: #a6a6a6;
+        background-color: #f2f3f4;
+      }
+    }
+
+    .board {
+      &:hover {
+        background-color: #fff;
+      }
+
+      &-text {
+        color: #000000BF;
+        font-size: 16px;
+      }
+    }
+  }
 `

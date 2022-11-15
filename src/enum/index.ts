@@ -3,5 +3,6 @@ export {
   selectFilterEnum,
   SelectFilter,
   Sort,
-  ArticleFilter
+  ArticleFilter,
+  MobileNavigate
 } from './main'
