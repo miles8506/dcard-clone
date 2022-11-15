@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { requestCol, requestRef } from '@/api'
+import { requestCol } from '@/api'
 
 import type { IAreaList, IHotBoard } from './type'
 
@@ -17,8 +17,8 @@ export const requestHotBoard = createAsyncThunk('hotBoard', async () => {
   const res = await requestCol('hotBoard')
   const hotBoardList: IHotBoard[] = []
   res.forEach((item: any) => {
-    const { name, imgUrl, path } = item.data()
-    hotBoardList.push({ name, imgUrl, path })
+    const { name, imgUrl, path, bgImg } = item.data()
+    hotBoardList.push({ name, imgUrl, path, bgImg })
   })
   return hotBoardList
 })

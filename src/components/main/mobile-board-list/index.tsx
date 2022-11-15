@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
 import { MobileBoardListWrapper } from './style'
-import Area from '../aside-menu/area'
-import HotBoard from '../aside-menu/hot-board'
+import Area from '../../common/area'
+import HotBoard from '../../common/hot-board'
 
 const MobileBoardList = memo(() => {
   return (

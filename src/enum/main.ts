@@ -36,6 +36,12 @@ export enum MobileNavigate {
   profile
 }
 
+export enum SearchTab {
+  synthesize = 'synthesize',
+  article = 'article',
+  board = 'board'
+}
+
 function mappingEnumToObject(tab: {[key: string]: any}) {
   const obj = Object.entries(tab)
   const enumObj: IEnumObject = {}
