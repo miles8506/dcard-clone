@@ -16,6 +16,7 @@ export const TabsWrapper = styled.div`
       padding: 20px 60px 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.15);
       background-color: #fff;
+      z-index: 99;
     }
 
     &-content {

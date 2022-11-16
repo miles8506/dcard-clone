@@ -20,8 +20,8 @@ const ArticleItemMain: FC<IProps> = memo(({ article }) => {
     <ArticleItemMainWrapper>
       <div className="main">
         <div className="main-detail">
-          <h2 className="title">{ title }</h2>
-          <div className="content">{ pureText }</div>
+          <h2 className="title ms-overflow">{ title }</h2>
+          <div className="content ms-overflow">{ pureText }</div>
           <div className="footer">
             <div className="emotion">
               <img src={ loveImage } />
@@ -41,7 +41,6 @@ const ArticleItemMain: FC<IProps> = memo(({ article }) => {
                 isShowText={true}
                 isHover={false}
               />
-              {/* <div className="collect-text">收藏</div> */}
             </div>
           </div>
         </div>

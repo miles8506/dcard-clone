@@ -37,7 +37,7 @@ export function timeGap(timer: number) {
   return `${(_timeGap / 1000 / 60 / 60 / 24).toFixed(0)} 天前`;
 }
 
-export function filterList(articleList: IArticle[], sort: string, status: number): IArticle[] {
+export function filterArticleList(articleList: IArticle[], sort: string, status: number): IArticle[] {
   const filterList = articleList.filter((item: IArticle) => sort === 'any' ? true : Sort[item.sort] === sort)
   if (status === SelectFilter.hot) {
     return filterList.sort((a, b) => b.likeTotal - a.likeTotal)
@@ -58,4 +58,12 @@ export function getCurrentTimeStamp() {
 
 export function formatDate(timeStamp: number, formatValue: string) {
   return dayjs(timeStamp).format(formatValue)
+}
+
+export function filterSearchArticleList(articleList: IArticle[], query: string) {
+  return articleList.filter(
+    item =>
+      item.title.toLowerCase().includes(query?.toLowerCase()) ||
+      item.pureText.toLowerCase().includes(query?.toLowerCase())
+  )
 }

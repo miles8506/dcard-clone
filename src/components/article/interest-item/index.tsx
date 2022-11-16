@@ -24,7 +24,7 @@ const InterestItem: FC<{ article: IArticle }> = memo(({ article }) => {
 
   return (
     <InterestItemWrapper>
-      <div className="interest-item" onClick={() => changeArticle(id)}>
+      <div className="interest-item ms-overflow" onClick={() => changeArticle(id)}>
         <div className="interest-item-info">
           <div className="title">
             <div className="text">{ title }</div>

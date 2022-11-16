@@ -140,13 +140,13 @@ export function useLogin() {
     }
     const userList = await requestCol('user')
     const haveRegistry = userList.find((item: any) => item.data().account === payload.account)
-    if (haveRegistry.data() && haveRegistry.data().password !== passwordValue) {
+    if (haveRegistry && haveRegistry.data().password !== passwordValue) {
       changePasswordStatus(true)
       return
     }
     !haveRegistry && await setQuery('user', payload.account, payload)
     delete payload.password
-    if (haveRegistry.data()) payload.gender = haveRegistry.data().gender
+    if (haveRegistry?.data()) payload.gender = haveRegistry.data().gender
     MSSessionStore.setItem('loginInfo', payload)
     reduxDispatch(changeLoginStatus(true))
     reduxDispatch(requestUserInfo())
