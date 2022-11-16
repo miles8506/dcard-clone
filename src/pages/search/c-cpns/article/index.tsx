@@ -1,10 +1,13 @@
 import { memo } from 'react'
 
 import { ArticleWrapper } from './style'
+import FilterBar from '@/components/search/article-filter-bar'
 
 const Article = memo(() => {
   return (
-    <ArticleWrapper>Article</ArticleWrapper>
+    <ArticleWrapper>
+      <FilterBar />
+    </ArticleWrapper>
   )
 })
 

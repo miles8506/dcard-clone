@@ -8,7 +8,7 @@ import { emptyArticle } from '@/store/article'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useRouterInfo } from '@/context/router-info-context'
-import { filterList } from '@/utils'
+import { filterArticleList } from '@/utils'
 
 import { AllWrapper } from './style'
 import ArticleItem from '@/components/main/article-item'
@@ -49,7 +49,7 @@ const All = memo(() => {
   return (
     <AllWrapper>
       {
-        filterList(articleList, (sort as string), currentStatusIndex).map(item => (
+        filterArticleList(articleList, (sort as string), currentStatusIndex).map(item => (
           <div className="article-item" onClick={() => handleModal(item.id)} key={item.id}>
             <ArticleItem article={item} />
           </div>

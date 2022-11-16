@@ -15,12 +15,8 @@ export const ArticleItemMainWrapper = styled.div`
       }
 
       .content {
-        display: -webkit-box;
         width: 100%;
         margin-top: 4px;
-        overflow: hidden;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
       }
 
       .footer {

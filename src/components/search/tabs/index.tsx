@@ -11,7 +11,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 const Tabs = memo(() => {
   const navigate = useNavigate()
 
-  const { pathname } = useRouterInfo()
+  const { pathname, query } = useRouterInfo()
 
   const [tabIndex, setTabIndex] = useState<string>(() => {
     const pathList = pathname.split('/')
@@ -20,7 +20,7 @@ const Tabs = memo(() => {
 
   const handleChange = (newValue: string) => {
     setTabIndex(newValue)
-    navigate(`/search/${newValue}`)
+    query ? navigate(`/search/${newValue}?query=${query}`) : navigate(`/search/${newValue}`)
   }
 
   return (

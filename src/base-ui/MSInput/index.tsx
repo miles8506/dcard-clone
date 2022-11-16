@@ -5,11 +5,11 @@ import classNames from 'classnames'
 
 import { Input, InputProps } from 'antd'
 
-interface propsTypes extends InputProps {
+interface IProps extends InputProps {
   setValue: Dispatch<SetStateAction<any>>
 }
 
-const MSInput: FC<propsTypes> = memo(({ setValue, ...elseProps  }, ref) => {
+const MSInput: FC<IProps> = memo(({ setValue, ...elseProps  }, ref) => {
   const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }

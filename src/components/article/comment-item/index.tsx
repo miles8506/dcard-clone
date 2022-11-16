@@ -57,7 +57,7 @@ const CommentItem: FC<IProps> = memo(({ comment, commentListId }) => {
     await dispatch(requestCommentList(commentListId))
   }
 
-  const isLikeComment = () => userInfo.commentLikeList.some(item => item === comment.id)
+  const isLikeComment = () => userInfo?.commentLikeList?.some(item => item === comment.id)
 
   return (
     <CommentItemWrapper>
