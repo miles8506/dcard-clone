@@ -42,6 +42,19 @@ export enum SearchTab {
   board = 'board'
 }
 
+export enum ICorrelation {
+  '最新發佈',
+  '心情數',
+  '收藏數'
+}
+
+export enum ITime {
+  '不限時間',
+  '1 天內',
+  '7 天內',
+  '30 天內'
+}
+
 function mappingEnumToObject(tab: {[key: string]: any}) {
   const obj = Object.entries(tab)
   const enumObj: IEnumObject = {}
@@ -53,5 +66,21 @@ function mappingEnumToObject(tab: {[key: string]: any}) {
   return enumObj
 }
 
+function mappingEnumToNameId(tab: {[key: string]: any}) {
+  const obj = Object.entries(tab)
+  const list: {name: string, id: number}[] = []
+  for (const item of obj) {
+    if (typeof item[1] === 'number') {
+      list.push({
+        name: item[0],
+        id: item[1]
+      })
+    }
+  }
+  return list
+}
+
 export const tabsEnum = mappingEnumToObject(Tabs)
 export const selectFilterEnum = mappingEnumToObject(SelectFilter)
+export const correlationList = mappingEnumToNameId(ICorrelation)
+export const timeList = mappingEnumToNameId(ITime)

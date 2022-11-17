@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { changeLoginStatus, emptyUserInfo } from '@/store/login'
 
 import { MenuWrapper } from './style'
-import MenuItem from '../menu-item'
+import MenuLayout from '@/components/common/menu-layout'
+import MenuItem from '@/components/common/menu-item'
 
 interface IProps {
   changeShowMenu: (event: MouseEvent<HTMLDivElement>, item?: string) => void
@@ -29,19 +30,23 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
   }
 
   return (
-    <MenuWrapper>
-      <div className="menu">
-        {menuList.map((item) => (
-          <div
-            key={item}
-            onClick={(e: MouseEvent<HTMLDivElement>) => changeShowMenu(e, item)}
-          >
-            <MenuItem>{item}</MenuItem>
-          </div>
-        ))}
-        { isLogin && <MenuItem><div onClick={handleLogout}>登出</div></MenuItem> }
-      </div>
-    </MenuWrapper>
+    <MenuLayout>
+      <MenuWrapper>
+        <div className="menu">
+          {
+            menuList.map((item) => (
+              <div
+                key={item}
+                onClick={(e: MouseEvent<HTMLDivElement>) => changeShowMenu(e, item)}
+              >
+                <MenuItem>{item}</MenuItem>
+              </div>
+            ))
+          }
+          { isLogin && <MenuItem><div onClick={handleLogout}>登出</div></MenuItem> }
+        </div>
+      </MenuWrapper>
+    </MenuLayout>
   )
 })
 

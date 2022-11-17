@@ -26,7 +26,7 @@ interface IProps {
   isShowLoginButton: boolean
 }
 
-const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton}) => {
+const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton }) => {
   const navigate = useNavigate()
   const { pathname } = useRouterInfo()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
