@@ -5,7 +5,7 @@ import { useMobileNavigateContext } from '@/context/main-context/mobile-navigate
 import { MobileNavigate } from '@/enum'
 
 import { MainWrapper } from './style'
-import Header from './c-cpns/header'
+import Header from '../../components/main/header'
 import MainLoadBoard from '@/components/main/main-load-board'
 import MainContextProvider from '@/context/main-context'
 import MobileNavigation from '@/components/main/mobile-navigation'
@@ -16,7 +16,7 @@ const Main = memo(() => {
 
   return (
     <MainWrapper>
-      <Header></Header>
+      <Header />
       <MainLoadBoard />
       { navigateCurrentIndex === MobileNavigate.boardList && <MobileBoardList /> }
       <MobileNavigation />

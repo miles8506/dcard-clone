@@ -6,19 +6,45 @@ export const SearchBarWrapper = styled.div`
   left: 0;
   right: 0;
   padding: 8px 12px;
+  z-index: 99;
+  background-color: #fff;
 
   .search-bar {
     display: flex;
     height: 28px;
 
     .search-input {
+      position: relative;
       flex: 1;
+      display: flex;
       height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.15);
 
-      & > input {
-        width: 100%;
-        height: 100%;
+      .search-icon {
+        display: flex;
+        align-items: center;
+        padding-left: 6px;
+        color: #c1c2c5;
+        fill: currentColor;
       }
+    }
+
+    .cancel-btn {
+      padding: 0 0 0 12px;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.5);
+      line-height: 28px;
+    }
+
+    .del-icon {
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: rgba(0,0,0,0.35);
+      fill: currentColor;
     }
   }
 `

@@ -8,7 +8,7 @@ import { filterSearchArticleList, filterCorrelation, filterDateRange } from '@/u
 import { useRouterInfo } from '@/context/router-info-context'
 
 import { ContentListWrapper } from './style'
-import ArticleItem from '@/components/main/article-item'
+import ArticleItem from '@/components/common/article-item'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
 import { emptyArticle } from '@/store/article'

@@ -10,7 +10,7 @@ import { requestArticle, requestArticleList, requestCommentList } from '@/store/
 
 import { SynthesizeWrapper } from './style'
 import BoardBanner from '@/components/search/synthesize/board-banner'
-import ArticleItem from '@/components/main/article-item'
+import ArticleItem from '@/components/common/article-item'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
 import SearchBoard from '@/components/search/search-board'
@@ -41,6 +41,7 @@ const Synthesize = memo(() => {
   }
 
   useEffect(() => {
+    console.log('get');
     dispatch(requestArticleList())
   }, [])
 

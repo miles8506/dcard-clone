@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import { useSelector, shallowEqual } from 'react-redux'
 import { ReduxStateType } from '@/store'
+import { useNavigate } from 'react-router-dom'
 
 import { HeaderWrapper } from './style'
 import Logo from '@/components/header/logo'
@@ -14,6 +15,8 @@ const Header = memo(() => {
     isLogin: state.login.isLogin
   }), shallowEqual)
 
+  const navigate = useNavigate()
+
   return (
     <HeaderWrapper>
       <div className="header">
@@ -23,7 +26,7 @@ const Header = memo(() => {
           isShowDownload={true}
           isShowLoginButton={!isLogin}
         />
-        <div className="mobile-search-icon">
+        <div className="mobile-search-icon" onClick={() => navigate('/search/synthesize')}>
           <SearchIcon width={20} height={20} />
         </div>
       </div>
