@@ -11,7 +11,7 @@ import { useRouterInfo } from '@/context/router-info-context'
 import { filterArticleList } from '@/utils'
 
 import { AllWrapper } from './style'
-import ArticleItem from '@/components/main/article-item'
+import ArticleItem from '@/components/common/article-item'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
 

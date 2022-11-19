@@ -44,8 +44,8 @@ export const TabsWrapper = styled.div<IProps>`
       }
 
       &-content {
-        height: ${(props) =>
-          props.isShowHeader ? 'calc(100% - 81px)' : 'calc(100% - 61px)'};
+        height: ${(props) => props.isShowHeader ? 'calc(100% - 81px)' : 'calc(100% - 61px)'};
+        padding-top: 43px;
       }
     }
   }

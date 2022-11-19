@@ -17,4 +17,10 @@ export const BoardBannerWrapper = styled.div`
       overflow-y: auto;
     }
   }
+
+  @media screen and (max-width: 767px) {
+    .board-banner {
+      margin: 0 16px;
+    }
+  }
 `

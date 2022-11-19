@@ -1,7 +1,11 @@
-import { memo, FC, useState } from 'react'
+import { memo, FC, useState, useCallback } from 'react'
 
+import type { ReduxDispatchType } from '@/store'
+
+import { useDispatch } from 'react-redux'
 import { SearchTab } from '@/enum'
 import { useRouterInfo } from '@/context/router-info-context'
+import { requestArticleList } from '@/store/article/async-thunk'
 
 import { TabsWrapper } from './style'
 import MSTab from '@/base-ui/MSTab'
@@ -15,6 +19,7 @@ interface IProps {
 
 const Tabs: FC<IProps> = memo(({ isShowHeader }) => {
   const navigate = useNavigate()
+  const dispatch: ReduxDispatchType = useDispatch()
 
   const { pathname, query } = useRouterInfo()
 
@@ -22,16 +27,20 @@ const Tabs: FC<IProps> = memo(({ isShowHeader }) => {
     const pathList = pathname.split('/')
     return pathList[pathList.length - 1]
   })
+  const changeTabIndex = useCallback((value: string) => {
+    setTabIndex(value)
+  }, [tabIndex, setTabIndex])
 
-  const handleChange = (newValue: string) => {
+  const handleChange = async (newValue: string) => {
     setTabIndex(newValue)
+    dispatch(requestArticleList())
     query ? navigate(`/search/${newValue}?query=${query}`) : navigate(`/search/${newValue}`)
   }
 
   return (
     <TabsWrapper isShowHeader={isShowHeader}>
       <div className="tabs">
-        <SearchBar />
+        { !isShowHeader && <SearchBar changeTabIndex={changeTabIndex} />}
         <div className="tabs-top">
           <MSTab value={tabIndex} onChange={handleChange}>
             <MSTabs label="綜合" id={SearchTab.synthesize} />
