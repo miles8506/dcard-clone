@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const BoardItemWrapper = styled.div`
+export const BoardBannerItemWrapper = styled.div`
   flex-shrink: 0;
   width: 146px;
   height: 110px;

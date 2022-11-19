@@ -7,7 +7,7 @@ import { useSelector, shallowEqual } from 'react-redux'
 import { useRouterInfo } from '@/context/router-info-context'
 
 import { BoardBannerWrapper } from './style'
-import BoardItem from '../board-item'
+import BoardItem from '../board-banner-item'
 
 const BoardBanner = memo(() => {
   const { hotBoardList } = useSelector(
@@ -22,8 +22,7 @@ const BoardBanner = memo(() => {
   const { query } = useRouterInfo()
 
   useEffect(() => {
-    setFilterBoardList(() => hotBoardList.filter((item) =>item.name.toLowerCase().includes(query?.toLowerCase()))
-    )
+    setFilterBoardList(() => hotBoardList.filter((item) =>item.name.toLowerCase().includes(query?.toLowerCase())))
   }, [query, hotBoardList])
 
   return (

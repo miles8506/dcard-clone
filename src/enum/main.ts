@@ -45,7 +45,13 @@ export enum SearchTab {
 export enum ICorrelation {
   '最新發佈',
   '心情數',
-  '收藏數'
+  '評論數'
+}
+
+export enum ICorrelationId {
+  new,
+  emotion,
+  comment
 }
 
 export enum ITime {
@@ -53,6 +59,13 @@ export enum ITime {
   '1 天內',
   '7 天內',
   '30 天內'
+}
+
+export enum ITimeId {
+  all,
+  day,
+  week,
+  month
 }
 
 function mappingEnumToObject(tab: {[key: string]: any}) {

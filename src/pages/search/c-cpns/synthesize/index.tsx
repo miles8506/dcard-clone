@@ -1,4 +1,4 @@
-import { memo, useState, useCallback } from 'react'
+import { memo, useState, useCallback, useEffect } from 'react'
 
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 
@@ -9,10 +9,11 @@ import { emptyArticle } from '@/store/article'
 import { requestArticle, requestArticleList, requestCommentList } from '@/store/article/async-thunk'
 
 import { SynthesizeWrapper } from './style'
-import BoardBanner from '@/components/search/board-banner'
+import BoardBanner from '@/components/search/synthesize/board-banner'
 import ArticleItem from '@/components/main/article-item'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
+import SearchBoard from '@/components/search/search-board'
 
 const Synthesize = memo(() => {
   const { articleList } = useSelector((state: ReduxStateType) => ({
@@ -39,6 +40,10 @@ const Synthesize = memo(() => {
     dispatch(requestArticleList())
   }
 
+  useEffect(() => {
+    dispatch(requestArticleList())
+  }, [])
+
   return (
     <SynthesizeWrapper>
       <BoardBanner />
@@ -61,6 +66,7 @@ const Synthesize = memo(() => {
       >
         <Article onCancel={handleCloseModal} />
       </MSModal>
+      { !query && <SearchBoard /> }
      </SynthesizeWrapper>
   )
 })

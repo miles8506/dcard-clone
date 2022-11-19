@@ -1,29 +1,31 @@
-import { memo, useState, useCallback, useEffect } from 'react'
+import { FC, memo, useEffect, useState, useCallback } from 'react'
 
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { requestArticle, requestArticleList, requestCommentList } from '@/store/article/async-thunk'
-import { emptyArticle } from '@/store/article'
-import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
-import { useTabContext } from '@/context/main-context/tab-context'
+import { filterSearchArticleList, filterCorrelation, filterDateRange } from '@/utils'
 import { useRouterInfo } from '@/context/router-info-context'
-import { filterArticleList } from '@/utils'
 
-import { AllWrapper } from './style'
+import { ContentListWrapper } from './style'
 import ArticleItem from '@/components/main/article-item'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
+import { emptyArticle } from '@/store/article'
 
-const All = memo(() => {
-  const dispatch: ReduxDispatchType = useDispatch()
+interface IProps {
+  isInnerContent: boolean
+  currentCorrelationItem: number
+  currentTimeItem: number
+}
+
+const ContentList: FC<IProps> = memo(({ isInnerContent, currentCorrelationItem, currentTimeItem }) => {
   const { articleList } = useSelector((state: ReduxStateType) => ({
     articleList: state.article.articleList
   }), shallowEqual)
+  const dispatch: ReduxDispatchType = useDispatch()
 
-  const { currentStatusIndex } = useFilterSelectContext()
-  const { tabIndex } = useTabContext()
-  const { sort } = useRouterInfo()
+  const { query } = useRouterInfo()
 
   const [isShowArticleModal, setIsShowArticleModal] = useState(false)
 
@@ -31,25 +33,31 @@ const All = memo(() => {
     setIsShowArticleModal(false)
   }, [setIsShowArticleModal])
 
+  const handleReset = () => {
+    dispatch(emptyArticle())
+    dispatch(requestArticleList())
+  }
+
   const handleModal = async (articleId: number) => {
     await dispatch(requestArticle(articleId))
     await dispatch(requestCommentList(articleId))
     setIsShowArticleModal(true)
   }
 
-  const handleReset = () => {
-    dispatch(emptyArticle())
-    dispatch(requestArticleList())
-  }
-
   useEffect(() => {
     dispatch(requestArticleList())
-  }, [sort, tabIndex, currentStatusIndex])
+  }, [isInnerContent, currentCorrelationItem, currentTimeItem])
 
   return (
-    <AllWrapper>
+    <ContentListWrapper>
       {
-        filterArticleList(articleList, (sort as string), currentStatusIndex).map(item => (
+        filterDateRange(
+          filterCorrelation(
+            filterSearchArticleList(articleList, query, isInnerContent),
+            currentCorrelationItem
+          ),
+          currentTimeItem
+        )?.map(item => (
           <div
             className="article-item"
             onClick={() => handleModal(item.id)}
@@ -71,8 +79,8 @@ const All = memo(() => {
       >
         <Article onCancel={handleCloseModal} />
       </MSModal>
-    </AllWrapper>
+    </ContentListWrapper>
   )
 })
 
-export default All
+export default ContentList

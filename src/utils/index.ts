@@ -1,6 +1,8 @@
-import { Sort, SelectFilter } from "@/enum";
-import type { IArticle } from "@/store/article/type";
+import { Sort, SelectFilter } from "@/enum"
+import type { IArticle } from "@/store/article/type"
 import dayjs from 'dayjs'
+import { ICorrelationId, ITimeId } from "@/enum/main"
+import { IHotBoard } from "@/store/main/type"
 
 export const isEmpty = (value: string | number) => {
   return value.toString().length === 0
@@ -60,10 +62,40 @@ export function formatDate(timeStamp: number, formatValue: string) {
   return dayjs(timeStamp).format(formatValue)
 }
 
-export function filterSearchArticleList(articleList: IArticle[], query: string) {
+export function filterSearchArticleList(articleList: IArticle[], query: string, isInner = true) {
   return articleList.filter(
-    item =>
-      item.title.toLowerCase().includes(query?.toLowerCase()) ||
-      item.pureText.toLowerCase().includes(query?.toLowerCase())
+    item => {
+      if (isInner) {
+        return (
+          item.title.toLowerCase().includes(query?.toLowerCase()) ||
+          item.pureText.toLowerCase().includes(query?.toLowerCase())
+        )
+      } else {
+        return item.title.toLowerCase().includes(query?.toLowerCase())
+      }
+    }
   )
+}
+
+export function filterCorrelation(articleList: IArticle[], sort: number) {
+  if (sort === ICorrelationId.new) return articleList.sort((a, b) => b.id - a.id)
+  if (sort === ICorrelationId.emotion) return articleList.sort((a, b) => b.likeTotal - a.likeTotal)
+  if (sort === ICorrelationId.comment) return articleList.sort((a, b) => b.commentTotal - a.commentTotal)
+  return []
+}
+
+const millisecondOfDay = 86400000
+
+export function filterDateRange(articleList: IArticle[], range: number) {
+  const currentTimeStamp = dayjs().valueOf()
+  if (range === ITimeId.all) return articleList
+  if (range === ITimeId.day) return articleList.filter(item => item.id > currentTimeStamp - (millisecondOfDay - 1))
+  if (range === ITimeId.week) return articleList.filter(item => item.id > currentTimeStamp - (millisecondOfDay * 7 - 1))
+  if (range === ITimeId.month) return articleList.filter(item => item.id > currentTimeStamp - (millisecondOfDay * 30 - 1))
+  return []
+}
+
+export function filterBoard(hotBoardList: IHotBoard[] ,query: string) {
+  return hotBoardList.filter(item => item.name.toLowerCase().includes(query?.toLowerCase()))
+  // return hotBoardList ? hotBoardList.filter(item => item.name.toLowerCase().includes(query?.toLowerCase())) : []
 }
