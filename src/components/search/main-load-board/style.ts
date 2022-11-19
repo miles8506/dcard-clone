@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const MainLoadBoardWrapper = styled.div`
+interface IProps {
+  isShowHeader: boolean
+}
+
+export const MainLoadBoardWrapper = styled.div<IProps>`
   height: 100%;
   overflow: auto;
 
@@ -10,13 +14,13 @@ export const MainLoadBoardWrapper = styled.div`
     max-width: 1280px;
     height: 100%;
     margin: 0 auto;
-    padding-top: 68px;
+    padding-top: ${props => props.isShowHeader ? '68px' : '0px'};
   }
 
   @media screen and (max-width: 992px) {
     .main-load-board {
       grid-template-columns: 1fr;
-      padding-top: 48px;
+      padding-top: ${props => props.isShowHeader ? '48px' : '0px'};
     }
   }
 `

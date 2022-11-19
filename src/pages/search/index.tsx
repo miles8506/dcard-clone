@@ -1,27 +1,28 @@
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 
-import type { ReduxDispatchType } from '@/store'
-
-import RouterProvider from '@/context/router-info-context'
-import { useDispatch } from 'react-redux'
-import { requestArticleList } from '@/store/article/async-thunk'
+import RouterProvider, { useRouterInfo } from '@/context/router-info-context'
+import useWindowRWD from '@/hooks/use-window-rwd'
 
 import { SearchWrapper } from './style'
 import Header from '@/components/search/header'
 import MainLoadBoard from '@/components/search/main-load-board'
 
 const Search = memo(() => {
-  const dispatch: ReduxDispatchType = useDispatch()
+  const { size } = useWindowRWD()
+
+  const [isShowHeader, setIsShowHeader] = useState(false)
+
+  const { query } = useRouterInfo()
 
   useEffect(() => {
-    dispatch(requestArticleList())
-  }, [])
+    (size.width < 996 && !query) ? setIsShowHeader(false) : setIsShowHeader(true)
+  }, [size.width])
 
   return (
     <SearchWrapper>
       <div className="search">
-        <Header />
-        <MainLoadBoard />
+        { isShowHeader && <Header /> }
+        <MainLoadBoard isShowHeader={isShowHeader} />
       </div>
     </SearchWrapper>
   )

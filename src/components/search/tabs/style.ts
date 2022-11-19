@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 
-export const TabsWrapper = styled.div`
+interface IProps {
+  isShowHeader: boolean
+}
+
+export const TabsWrapper = styled.div<IProps>`
   background-color: #fff;
   border-radius: 4px 4px 0 0;
   min-width: 728px;
-  /* height: 100%; */
   margin: 0 12px 47px;
 
   .tabs {
@@ -12,7 +15,7 @@ export const TabsWrapper = styled.div`
 
     &-top {
       position: sticky;
-      top: 48px;
+      top: ${(props) => (props.isShowHeader ? '48px' : '0px')};
       padding: 20px 60px 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.15);
       background-color: #fff;
@@ -30,11 +33,19 @@ export const TabsWrapper = styled.div`
     margin: 0 0 47px;
     border-radius: 0 0 0 0;
 
-    .tabs-top {
-      padding: 0;
+    .tabs {
+      &-top {
+        top: ${(props) => (props.isShowHeader ? '48px' : '44px')};
+        padding: 0;
 
-      &-select {
-        display: none;
+        &-select {
+          display: none;
+        }
+      }
+
+      &-content {
+        height: ${(props) =>
+          props.isShowHeader ? 'calc(100% - 81px)' : 'calc(100% - 61px)'};
       }
     }
   }

@@ -29,7 +29,7 @@ const MobileNavigation = memo(() => {
   }
 
   useEffect(() => {
-    if (size.width > 996 || navigateCurrentIndex === MobileNavigate.home) return
+    if (size.width < 996 || navigateCurrentIndex === MobileNavigate.home) return
     changeNavigateCurrentIndex(MobileNavigate.home)
   }, [size])
 

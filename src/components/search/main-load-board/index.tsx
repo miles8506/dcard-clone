@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from 'react'
+import { FC, memo, useEffect, useRef } from 'react'
 
 import { useRouterInfo } from '@/context/router-info-context'
 
@@ -6,7 +6,11 @@ import { MainLoadBoardWrapper } from './style'
 import AsideMenu from '../aside-menu'
 import Tabs from '../tabs'
 
-const MainLoadBoard = memo(() => {
+interface IProps {
+  isShowHeader: boolean
+}
+
+const MainLoadBoard: FC<IProps> = memo(({ isShowHeader }) => {
   const { query } = useRouterInfo()
 
   const useMainLoadBoardRef = useRef<HTMLDivElement>(null)
@@ -16,10 +20,10 @@ const MainLoadBoard = memo(() => {
   }, [query])
 
   return (
-    <MainLoadBoardWrapper ref={useMainLoadBoardRef}>
+    <MainLoadBoardWrapper ref={useMainLoadBoardRef} isShowHeader={isShowHeader}>
       <div className="main-load-board">
         <AsideMenu />
-        <Tabs />
+        <Tabs isShowHeader={isShowHeader}  />
       </div>
     </MainLoadBoardWrapper>
   )

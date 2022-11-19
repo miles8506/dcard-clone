@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, FC, useState } from 'react'
 
 import { SearchTab } from '@/enum'
 import { useRouterInfo } from '@/context/router-info-context'
@@ -7,8 +7,13 @@ import { TabsWrapper } from './style'
 import MSTab from '@/base-ui/MSTab'
 import MSTabs from '@/base-ui/MSTabs'
 import { Outlet, useNavigate } from 'react-router-dom'
+import SearchBar from '../search-bar'
 
-const Tabs = memo(() => {
+interface IProps {
+  isShowHeader: boolean
+}
+
+const Tabs: FC<IProps> = memo(({ isShowHeader }) => {
   const navigate = useNavigate()
 
   const { pathname, query } = useRouterInfo()
@@ -24,8 +29,9 @@ const Tabs = memo(() => {
   }
 
   return (
-    <TabsWrapper>
+    <TabsWrapper isShowHeader={isShowHeader}>
       <div className="tabs">
+        <SearchBar />
         <div className="tabs-top">
           <MSTab value={tabIndex} onChange={handleChange}>
             <MSTabs label="綜合" id={SearchTab.synthesize} />

@@ -11,6 +11,7 @@ import { requestHotBoard } from '@/store/main/async-thunk'
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { HotBoardWrapper } from './style'
+import BoardItem from '../board-item'
 
 const HotBoard = memo(() => {
   const navigate = useNavigate()
@@ -49,12 +50,7 @@ const HotBoard = memo(() => {
               key={item.name}
               onClick={() => handleClick(item.path)}
             >
-              <div className="board-img">
-                <img src={item.imgUrl} alt="" />
-              </div>
-              <div className="board-text">
-                <span>{item.name}</span>
-              </div>
+              <BoardItem boardDetail={item} />
             </div>
           ))}
         </div>
