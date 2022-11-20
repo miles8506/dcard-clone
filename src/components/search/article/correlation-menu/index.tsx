@@ -26,7 +26,12 @@ const CorrelationMenu: FC<IProps> = memo(({ currentCorrelationItem, changeCurren
         {
           correlationList.map((item, index) => (
             <div key={item.id} onClick={() => changeCurrentCorrelation(index)}>
-              <MenuItem isShowCorrectIcon={currentCorrelationItem === index}>{item.name}</MenuItem>
+              <MenuItem
+                isShowCorrectIcon={currentCorrelationItem === index}
+                isMobile={false}
+              >
+                {item.name}
+              </MenuItem>
             </div>
           ))
         }

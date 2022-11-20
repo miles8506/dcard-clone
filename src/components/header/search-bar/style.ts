@@ -5,6 +5,7 @@ export const SearchBarWrapper = styled.div`
   flex: 1;
 
   .search-bar {
+    position: relative;
     display: flex;
     width: 602px;
     height: 30px;
@@ -28,6 +29,17 @@ export const SearchBarWrapper = styled.div`
         width: 0px;
         height: 100%;
       }
+    }
+
+    &-del-icon {
+      position: absolute;
+      top: 50%;
+      right: 50px;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      color: rgba(255, 255, 255, 0.35);
+      fill: currentColor;
     }
   }
 

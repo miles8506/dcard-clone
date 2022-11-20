@@ -5,6 +5,7 @@ import { ReduxStateType } from '@/store'
 import { MSSessionStore } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import { changeLoginStatus, emptyUserInfo } from '@/store/login'
+import { LOGIN_INFO } from '@/constants'
 
 import { MenuWrapper } from './style'
 import MenuLayout from '@/components/common/menu-layout'
@@ -23,7 +24,7 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
   const menuList = ['服務條款', '常見問題', '回報問題', '品牌識別', '徵才', '商業合作', '免費下載 App', '設定']
 
   const handleLogout = () => {
-    MSSessionStore.removeItem('loginInfo')
+    MSSessionStore.removeItem(LOGIN_INFO)
     dispatch(changeLoginStatus(false))
     dispatch(emptyUserInfo())
     navigate('/main')
@@ -39,11 +40,11 @@ const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
                 key={item}
                 onClick={(e: MouseEvent<HTMLDivElement>) => changeShowMenu(e, item)}
               >
-                <MenuItem>{item}</MenuItem>
+                <MenuItem isMobile={false}>{item}</MenuItem>
               </div>
             ))
           }
-          { isLogin && <MenuItem><div onClick={handleLogout}>登出</div></MenuItem> }
+          { isLogin && <MenuItem isMobile={false}><div onClick={handleLogout}>登出</div></MenuItem> }
         </div>
       </MenuWrapper>
     </MenuLayout>

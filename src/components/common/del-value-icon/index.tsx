@@ -12,6 +12,8 @@ interface IProps {
 
 const DelValueIcon: FC<IProps> = memo(
   ({ width = 18, height = 18, handleClick }) => {
+    console.log(width);
+    console.log(height);
     return (
       <DelValueWrapper onClick={() => handleClick()}>
         <CircleCancelIcon width={width} height={height} />

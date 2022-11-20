@@ -12,21 +12,32 @@ export const isEmail = (value: string) => {
   return (/^([\w\.\-]){1,64}\@([\w\.\-]){1,64}$/).test(value)
 }
 
-class _MSSessionStore {
+class _MSStore {
+  private session: null | Storage = null
+
+  constructor(isSession = true) {
+    this.session = isSession ? sessionStorage : localStorage
+  }
+
   getItem(key: string) {
-    return JSON.parse((sessionStorage.getItem(key) as string))
+    return JSON.parse(((this.session as Storage).getItem(key) as string))
   }
 
   setItem<T = any>(key: string, value: T) {
-    sessionStorage.setItem(key, JSON.stringify(value))
+    (this.session as Storage).setItem(key, JSON.stringify(value))
   }
 
   removeItem(key: string) {
-    sessionStorage.removeItem(key)
+    (this.session as Storage).removeItem(key)
+  }
+
+  clear() {
+    this.session?.clear()
   }
 }
 
-export const MSSessionStore = new _MSSessionStore()
+export const MSSessionStore = new _MSStore()
+export const MSLocalStore = new _MSStore(false)
 
 export function timeGap(timer: number) {
   const _timeGap = dayjs().valueOf() - timer
@@ -97,5 +108,4 @@ export function filterDateRange(articleList: IArticle[], range: number) {
 
 export function filterBoard(hotBoardList: IHotBoard[] ,query: string) {
   return hotBoardList.filter(item => item.name.toLowerCase().includes(query?.toLowerCase()))
-  // return hotBoardList ? hotBoardList.filter(item => item.name.toLowerCase().includes(query?.toLowerCase())) : []
 }

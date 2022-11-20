@@ -167,6 +167,7 @@ export const FormWrapper = styled.div<PropsType>`
 
   @media screen and (max-width: 992px) {
     width: 100%;
+    height: 100%;
     border-radius: 0 0 0 0;
   }
 `

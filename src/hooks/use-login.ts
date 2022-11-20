@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { changeLoginStatus } from '@/store/login'
 import { requestUserInfo } from '@/store/login/async-thunk'
 import type { IUserInfo } from '@/store/login/type'
+import { LOGIN_INFO } from '@/constants'
 
 const CHANGE_ACCOUNTVALUE = 'CHANGE_ACCOUNTVALUE'
 const CHANGE_ACCOUNTSTATUS = 'CHANGE_ACCOUNTSTATUS'
@@ -22,8 +23,6 @@ interface IInitialState {
   passwordValue: string
   passwordStatus: boolean
 }
-
-type loginType = 'google' | 'facebook' | 'normal'
 
 export function useLogin() {
   const reduxDispatch: ReduxDispatchType = useDispatch()
@@ -90,7 +89,7 @@ export function useLogin() {
     const userList = await requestCol('user')
     const haveRegistry = userList.some((item: any) => item.data().account === payload.account)
     !haveRegistry && await setQuery('user', payload.account, payload)
-    MSSessionStore.setItem('loginInfo', payload)
+    MSSessionStore.setItem(LOGIN_INFO, payload)
     navigation('/main')
     reduxDispatch(changeLoginStatus(true))
     reduxDispatch(requestUserInfo())
@@ -147,7 +146,7 @@ export function useLogin() {
     !haveRegistry && await setQuery('user', payload.account, payload)
     delete payload.password
     if (haveRegistry?.data()) payload.gender = haveRegistry.data().gender
-    MSSessionStore.setItem('loginInfo', payload)
+    MSSessionStore.setItem(LOGIN_INFO, payload)
     reduxDispatch(changeLoginStatus(true))
     reduxDispatch(requestUserInfo())
     navigation('/main')

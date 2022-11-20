@@ -20,6 +20,7 @@ import Search from'@/pages/search'
 import Synthesize from '@/pages/search/c-cpns/synthesize'
 import Article from'@/pages/search/c-cpns/article'
 import Board from '@/pages/search/c-cpns/board'
+import Profile from '@/pages/profile'
 
 const routes: RouteObject[] = [
   {
@@ -73,6 +74,10 @@ const routes: RouteObject[] = [
         element: <Board />
       }
     ]
+  },
+  {
+    path: '/profile',
+    element: <Profile />
   }
 ]
 

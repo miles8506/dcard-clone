@@ -43,7 +43,7 @@ export const SearchBarWrapper = styled.div`
       transform: translateY(-50%);
       width: 18px;
       height: 18px;
-      color: rgba(0,0,0,0.35);
+      color: rgba(0, 0, 0, 0.35);
       fill: currentColor;
     }
   }

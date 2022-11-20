@@ -41,7 +41,6 @@ const Synthesize = memo(() => {
   }
 
   useEffect(() => {
-    console.log('get');
     dispatch(requestArticleList())
   }, [])
 

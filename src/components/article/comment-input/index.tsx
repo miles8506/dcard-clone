@@ -11,6 +11,7 @@ import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
 import { useArticleContext } from '@/context/article-context'
 import { setQuery } from '@/api'
 import { requestArticle } from '@/store/article/async-thunk'
+import { LOGIN_INFO } from '@/constants'
 
 import { CommentInputWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
@@ -41,7 +42,7 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
     const _isAuth = isAuth()
     if (!_isAuth) return navigation('/login')
 
-    const { account, gender } = MSSessionStore.getItem('loginInfo')
+    const { account, gender } = MSSessionStore.getItem(LOGIN_INFO)
     await dispatch(requestCommentList(article.id))
     const timeStamp = getCurrentTimeStamp()
     const request: IRequestComment = {
@@ -97,12 +98,12 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
             onClick={() => changeIsShowDisplayArea(true)}
           >取消</MSButton>
           <MSButton
-            msDisabled={commentValue.length === 0 ? 'disabled' : ''}
-            bgHoverColor={commentValue.length > 0 ? '#5ab0db' : 'none'}
+            msDisabled={commentValue.trim().length === 0 ? 'disabled' : ''}
+            bgHoverColor={commentValue.trim().length > 0 ? '#5ab0db' : 'none'}
             sx={{
               padding: '9px 16px',
               color: '#fff',
-              backgroundColor: commentValue.length === 0 ? 'rgba(0, 0, 0, 0.5)' : '#3397CF',
+              backgroundColor: commentValue.trim().length === 0 ? 'rgba(0, 0, 0, 0.5)' : '#3397CF',
               marginLeft: '16px'
             }}
             onClick={handSendMessage}

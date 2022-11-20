@@ -2,6 +2,8 @@ import { memo, useEffect, useState } from 'react'
 
 import RouterProvider from '@/context/router-info-context'
 import useWindowRWD from '@/hooks/use-window-rwd'
+import { MSLocalStore } from '@/utils'
+import { DC_SEARCH_RECORD } from '@/constants'
 
 import { SearchWrapper } from './style'
 import Header from '@/components/search/header'
@@ -15,6 +17,11 @@ const Search = memo(() => {
   useEffect(() => {
     (size.width < 996) ? setIsShowHeader(false) : setIsShowHeader(true)
   }, [size.width])
+
+  useEffect(() => {
+    const searchRecord = MSLocalStore.getItem(DC_SEARCH_RECORD)
+    if (!searchRecord) MSLocalStore.setItem(DC_SEARCH_RECORD, [])
+  }, [])
 
   return (
     <SearchWrapper>
