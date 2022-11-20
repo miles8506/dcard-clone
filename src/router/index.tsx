@@ -21,6 +21,8 @@ import Synthesize from '@/pages/search/c-cpns/synthesize'
 import Article from'@/pages/search/c-cpns/article'
 import Board from '@/pages/search/c-cpns/board'
 import Profile from '@/pages/profile'
+import ProfileArticle from '@/pages/profile/c-cpns/article'
+import ProfileCollect from '@/pages/profile/c-cpns/collect'
 
 const routes: RouteObject[] = [
   {
@@ -77,7 +79,21 @@ const routes: RouteObject[] = [
   },
   {
     path: '/profile',
-    element: <Profile />
+    element: <Profile />,
+    children: [
+      {
+        path: '/profile',
+        element: <Navigate to='/profile/collect'></Navigate>
+      },
+      {
+        path: '/profile/collect',
+        element: <ProfileCollect />
+      },
+      {
+        path: '/profile/article',
+        element: <ProfileArticle />
+      }
+    ]
   }
 ]
 

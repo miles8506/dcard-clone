@@ -57,7 +57,6 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton }) => {
       if (isShowMenu) setIsShowMenu(false)
     }
     window.document.addEventListener('click', handleMenuListener)
-    console.log(info);
     return window.removeEventListener('click', handleMenuListener)
   }, [isShowMenu])
   return (
