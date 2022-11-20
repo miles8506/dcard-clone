@@ -42,6 +42,10 @@ export const NavigationWrapper = styled.div<IProps>`
     &__post-icon {
       background-color: ${props => props.pathname === '/post' ? '#00588a' : 'inherit'};
     }
+
+    &__user-icon {
+      background-color: ${props => props.pathname === '/profile' ? '#00588a' : 'inherit'};
+    }
   }
 
   .registry-login,

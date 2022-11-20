@@ -2,12 +2,13 @@ import { memo, useEffect } from 'react'
 
 import { MSSessionStore, formatDate, getCurrentTimeStamp } from '@/utils'
 import { usePostContext } from '@/context/post-context'
+import { LOGIN_INFO } from '@/constants'
 
 import { InfoBarWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
 
 const InfoBar = memo(() => {
-  const userInfo = MSSessionStore.getItem('loginInfo')
+  const userInfo = MSSessionStore.getItem(LOGIN_INFO)
   const { postDateTime, changePostDateTime } = usePostContext()
 
   useEffect(() => {

@@ -59,3 +59,15 @@ img {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: transparent;
+}

@@ -6,6 +6,7 @@ import { usePostContext } from '@/context/post-context'
 import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import { setQuery } from '@/api'
+import { LOGIN_INFO } from '@/constants'
 
 import { FooterBarWrapper } from './style'
 import PicIcon from '@/assets/svg/pic-icon'
@@ -28,7 +29,7 @@ const FooterBar = memo(() => {
   }
 
   const savePost = async () => {
-    const userInfo = MSSessionStore.getItem('loginInfo')
+    const userInfo = MSSessionStore.getItem(LOGIN_INFO)
     if (!userInfo?.account) return navigation('/main')
     setIsLoading(true)
     const { postHTMLString, firstImage, pureText } = MSEditorRef.current?.getEditorHTML() as IGetEditorHTML

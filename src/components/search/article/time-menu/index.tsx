@@ -25,7 +25,12 @@ const TimeMenu: FC<IProps> = memo(({ currentTimeItem, changeCurrentTime }) => {
         {
           timeList.map((item, index) => (
             <div key={item.id} onClick={() => changeCurrentTime(index)}>
-              <MenuItem isShowCorrectIcon={currentTimeItem === index}>{item.name}</MenuItem>
+              <MenuItem
+                isShowCorrectIcon={currentTimeItem === index}
+                isMobile={false}
+              >
+                {item.name}
+              </MenuItem>
             </div>
           ))
         }

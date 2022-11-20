@@ -1,10 +1,12 @@
-import { memo, useCallback, useState, useRef, FC } from 'react'
+import { memo, useCallback, useState, useRef, FC, useEffect } from 'react'
 
 import type { InputRef } from 'antd'
 
 import { useNavigate } from 'react-router-dom'
 import { useRouterInfo } from '@/context/router-info-context'
 import { SearchTab } from '@/enum'
+import { MSLocalStore } from '@/utils'
+import { DC_SEARCH_RECORD } from '@/constants'
 
 import { SearchBarWrapper } from './style'
 import SearchIcon from '@/assets/svg/search-icon/search'
@@ -28,12 +30,14 @@ const SearchBar: FC<IProps> = memo(({ changeTabIndex }) => {
   }, [setSearchValue])
 
   const handleDelValueClick = useCallback(() => {
-    init()
+    setSearchValue('')
     inputRef.current?.focus()
-  }, [setSearchValue])
+  }, [setSearchValue, inputRef])
 
   const handleSearch = useCallback(() => {
     if (searchValue.trim() === '') return
+    const recordList = MSLocalStore.getItem(DC_SEARCH_RECORD)
+    MSLocalStore.setItem(DC_SEARCH_RECORD, Array.from(new Set([searchValue.trim(), ...recordList])))
     changeTabIndex(SearchTab.synthesize)
     navigate(`/search/synthesize?query=${searchValue}`)
   }, [searchValue])
@@ -52,6 +56,10 @@ const SearchBar: FC<IProps> = memo(({ changeTabIndex }) => {
     changeTabIndex(SearchTab.synthesize)
     navigate(`/search/synthesize`)
   }
+
+  useEffect(() => {
+    if (query) setSearchValue(query)
+  }, [query])
 
   return (
     <SearchBarWrapper>

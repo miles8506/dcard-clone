@@ -10,9 +10,6 @@ import { CSSTransition } from 'react-transition-group'
 import { NavigationWrapper } from './style'
 import ArrowDownIcon from '@/assets/svg/arrow-down-icon'
 import UserIcon from '@/assets/svg/user-icon'
-import EmailIcon from '@/assets/svg/email-icon'
-import CardIcon from '@/assets/svg/card-icon'
-import InfoIcon from '@/assets/svg/info-icon'
 import EditIcon from '@/assets/svg/edit-icon'
 import MSModal from '@/base-ui/MSModal'
 import ModalContent from '../modal-content'
@@ -28,7 +25,8 @@ interface IProps {
 
 const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton }) => {
   const navigate = useNavigate()
-  const { pathname } = useRouterInfo()
+  const info = useRouterInfo()
+  const {pathname} = info
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin
   }), shallowEqual)
@@ -52,15 +50,16 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton }) => {
 
   const goPostPage = () => navigate('/post')
 
+  const goProfilePage = () => navigate('/profile')
+
   useEffect(() => {
     const handleMenuListener = () => {
       if (isShowMenu) setIsShowMenu(false)
     }
     window.document.addEventListener('click', handleMenuListener)
-
+    console.log(info);
     return window.removeEventListener('click', handleMenuListener)
   }, [isShowMenu])
-
   return (
     <NavigationWrapper pathname={pathname}>
       {
@@ -69,16 +68,7 @@ const Navigation: FC<IProps> = memo(({ isShowDownload, isShowLoginButton }) => {
             <div className="functions__post-icon" onClick={goPostPage}>
               <EditIcon />
             </div>
-            {/* <div className="functions__info-icon">
-              <InfoIcon />
-            </div>
-            <div className="functions__card-icon">
-              <CardIcon />
-            </div>
-            <div className="functions__email-icon">
-              <EmailIcon />
-            </div> */}
-            <div className="functions__user-icon">
+            <div className="functions__user-icon" onClick={goProfilePage}>
               <UserIcon />
             </div>
           </div>

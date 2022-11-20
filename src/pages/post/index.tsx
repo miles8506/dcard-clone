@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 import { MSSessionStore } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import RouterProvider from '@/context/router-info-context'
+import { LOGIN_INFO } from '@/constants'
 
 import { PostWrapper } from './style'
 import Header from '@/components/post/header'
@@ -17,7 +18,7 @@ const Post = memo(() => {
   const navigation = useNavigate()
 
   useEffect(() => {
-    const userInfo = MSSessionStore.getItem('loginInfo')
+    const userInfo = MSSessionStore.getItem(LOGIN_INFO)
     !(userInfo?.account) && navigation('/main')
   }, [])
 
