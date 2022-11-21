@@ -27,7 +27,7 @@ const ArticleItemInfo: FC<IProps> = memo(({ article }) => {
     <ArticleItemInfoWrapper>
       <div className="info">
         <div className="avatar">{ getGender(gender) }</div>
-        <div className="sort">{ hotBoardList[sort].name }</div>
+        <div className="sort">{ hotBoardList[sort]?.name }</div>
         <div className="name">{ account }</div>
         <div className="time">{timeGap(time)}</div>
       </div>

@@ -1,11 +1,12 @@
 import { memo, useRef, ChangeEvent, useState, useEffect } from 'react'
 
 import type { IGetEditorHTML } from '@/base-ui/MSEditor'
+import type { IUserInfo } from '@/store/login/type'
 
 import { usePostContext } from '@/context/post-context'
 import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
 import { useNavigate } from 'react-router-dom'
-import { setQuery } from '@/api'
+import { setQuery, requestRef } from '@/api'
 import { LOGIN_INFO } from '@/constants'
 
 import { FooterBarWrapper } from './style'
@@ -47,6 +48,9 @@ const FooterBar = memo(() => {
       commentTotal: 0,
       likeTotal: 0
     }
+    const responseUserInfo: IUserInfo = await requestRef('user', userInfo.account)
+    responseUserInfo.createArticleList.push(postId)
+    await setQuery('user', responseUserInfo.account, responseUserInfo)
     await setQuery('post', request.id, request)
     await setQuery('comment', request.id, { comment: [], id: request.id })
     navigation('/main')

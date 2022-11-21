@@ -6,10 +6,14 @@ import { LOGIN_INFO } from '@/constants'
 
 import { InfoBarWrapper } from './style'
 import AvatarBoyIcon from '@/assets/svg/avatar-boy-icon'
+import AvatarGirlIcon from '@/assets/svg/avatar-girl-icon'
 
 const InfoBar = memo(() => {
   const userInfo = MSSessionStore.getItem(LOGIN_INFO)
   const { postDateTime, changePostDateTime } = usePostContext()
+
+  const getGender = (value: number) =>
+  value === 0 ? <AvatarGirlIcon width={32} height={32} /> : <AvatarBoyIcon width={32} height={32} />
 
   useEffect(() => {
     changePostDateTime(formatDate(getCurrentTimeStamp(), 'MM月DD日 HH:mm'))
@@ -20,10 +24,7 @@ const InfoBar = memo(() => {
       <div className="info-bar">
         <div className="user-info">
           <div className="avatar">
-            <AvatarBoyIcon
-              width={32}
-              height={32}
-            />
+            { getGender(userInfo?.gender) }
           </div>
           <div className="detail">
             <span className="account">{userInfo?.account}</span>

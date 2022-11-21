@@ -7,9 +7,10 @@ import { MenuItemWrapper } from './style'
 interface IProps {
   customColor: string
   path: string
+  isActive: boolean
 }
 
-const MenuItem: FC<PropsWithChildren<IProps>> = memo(({ children, customColor, path }) => {
+const MenuItem: FC<PropsWithChildren<IProps>> = memo(({ children, customColor, path, isActive }) => {
   const navigate = useNavigate()
 
   const handleItemClick = (path: string) => navigate(`/profile/${path}`)
@@ -17,6 +18,7 @@ const MenuItem: FC<PropsWithChildren<IProps>> = memo(({ children, customColor, p
   return (
     <MenuItemWrapper
       customColor={customColor}
+      isActive={isActive}
       onClick={() => handleItemClick(path)}
     >
       <div className="menu-item">

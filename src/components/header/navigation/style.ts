@@ -44,7 +44,7 @@ export const NavigationWrapper = styled.div<IProps>`
     }
 
     &__user-icon {
-      background-color: ${props => props.pathname === '/profile' ? '#00588a' : 'inherit'};
+      background-color: ${props => props.pathname.includes('/profile') ? '#00588a' : 'inherit'};
     }
   }
 

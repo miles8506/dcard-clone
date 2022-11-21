@@ -33,7 +33,7 @@ const ArticleItemMain: FC<IProps> = memo(({ article }) => {
               </div>
               <div className="amount">{ commentTotal }</div>
             </div>
-            <div className="collect">
+            <div className="collect-icon">
               <CollectIcon
                 width={20}
                 height={20}

@@ -1,6 +1,7 @@
 import { memo, FC } from 'react'
 
-import { ReduxStateType } from '@/store'
+import type { ReduxStateType } from '@/store'
+
 import { useSelector, shallowEqual } from 'react-redux'
 import ArticleProvider, { useArticleContext } from '@/context/article-context'
 
