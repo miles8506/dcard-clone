@@ -7,6 +7,7 @@ export interface IUserInfo {
   articleCollectList: number[]
   articleLikeList: number[]
   commentLikeList: number[]
+  createArticleList: number[]
 }
 
 export interface IInitialState {

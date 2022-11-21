@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface IProps {
   customColor: string
+  isActive: boolean
 }
 
 export const MenuItemWrapper = styled.div<IProps>`
@@ -14,9 +15,11 @@ export const MenuItemWrapper = styled.div<IProps>`
     padding: 0 16px;
     border-radius: 10px;
     cursor: pointer;
+    background-color: ${props => props.isActive ? 'rgba(255, 255, 255, 0.3)' : 'inherit'};
 
     &:hover {
-      background-color: rgba(0, 8, 16, 0.4);
+      /* background-color: rgba(0, 8, 16, 0.4); */
+      background-color: ${props => props.isActive ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 8, 16, 0.4)'};
     }
 
     &-icon {

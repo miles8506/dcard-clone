@@ -7,8 +7,10 @@ import Menu from '../menu'
 const Aside = memo(() => {
   return (
     <AsideWrapper>
-      <Avatar />
-      <Menu />
+      <div className="aside">
+        <Avatar />
+        <Menu />
+      </div>
     </AsideWrapper>
   )
 })

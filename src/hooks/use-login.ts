@@ -104,7 +104,8 @@ export function useLogin() {
       gender: Math.floor(Math.random() * 2),
       articleCollectList: [],
       articleLikeList: [],
-      commentLikeList: []
+      commentLikeList: [],
+      createArticleList: []
     }
     handleUserInfo(payload)
   }
@@ -118,7 +119,8 @@ export function useLogin() {
       gender: Math.floor(Math.random() * 2),
       articleCollectList: [],
       articleLikeList: [],
-      commentLikeList: []
+      commentLikeList: [],
+      createArticleList: []
     }
     handleUserInfo(payload)
   }
@@ -135,7 +137,8 @@ export function useLogin() {
       gender: Math.floor(Math.random() * 2),
       articleCollectList: [],
       articleLikeList: [],
-      commentLikeList: []
+      commentLikeList: [],
+      createArticleList: []
     }
     const userList = await requestCol('user')
     const haveRegistry = userList.find((item: any) => item.data().account === payload.account)
