@@ -19,7 +19,7 @@ const Post = memo(() => {
 
   useEffect(() => {
     const userInfo = MSSessionStore.getItem(LOGIN_INFO)
-    !userInfo?.account && navigation('/main')
+    !userInfo?.account && navigation('/login')
   }, [])
 
   return (

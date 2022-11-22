@@ -39,12 +39,12 @@ const Tabs = memo(() => {
             <FilterSelect />
           </div>
         </div>
-        <div className="tabs-content" onClick={() => navigate('/post')}>
+        <div className="tabs-content">
           <Outlet />
           {
             size.width <= 992 &&
             (
-              <div className="add-article-icon">
+              <div className="add-article-icon" onClick={() => navigate('/post')}>
                 <AddArticleIcon />
               </div>
             )
