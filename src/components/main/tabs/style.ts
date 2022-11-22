@@ -17,6 +17,7 @@ export const TabsWrapper = styled.div<ThemePropsType>`
       border-bottom: 1px solid rgba(0, 0, 0, 0.15);
       background-color: #fff;
       border-radius: 12px 12px 0 0;
+      z-index: 5;
 
       &-select {
         position: absolute;
