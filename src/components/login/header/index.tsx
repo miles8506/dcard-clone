@@ -7,11 +7,13 @@ import Navigation from '@/components/header/navigation'
 const Header = memo(() => {
   return (
     <HeaderWrapper>
-      <Logo />
-      <Navigation
-        isShowDownload={false}
-        isShowLoginButton={false}
-      />
+      <div className="header">
+        <Logo />
+        <Navigation
+          isShowDownload={false}
+          isShowLoginButton={false}
+        />
+      </div>
     </HeaderWrapper>
   )
 })

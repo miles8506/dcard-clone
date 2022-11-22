@@ -9,4 +9,10 @@ export const MainWrapper = styled.div`
   background-color: #f2f3f4;
   border-radius: 12px;
   overflow: hidden;
+
+  @media screen and (max-width: 992px) {
+    flex: 1;
+    margin: 0;
+    border-radius: 0;
+  }
 `

@@ -51,4 +51,27 @@ export const RuleModalWrapper = styled.div<ThemePropsType>`
       }
     }
   }
+
+
+  @media screen and (max-width: 992px) {
+    margin: 0 auto;
+
+    .rule-modal {
+      &-header {
+        padding: 20px 16px 12px;
+      }
+
+      &-body {
+        padding: 0 16px 12px;
+
+        .rule-list {
+          margin: 0;
+        }
+      }
+
+      &-footer {
+        padding: 12px 16px 24px;
+      }
+    }
+  }
 `

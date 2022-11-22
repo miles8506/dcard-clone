@@ -19,7 +19,7 @@ const Post = memo(() => {
 
   useEffect(() => {
     const userInfo = MSSessionStore.getItem(LOGIN_INFO)
-    !(userInfo?.account) && navigation('/main')
+    !userInfo?.account && navigation('/main')
   }, [])
 
   return (
@@ -27,11 +27,13 @@ const Post = memo(() => {
       <PostWrapper>
         <Header />
         <div className="post">
-          <Tabs />
-          <SelectBar />
-          <InfoBar />
-          <Editor />
-          <FooterBar />
+          <div className="post-box">
+            <Tabs />
+            <SelectBar />
+            <InfoBar />
+            <Editor />
+            <FooterBar />
+          </div>
         </div>
       </PostWrapper>
     </PostContextProvider>

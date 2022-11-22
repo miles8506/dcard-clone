@@ -1,21 +1,18 @@
-import { memo, useState, useEffect, useCallback } from 'react'
+import { memo, useState, useCallback } from 'react'
 
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 import type { IArticle } from '@/store/article/type'
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
-import { requestUserInfo } from '@/store/login/async-thunk'
 import { requestArticle, requestArticleList, requestCommentList } from '@/store/article/async-thunk'
-import { requestHotBoard } from '@/store/main/async-thunk'
 import { emptyArticle } from '@/store/article'
-
+import { useNavigate } from 'react-router-dom'
 
 import { ArticleWrapper } from './style'
 import ArticleItem from '@/components/common/article-item'
-import Notfound from '@/components/profile/notfound'
 import MSModal from '@/base-ui/MSModal'
 import { default as ModalArticle} from '@/components/article'
-
+import BackIcon from '@/assets/svg/back-icon'
 
 const Article = memo(() => {
   const dispatch: ReduxDispatchType = useDispatch()
@@ -23,6 +20,8 @@ const Article = memo(() => {
     userInfo: state.login.userInfo,
     articleList: state.article.articleList
   }), shallowEqual)
+
+  const navigate = useNavigate()
 
   const [isShowArticleModal, setIsShowArticleModal] = useState(false)
 
@@ -45,16 +44,15 @@ const Article = memo(() => {
     return articleList?.filter(articleItem => userCreateList?.some(collectItem => articleItem.id === collectItem))
   }
 
-  useEffect(() => {
-    dispatch(requestHotBoard())
-    dispatch(requestUserInfo())
-    dispatch(requestArticleList())
-  }, [])
-
   return (
     <ArticleWrapper>
       <div className="article">
-        <div className="article-title">我的文章</div>
+        <div className="article-header">
+          <div className="back-icon" onClick={() => navigate('/profile/list')}>
+            <BackIcon />
+          </div>
+          <div className="title">我的文章</div>
+        </div>
         <div className="article-main">
           <div className="article-list">
             {

@@ -1,5 +1,7 @@
 import { memo, FC, MouseEvent } from 'react'
 
+import type { ReduxDispatchType } from '@/store'
+
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { ReduxStateType } from '@/store'
 import { MSSessionStore } from '@/utils'
@@ -16,7 +18,7 @@ interface IProps {
 }
 
 const Menu: FC<IProps> = memo(({ changeShowMenu }) => {
-  const dispatch = useDispatch()
+  const dispatch: ReduxDispatchType = useDispatch()
   const navigate = useNavigate()
   const { isLogin } = useSelector((state: ReduxStateType) => ({
     isLogin: state.login.isLogin

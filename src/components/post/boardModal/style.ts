@@ -81,4 +81,16 @@ export const BoardModalWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 992px) {
+    .board-modal {
+      &-top {
+        padding: 20px 16px 12px;
+      }
+
+      &-content {
+        padding: 0 16px 0;
+      }
+    }
+  }
 `

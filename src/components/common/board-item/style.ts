@@ -49,7 +49,7 @@ export const BoardItemWrapper = styled.div<IProps>`
     }
   }
 
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 992px) {
     .board-item {
       &:hover {
         background-color: #fff;
