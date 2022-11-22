@@ -23,6 +23,8 @@ import Board from '@/pages/search/c-cpns/board'
 import Profile from '@/pages/profile'
 import ProfileArticle from '@/pages/profile/c-cpns/article'
 import ProfileCollect from '@/pages/profile/c-cpns/collect'
+import ProfileList from '@/pages/profile/c-cpns/list'
+import MobileList from '@/pages/list'
 
 const routes: RouteObject[] = [
   {
@@ -94,6 +96,14 @@ const routes: RouteObject[] = [
         element: <ProfileArticle />
       }
     ]
+  },
+  {
+    path: '/profile/list',
+    element: <ProfileList />
+  },
+  {
+    path: '/m/list',
+    element: <MobileList />
   }
 ]
 

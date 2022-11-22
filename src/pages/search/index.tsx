@@ -15,7 +15,7 @@ const Search = memo(() => {
   const [isShowHeader, setIsShowHeader] = useState(false)
 
   useEffect(() => {
-    (size.width < 996) ? setIsShowHeader(false) : setIsShowHeader(true)
+    (size.width < 992) ? setIsShowHeader(false) : setIsShowHeader(true)
   }, [size.width])
 
   useEffect(() => {

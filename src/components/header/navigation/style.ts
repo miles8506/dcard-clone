@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ThemePropsType } from '@/assets/theme'
 
 interface IProps {
-  pathname: string
+  pathname: string | undefined
 }
 
 export const NavigationWrapper = styled.div<IProps>`
@@ -44,7 +44,7 @@ export const NavigationWrapper = styled.div<IProps>`
     }
 
     &__user-icon {
-      background-color: ${props => props.pathname.includes('/profile') ? '#00588a' : 'inherit'};
+      background-color: ${props => props.pathname?.includes('/profile') ? '#00588a' : 'inherit'};
     }
   }
 

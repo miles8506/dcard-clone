@@ -1,4 +1,4 @@
-import { ThemeProps } from "styled-components"
+import { ThemeProps } from 'styled-components'
 
 const theme = {
   baseColor: {

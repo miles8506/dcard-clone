@@ -1,19 +1,19 @@
-import { memo, useEffect, useState, useCallback } from 'react'
+import { memo, useState, useCallback } from 'react'
 
 import type { ReduxStateType, ReduxDispatchType } from '@/store'
 import type { IArticle } from '@/store/article/type'
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
-import { requestUserInfo } from '@/store/login/async-thunk'
 import { requestArticle, requestArticleList, requestCommentList } from '@/store/article/async-thunk'
-import { requestHotBoard } from '@/store/main/async-thunk'
 import { emptyArticle } from '@/store/article'
+import { useNavigate } from 'react-router-dom'
 
 import { CollectWrapper } from './style'
 import ArticleItem from '@/components/common/article-item'
 import Notfound from '@/components/profile/notfound'
 import MSModal from '@/base-ui/MSModal'
 import Article from '@/components/article'
+import BackIcon from '@/assets/svg/back-icon'
 
 const Collect = memo(() => {
   const dispatch: ReduxDispatchType = useDispatch()
@@ -21,6 +21,8 @@ const Collect = memo(() => {
     userInfo: state.login.userInfo,
     articleList: state.article.articleList
   }), shallowEqual)
+
+  const navigate = useNavigate()
 
   const [isShowArticleModal, setIsShowArticleModal] = useState(false)
 
@@ -43,16 +45,15 @@ const Collect = memo(() => {
     return articleList?.filter(articleItem => userCollect?.some(collectItem => articleItem.id === collectItem))
   }
 
-  useEffect(() => {
-    dispatch(requestHotBoard())
-    dispatch(requestUserInfo())
-    dispatch(requestArticleList())
-  }, [])
-
   return (
     <CollectWrapper>
       <div className="collect">
-        <div className="collect-title">我的收藏</div>
+        <div className="collect-header">
+          <div className="back-icon" onClick={() => navigate('/profile/list')}>
+            <BackIcon />
+          </div>
+          <div className="title">我的收藏</div>
+        </div>
         <div className="collect-main">
           <div className="collect-list">
             {

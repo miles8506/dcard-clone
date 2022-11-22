@@ -10,4 +10,10 @@ export const MainLoadBoardWrapper = styled.div`
     height: 100%;
     padding-top: 68px;
   }
+
+  @media screen and (max-width: 992px) {
+    .main-load-board {
+      padding-top: 0;
+    }
+  }
 `

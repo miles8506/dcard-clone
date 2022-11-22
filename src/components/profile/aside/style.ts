@@ -9,4 +9,8 @@ export const AsideWrapper = styled.div`
     position: sticky;
     top: 68px;
   }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `

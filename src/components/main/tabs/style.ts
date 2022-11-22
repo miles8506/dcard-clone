@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import type { ThemePropsType } from "@/assets/theme"
 
-export const TabsWrapper = styled.div`
+export const TabsWrapper = styled.div<ThemePropsType>`
   background-color: #fff;
   border-radius: 4px 4px 0 0;
   min-width: 728px;
@@ -26,7 +27,21 @@ export const TabsWrapper = styled.div`
     }
 
     &-content {
+      position: relative;
       height: calc(100% - 81px);
+
+      .add-article-icon {
+        position: fixed;
+        right: 25px;
+        bottom: 60px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        text-align: center;
+        background-color: ${props => props.theme.iconColor.collect};
+        border-radius: 12px;
+        box-shadow: 0 3px 12px ${props => props.theme.iconColor.collect};
+      }
     }
   }
 

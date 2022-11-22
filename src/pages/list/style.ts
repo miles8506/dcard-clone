@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export const MobileBoardListWrapper = styled.div`
+export const MobileListWrapper = styled.div`
   display: none;
 
-  .mobile-board-list {
+  .mobile-list {
     position: absolute;
     top: 48px;
     right: 0;
@@ -13,7 +13,7 @@ export const MobileBoardListWrapper = styled.div`
     overflow-y: auto;
   }
 
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 992px) {
     display: block;
   }
 `

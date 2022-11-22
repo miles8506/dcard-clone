@@ -63,7 +63,7 @@ export const AreaWrapper = styled.div`
     background-color: #fff;
   }
 
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 992px) {
     .area-item {
       color: #000000BF;
 

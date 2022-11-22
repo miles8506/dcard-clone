@@ -32,7 +32,7 @@ export enum ArticleFilter {
 
 export enum MobileNavigate {
   home,
-  boardList,
+  list,
   profile
 }
 
@@ -97,3 +97,4 @@ export const tabsEnum = mappingEnumToObject(Tabs)
 export const selectFilterEnum = mappingEnumToObject(SelectFilter)
 export const correlationList = mappingEnumToNameId(ICorrelation)
 export const timeList = mappingEnumToNameId(ITime)
+export const mobileNavigateList = mappingEnumToNameId(MobileNavigate)

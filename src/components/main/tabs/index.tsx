@@ -3,20 +3,22 @@ import { memo } from 'react'
 import { useRouterInfo } from '@/context/router-info-context'
 import { useTabContext } from '@/context/main-context/tab-context'
 import { useFilterSelectContext } from '@/context/main-context/filter-select-context'
+import useWindowRWD from '@/hooks/use-window-rwd'
 
 import { TabsWrapper } from './style'
 import { Outlet, useNavigate } from 'react-router-dom'
 import MSTab from '@/base-ui/MSTab'
 import MSTabs from '@/base-ui/MSTabs'
 import FilterSelect from '../filter-select'
-
 import { tabsEnum } from '@/enum'
+import AddArticleIcon from '@/assets/svg/add-article-icon'
 
 const Tabs = memo(() => {
   const navigate = useNavigate()
   const { tabIndex, changeTabIndex, getTabsPath } = useTabContext()
   const { sort } = useRouterInfo()
   const { resetStatusIndex } = useFilterSelectContext()
+  const { size } = useWindowRWD()
 
   const handleChange = (newValue: number) => {
     changeTabIndex(newValue)
@@ -37,8 +39,16 @@ const Tabs = memo(() => {
             <FilterSelect />
           </div>
         </div>
-        <div className="tabs-content">
+        <div className="tabs-content" onClick={() => navigate('/post')}>
           <Outlet />
+          {
+            size.width <= 992 &&
+            (
+              <div className="add-article-icon">
+                <AddArticleIcon />
+              </div>
+            )
+          }
         </div>
       </div>
     </TabsWrapper>

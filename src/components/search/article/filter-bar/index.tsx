@@ -41,7 +41,7 @@ const FilterBar: FC<IProps> = memo(
       type: 'correlation' | 'time'
     ) => {
       event.stopPropagation()
-      if (size.width <= 996) setIsShowMask(true)
+      if (size.width <= 992) setIsShowMask(true)
       if (type === 'correlation') {
         !isShowCorrelationMenu && setIsShowTimeMenu(false)
         setIsShowCorrelationMenu((prev) => !prev)
@@ -63,12 +63,12 @@ const FilterBar: FC<IProps> = memo(
     }, [])
 
     useEffect(() => {
-      if (size.width > 996) return
+      if (size.width > 992) return
       if (!isShowCorrelationMenu && isShowMask) setIsShowMask(false)
     }, [isShowCorrelationMenu, size])
 
     useEffect(() => {
-      if (size.width > 996) return
+      if (size.width > 992) return
       if (!isShowTimeMenu && isShowMask) return setIsShowMask(false)
     }, [isShowTimeMenu, size])
 
@@ -92,7 +92,7 @@ const FilterBar: FC<IProps> = memo(
             <div className="down-icon">
               <ArrowDownIcon width="18" height="18" />
             </div>
-            {isShowCorrelationMenu && size.width > 996 && (
+            {isShowCorrelationMenu && size.width > 992 && (
               <CorrelationMenu
                 currentCorrelationItem={currentCorrelationItem}
                 changeCurrentCorrelation={changeCurrentCorrelation}
@@ -107,7 +107,7 @@ const FilterBar: FC<IProps> = memo(
             <div className="down-icon">
               <ArrowDownIcon width="18" height="18" />
             </div>
-            {isShowTimeMenu && size.width > 996 && (
+            {isShowTimeMenu && size.width > 992 && (
               <TimeMenu
                 currentTimeItem={currentTimeItem}
                 changeCurrentTime={changeCurrentTime}
@@ -128,7 +128,7 @@ const FilterBar: FC<IProps> = memo(
         >
           <div className="mobile-mask" onClick={() => setIsShowMask(false)} />
         </CSSTransition>
-        {size.width <= 996 && (
+        {size.width <= 992 && (
           <CSSTransition
             in={isShowCorrelationMenu}
             classNames={{
@@ -146,7 +146,7 @@ const FilterBar: FC<IProps> = memo(
             />
           </CSSTransition>
         )}
-        {size.width <= 996 && (
+        {size.width <= 992 && (
           <CSSTransition
             in={isShowTimeMenu}
             classNames={{

@@ -33,7 +33,7 @@ export const HotBoardWrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 992px) {
     height: auto;
     .hot-board {
       &-title {
