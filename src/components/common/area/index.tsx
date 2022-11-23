@@ -14,9 +14,9 @@ import { AreaWrapper } from './style'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import AllLoadBoardIcon from '@/assets/svg/all-load-board-icon'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import HotIcon from '@/assets/svg/hot-icon'
+// import HotIcon from '@/assets/svg/hot-icon'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import ResearchIcon from '@/assets/svg/research-icon'
+// import ResearchIcon from '@/assets/svg/research-icon'
 
 const Area = memo(() => {
   const navigate = useNavigate()
@@ -37,10 +37,10 @@ const Area = memo(() => {
     switch (index) {
       case 0:
         return <AllLoadBoardIcon />
-      case 1:
-        return <HotIcon />
-      case 2:
-        return <ResearchIcon />
+      // case 1:
+      //   return <HotIcon />
+      // case 2:
+      //   return <ResearchIcon />
     }
   }
 
@@ -58,7 +58,7 @@ const Area = memo(() => {
 
   return (
     <AreaWrapper>
-      {areaList?.map((item, index) => (
+      {areaList?.slice(0, 1).map((item, index) => (
         <div
           key={item.name}
           className="area-item"
@@ -68,14 +68,14 @@ const Area = memo(() => {
           <div className="area-text">{item.name}</div>
         </div>
       ))}
-      <div className="area-item">
+      {/* <div className="area-item">
         <div className="area-icon rank-icon"></div>
         <div className="area-text">創作者排行</div>
       </div>
       <div className="area-item">
         <div className="area-icon game-icon"></div>
-        <div className="area-text">創作者排行</div>
-      </div>
+        <div className="area-text">遊戲專區</div>
+      </div> */}
     </AreaWrapper>
   )
 })

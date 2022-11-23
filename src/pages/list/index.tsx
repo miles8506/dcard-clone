@@ -8,10 +8,12 @@ import Header from '@/components/list/header'
 const MobileList = memo(() => {
   return (
     <MobileListWrapper>
-      <Header />
-      <div className="mobile-list">
-        <Area />
-        <HotBoard />
+      <div className="mobile-list-wrap">
+        <Header />
+        <div className="mobile-list">
+          <Area />
+          <HotBoard />
+        </div>
       </div>
     </MobileListWrapper>
   )
