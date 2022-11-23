@@ -35,12 +35,12 @@
   - normal
   - google
   - facebook
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/login.png)
 
 - main
   - Dcard board
   - article list(可選擇排序種類，默認為熱門)
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/main.png)
 
 - article
   - article content
@@ -49,20 +49,20 @@
   - comment list(可選擇排序種類，默認為熱門)
   - comment
   - like comment
-![image]()
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/article1.png)
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/article2.png)
 
 - search
   - tab[synthesize／article／board]
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/search.png)
  
 - post
   - choose board(can search board)
   - add post(text/img)
-![image]()
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/post1.png)
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/post2.png)
 
 - profile
   - my collect
   - my article
-![image]()
+![image](https://github.com/miles8506/dcard-clone/blob/miles/feature/profile/src/assets/demo/profile.png)
