@@ -26,6 +26,10 @@ export const TabsWrapper = styled.div<ThemePropsType>`
         transform: translateY(calc(-50% + 8px));
       }
     }
+/*
+    .wrap {
+      position: relative;
+    } */
 
     &-content {
       position: relative;

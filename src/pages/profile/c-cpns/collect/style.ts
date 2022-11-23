@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const CollectWrapper = styled.div`
   background-color: inherit;
   flex: 1;
+  background-color: #fff;
 
   .collect {
     height: 100%;
@@ -23,7 +24,7 @@ export const CollectWrapper = styled.div`
     &-main {
       position: relative;
       height: calc(100% - 48px);
-      padding: 24px 0;
+      padding: 24px 0 48px;
     }
 
     &-list {

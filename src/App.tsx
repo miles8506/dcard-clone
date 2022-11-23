@@ -33,7 +33,7 @@ function App() {
       className="App"
       style={{
         background: 'rgb(0, 50, 78)',
-        height: '100vh'
+        height: '100%'
       }}
     >
       {useRoutes(routes)}
