@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const MainLoadBoardWrapper = styled.div`
   height: 100%;
-  overflow: auto;
 
   .main-load-board {
     display: grid;

@@ -10,7 +10,6 @@ export const MobileListWrapper = styled.div`
     bottom: 48px;
     left: 0;
     background-color: #fff;
-    overflow-y: auto;
   }
 
   @media screen and (max-width: 992px) {
