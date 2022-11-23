@@ -76,7 +76,7 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
           <div className="info">
             <div className="account">123@gmail.com</div>
             <div className="detail">
-              <span className="floor">B302</span>
+              <span className="floor">B{ article.commentTotal + 1 }</span>
               <span className="date">11月12日 12:12</span>
             </div>
           </div>
