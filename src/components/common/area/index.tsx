@@ -48,7 +48,7 @@ const Area = memo(() => {
     if (index !== 0) return
     resetTabIndex && resetTabIndex()
     resetStatusIndex && resetStatusIndex()
-    changeNavigateCurrentIndex && changeNavigateCurrentIndex(MobileNavigate.home)
+    changeNavigateCurrentIndex && changeNavigateCurrentIndex(MobileNavigate.main)
     navigate('/main/any/all')
   }
 

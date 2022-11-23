@@ -31,7 +31,7 @@ export enum ArticleFilter {
 }
 
 export enum MobileNavigate {
-  home,
+  main,
   list,
   profile
 }

@@ -102,7 +102,7 @@ const routes: RouteObject[] = [
     element: <ProfileList />
   },
   {
-    path: '/m/list',
+    path: '/list',
     element: <MobileList />
   }
 ]

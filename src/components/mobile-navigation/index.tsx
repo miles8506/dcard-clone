@@ -12,7 +12,10 @@ import SortIcon from '@/assets/svg/sort-icon'
 const MobileNavigation = memo(() => {
   const navigate = useNavigate()
 
-  const [activeTab, setActiveTab] = useState(MobileNavigate.home)
+  const [activeTab, setActiveTab] = useState(() => {
+    const path = window.location.hash.split('/')[1]
+    return MobileNavigate[path as any] as unknown as number
+  })
 
   const renderSvgIcon = (index: number) => {
     switch (index) {
@@ -29,11 +32,11 @@ const MobileNavigation = memo(() => {
     setActiveTab(index)
 
     switch (index) {
-      case MobileNavigate.home:
+      case MobileNavigate.main:
         navigate('/main')
         return
       case MobileNavigate.list:
-        navigate('/m/list')
+        navigate('/list')
         return
       case MobileNavigate.profile:
         navigate('/profile/list')
