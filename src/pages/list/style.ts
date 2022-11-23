@@ -7,7 +7,7 @@ export const MobileListWrapper = styled.div`
   .mobile-list-wrap {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 96px);
+    height: calc(100% - 48px);
 
     .mobile-list {
       flex: 1;
