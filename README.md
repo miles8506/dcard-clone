@@ -4,7 +4,7 @@
 
 ## Base
 * HTML
-* CSS(scss)/RWD
+* CSS(scss)／RWD
 * JavaScript
 * TypeScript
 
@@ -17,6 +17,7 @@
 - Styled Components
 - Draftjs
 - Classnames
+- Dayjs
 
 ## UI Component
 - Ant Design
