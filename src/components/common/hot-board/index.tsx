@@ -31,7 +31,7 @@ const HotBoard = memo(() => {
   const handleClick = (path: string) => {
     resetTabIndex && resetTabIndex()
     resetStatusIndex && resetStatusIndex()
-    changeNavigateCurrentIndex && changeNavigateCurrentIndex(MobileNavigate.home)
+    changeNavigateCurrentIndex && changeNavigateCurrentIndex(MobileNavigate.main)
     navigate(`/main/${path}/all`)
   }
 
