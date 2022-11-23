@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const HeaderWrapper = styled.div`
-    height: 48px;
-    background-color: rgb(0, 106, 166);
+  height: 48px;
+  flex-shrink: 0;
+  background-color: rgb(0, 106, 166);
 
   .header {
     display: flex;

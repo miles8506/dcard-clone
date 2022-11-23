@@ -18,7 +18,6 @@ export const ArticleMainWrapper = styled.div<ThemePropsType>`
       &-sort {
         color: #3397cf;
         font-weight: 300;
-        cursor: pointer;
       }
 
       &-division {

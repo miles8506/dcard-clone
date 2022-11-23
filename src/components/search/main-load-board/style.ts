@@ -6,7 +6,7 @@ interface IProps {
 
 export const MainLoadBoardWrapper = styled.div<IProps>`
   height: 100%;
-  overflow: auto;
+  /* overflow: auto; */
 
   .main-load-board {
     display: grid;
