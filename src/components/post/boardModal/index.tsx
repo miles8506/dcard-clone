@@ -52,11 +52,11 @@ const BoardModal: FC<IProps> = memo(({ hotBoardList, closeBoardModal }) => {
           <div className="list">
             <div className="text">看板</div>
             {
-              displayBoardList.map((item, index) => (
+              displayBoardList.map((item) => (
                 <Fragment key={item.name}>
                   <div
                     className="item"
-                    onClick={() => changeBoardClick(index)}
+                    onClick={() => changeBoardClick(item.id)}
                   >
                     {item.name}
                   </div>

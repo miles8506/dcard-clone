@@ -16,9 +16,9 @@ export const requestAreaList = createAsyncThunk('areaList', async () => {
 export const requestHotBoard = createAsyncThunk('hotBoard', async () => {
   const res = await requestCol('hotBoard')
   const hotBoardList: IHotBoard[] = []
-  res.forEach((item: any) => {
+  res.forEach((item: any, index: number) => {
     const { name, imgUrl, path, bgImg } = item.data()
-    hotBoardList.push({ name, imgUrl, path, bgImg })
+    hotBoardList.push({ name, imgUrl, path, bgImg, id: index })
   })
   return hotBoardList
 })

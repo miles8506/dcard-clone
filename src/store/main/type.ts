@@ -13,4 +13,5 @@ export interface IHotBoard {
   imgUrl: string
   bgImg: string
   path: string
+  id: number
 }
