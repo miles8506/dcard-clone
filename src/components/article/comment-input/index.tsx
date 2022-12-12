@@ -5,9 +5,7 @@ import type { IRequestComment } from '@/store/article/type'
 
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { requestCommentList, setCommentList } from '@/store/article/async-thunk'
-import { isAuth } from '@/hooks/use-auth'
-import { useNavigate } from 'react-router-dom'
-import { MSSessionStore, getCurrentTimeStamp } from '@/utils'
+import { MSSessionStore, getCurrentTimeStamp, formatDate } from '@/utils'
 import { useArticleContext } from '@/context/article-context'
 import { setQuery } from '@/api'
 import { requestArticle } from '@/store/article/async-thunk'
@@ -24,12 +22,11 @@ interface IProps {
 
 const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   const dispatch: ReduxDispatchType = useDispatch()
-  const { article, commentList } = useSelector((state: ReduxStateType) => ({
+  const { article, commentList, userInfo } = useSelector((state: ReduxStateType) => ({
     article: state.article.article,
-    commentList: state.article.commentList
+    commentList: state.article.commentList,
+    userInfo: state.login.userInfo
   }), shallowEqual)
-
-  const navigation = useNavigate()
 
   const { articleRef } = useArticleContext()
 
@@ -39,9 +36,6 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   }
 
   const handSendMessage = async() => {
-    const _isAuth = isAuth()
-    if (!_isAuth) return navigation('/login')
-
     const { account, gender } = MSSessionStore.getItem(LOGIN_INFO)
     await dispatch(requestCommentList(article.id))
     const timeStamp = getCurrentTimeStamp()
@@ -72,12 +66,13 @@ const CommentInput: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
     <CommentInputWrapper>
       <div className="comment-input">
         <div className="comment-input-top">
-          <div className="avatar">{ getGender(article.gender) }</div>
+          <div className="avatar">{ getGender(userInfo.gender) }</div>
           <div className="info">
-            <div className="account">123@gmail.com</div>
+            <div className="account">{userInfo.account}</div>
             <div className="detail">
               <span className="floor">B{ article.commentTotal + 1 }</span>
-              <span className="date">11月12日 12:12</span>
+              <span className="date">{formatDate(getCurrentTimeStamp(), 'MM月DD日 HH:mm')}
+              </span>
             </div>
           </div>
         </div>
