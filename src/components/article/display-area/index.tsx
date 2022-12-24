@@ -18,9 +18,10 @@ interface IProps {
 
 const DisplayArea: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   const navigation = useNavigate()
-  const { article } = useSelector(
+  const { article, userInfo } = useSelector(
     (state: ReduxStateType) => ({
       article: state.article.article,
+      userInfo: state.login.userInfo
     }),
     shallowEqual
   )
@@ -37,7 +38,7 @@ const DisplayArea: FC<IProps> = memo(({ changeIsShowDisplayArea }) => {
   return (
     <DisplayAreaWrapper>
       <div className="display-area">
-        <div className="display-area__avatar">{getGender(article.gender)}</div>
+        <div className="display-area__avatar">{getGender(userInfo.gender)}</div>
         <div className="display-area__comment-input" onClick={handleClickCommentInput}>留言...</div>
         <div className="display-area__operation">
           <LoveIcon />

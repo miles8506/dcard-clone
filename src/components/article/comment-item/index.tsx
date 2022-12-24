@@ -62,7 +62,7 @@ const CommentItem: FC<IProps> = memo(({ comment, commentListId }) => {
   return (
     <CommentItemWrapper>
       <div className="comment-item">
-        <div className="avatar">{ getGender(article.gender) }</div>
+        <div className="avatar">{ getGender(comment.gender) }</div>
         <div className="main">
           <div className="main-header">
             <div className="main-header-account">{ comment.account }</div>

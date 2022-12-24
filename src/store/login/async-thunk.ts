@@ -6,5 +6,6 @@ import { LOGIN_INFO } from '@/constants'
 export const requestUserInfo = createAsyncThunk('userInfo', async () => {
   const { account } = MSSessionStore.getItem(LOGIN_INFO)
   const res = await requestRef('user', account)
+  MSSessionStore.setItem('loginInfo', res)
   return res
 })
